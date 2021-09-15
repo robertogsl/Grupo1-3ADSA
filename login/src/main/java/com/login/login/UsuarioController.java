@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-
 public class UsuarioController {
 
     private List<Usuario> listaUsuarios = new ArrayList<>();

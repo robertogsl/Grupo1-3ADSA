@@ -12,13 +12,13 @@ import java.util.List;
 @RequestMapping("/usuarios")
 public class UsuarioController {
     private List<Avaliacao> comentariosCarlos = new ArrayList<Avaliacao>(List.of(
-            new Avaliacao(4, new Comentario("elogio", "Macaco dos bons")),
+            new Avaliacao(4, new Comentario("elogio", "Bom demais")),
             new Avaliacao(1, new Comentario("critica", "Horrível")),
-            new Avaliacao(5, new Comentario("elogio", "Deu aula"))
+            new Avaliacao(5, new Comentario("elogio", "Muito bom"))
     ));
 
     private List<Avaliacao> comentariosSoso = new ArrayList<Avaliacao>(List.of(
-            new Avaliacao(2, new Comentario("critica", "Desgraça de mlk")),
+            new Avaliacao(2, new Comentario("critica", "Muito ruim")),
             new Avaliacao(1, new Comentario("critica", "Horrível")),
             new Avaliacao(5, new Comentario("elogio", "Melhor de todos"))
     ));
@@ -48,7 +48,7 @@ public class UsuarioController {
             trabalho5
     ));
 
-    private Imovel imovel1 = new Imovel("Casa grande pra caraio", trabalhosSoso);
+    private Imovel imovel1 = new Imovel("Casa grande", trabalhosSoso);
     private Imovel imovel2 = new Imovel("Casa pequenina", trabalhosSoso2);
 
     private List<Imovel> imoveisSoso = new ArrayList<Imovel>(List.of(
