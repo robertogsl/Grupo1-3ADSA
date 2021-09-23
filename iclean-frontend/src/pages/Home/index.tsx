@@ -1,3 +1,36 @@
+import { useHistory } from 'react-router-dom';
+
+import { Feedbacks } from './Feedbacks';
+import { About } from './About';
+import { Footer } from '../../components/Footer';
+import { Header } from '../../components/Header';
+
+import { Container, Content, ButtonMain } from './styles';
+
+import homeMainSVG from '../../assets/homeMain.png';
+
 export function Home() {
-    return <h1>Oi</h1>
-}
+    const history = useHistory();
+
+    return (
+        <Container>
+            <Header />
+            <Content>
+                <div>
+                    <div>
+                        <strong>Eu quero limpar e quero já</strong>
+                        <span>O jeito mais rapido, facil e confiavel de ter sua casa limpa!</span>
+                        <div>
+                            <ButtonMain main={false} onClick={() => history.push("/login")}>Agende sua faxina</ButtonMain>
+                            <ButtonMain main={true}>Trabalhe conosco</ButtonMain>
+                        </div>
+                    </div>
+                    <img src={homeMainSVG} alt="Main" />
+                </div>
+            </Content>
+            <Feedbacks />
+            <About />
+            <Footer />
+        </Container>
+    );
+};

@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.header`
+    width: 100%;
     background-color: var(--dark);
+
+    display: flex;
 `;
 
 export const Content = styled.div`
+    width: 100%;
     max-width: 1120px;
     margin: 0 auto;
 
@@ -12,10 +16,25 @@ export const Content = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
 
-    div:first-of-type {
-        background-color: #fff;
+    & > a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        text-decoration: none;
+
+        img {
+            width: 4rem;
+        }
+
+        strong {
+            color: var(--shape);
+            font-weight: 600;
+            font-size: 2.4rem;
+            margin-left: 1.2rem;
+        }
     }
 
     nav {

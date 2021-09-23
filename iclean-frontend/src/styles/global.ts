@@ -42,6 +42,10 @@ export const GlobalStyle = createGlobalStyle`
         cursor: pointer;
     }
 
+    ul {
+        list-style: none;
+    }
+
     [disabled] {
         opacity: 0.6;
         cursor: not-allowed;
