@@ -8,6 +8,7 @@ import { Header } from '../../components/Header';
 import { Container, Content, ButtonMain } from './styles';
 
 import homeMainSVG from '../../assets/homeMain.png';
+import { Qualities } from './Qualities';
 
 export function Home() {
     const history = useHistory();
@@ -30,6 +31,7 @@ export function Home() {
             </Content>
             <Feedbacks />
             <About />
+            <Qualities />
             <Footer />
         </Container>
     );
