@@ -1,15 +1,14 @@
-import { Header } from "./components/Header";
+import { BrowserRouter } from 'react-router-dom';
+
+import { Routes } from "./routes/Routes";
 import { GlobalStyle } from "./styles/global";
 
 function App() {
   return (
-    <>
-      <Header />
-      <div>
-        <h1>iClean</h1>
-      </div>
+    <BrowserRouter>
       <GlobalStyle />
-    </>
+        <Routes />
+    </BrowserRouter>
   );
 }
 

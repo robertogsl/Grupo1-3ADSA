@@ -1,15 +1,22 @@
+import { Link } from 'react-router-dom';
+
 import { Container, Content } from './styles'
+
+import logoSVG from '../../assets/Logo.svg';
 
 export function Header() {
     return (
         <Container>
             <Content>
-                <div>logo</div>
+                <Link to="/">
+                    <img src={logoSVG} alt="Logo iClean" />
+                    <strong>iClean</strong>
+                </Link>
                 <nav>
-                    <a>Home</a>
-                    <a>Sobre</a>
-                    <a>Contato</a>
-                    <a>Login</a>
+                    <Link to="/">Home</Link>
+                    <Link to="/">Sobre</Link>
+                    <Link to="/">Contato</Link>
+                    <Link to="/login">Login</Link>
                 </nav>
             </Content>
         </Container>
