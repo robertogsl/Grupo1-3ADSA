@@ -5,6 +5,7 @@ import { Header } from '../../components/Header';
 import loginPNG from '../../assets/login.png';
 
 import { Container, Content, InputGroup } from './styles';
+import { Link } from 'react-router-dom';
 
 export function Login() {
     return (
@@ -13,7 +14,7 @@ export function Login() {
             <Content>
               <form>
                 <h1>Bem-vindo!</h1>
-                <span>Ainda não tem conta, <a>cadastre-se</a></span>
+                <span>Ainda não tem conta, <Link to="/register">cadastre-se</Link></span>
 
                 <InputGroup>
                   <label htmlFor="">E-mail</label>
