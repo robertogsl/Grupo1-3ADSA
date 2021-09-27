@@ -37,6 +37,60 @@ export const Step = styled.div<IStepProp>`
     border: 1px solid var(--primary);
   `}
 
+  ${props => props.own === 1 && css`
+    &::after {
+      content: "";
+      position: absolute;
+      width: 3rem;
+      height: 2px;
+
+      background-color: var(--primary);
+
+      top: calc(50% - 1px);
+      right: calc(-3rem - 1px);
+    }
+  `}
+
+  ${props => props.own === props.totalSteps && css`
+    &::after {
+      content: "";
+      position: absolute;
+      width: 3rem;
+      height: 2px;
+
+      background-color: var(--primary);
+
+      top: calc(50% - 1px);
+      left: calc(-3rem - 1px);
+    }
+  `}
+
+  ${props => props.own !== props.totalSteps && props.own > 1 && css`
+  &::after {
+    content: "";
+    position: absolute;
+    width: 3rem;
+    height: 2px;
+
+    background-color: var(--primary);
+
+    top: calc(50% - 1px);
+    left: calc(-3rem - 1px);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 3rem;
+    height: 2px;
+
+    background-color: var(--primary);
+
+    top: calc(50% - 1px);
+    right: calc(-3rem - 1px);
+  }
+  `}
+
   &:nth-child(${props => Math.ceil(props.totalSteps / 2)})::after {
     content: "";
     position: absolute;
