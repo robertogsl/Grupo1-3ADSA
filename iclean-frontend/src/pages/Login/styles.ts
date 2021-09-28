@@ -52,7 +52,7 @@ export const Content = styled.div`
 
       background-color: var(--primary);
       color: var(--shape);
-      border: 0ch;
+      border: 0;
 
       font-size: 1.2rem;
       font-weight: 500;

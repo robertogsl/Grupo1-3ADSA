@@ -5,12 +5,10 @@ import { Container, Step } from './styles';
 
 interface IStepsProps {
   steps: number[];
+  step: number;
 }
 
-export function Steps({ steps }: IStepsProps) {
-
-  const [step, setStep] = useState(1);
-
+export function Steps({ steps, step }: IStepsProps) {
 
   return (
     <Container>
@@ -19,8 +17,6 @@ export function Steps({ steps }: IStepsProps) {
           {stepMap >= step ? <span>{stepMap}</span> : <FaCheck size={18} color="#333" />}
         </Step>
       ))}
-
-      <button onClick={() => setStep(step + 1)}>Next step</button>
     </Container>
   )
 }
