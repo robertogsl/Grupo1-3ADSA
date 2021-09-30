@@ -22,8 +22,8 @@ export function Home() {
                         <strong>Eu quero limpar e quero já</strong>
                         <span>O jeito mais rapido, facil e confiavel de ter sua casa limpa!</span>
                         <div>
-                            <ButtonMain main={false} onClick={() => history.push("/login")}>Agende sua faxina</ButtonMain>
-                            <ButtonMain main={true}>Trabalhe conosco</ButtonMain>
+                            <ButtonMain main={false} onClick={() => history.push("/register")}>Agende sua faxina</ButtonMain>
+                            <ButtonMain main={true} onClick={() => history.push("/register")}>Trabalhe conosco</ButtonMain>
                         </div>
                     </div>
                     <img src={homeMainSVG} alt="Main" />

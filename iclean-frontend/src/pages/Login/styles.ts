@@ -5,9 +5,15 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  min-height: 100vh;
+
+  flex: 1;
 `;
 
 export const Content = styled.div`
+  flex: 1;
+
   max-width: 1120px;
   padding: 0 1rem;
 
@@ -15,6 +21,10 @@ export const Content = styled.div`
   grid-template-columns: 1fr 1fr;
 
   min-height: 540px;
+
+  img {
+    align-self: center;
+  }
 
   form {
     align-self: center;

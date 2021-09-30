@@ -5,12 +5,14 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    flex: 1;
 `;
 
 export const Content = styled.main`
     max-width: 1120px;
     padding: 0 1rem;
-    
+
     display: flex;
     flex-direction: column;
     align-items: center;

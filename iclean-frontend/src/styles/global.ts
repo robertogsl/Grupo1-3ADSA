@@ -30,6 +30,14 @@ export const GlobalStyle = createGlobalStyle`
         -webkit-font-smoothing: antialiased !important;
     }
 
+    #root {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     body, input, textarea, button {
         font-family: 'Poppins', sans-serif;
         font-weight: 400;
