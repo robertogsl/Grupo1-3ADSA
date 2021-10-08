@@ -148,7 +148,6 @@ export const InputGroup = styled.div`
     padding: 0.5rem 1rem;
 
     background-color: var(--shape);
-    color: var(--shape);
     border: 1px solid var(--primary);
 
     font-size: 1.2rem;

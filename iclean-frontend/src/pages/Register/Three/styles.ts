@@ -20,3 +20,14 @@ export const Container = styled.div`
     margin: 1.4rem 0;
   }
 `;
+
+interface IDoubleInputProps {
+  sizeOfFirst: number;
+}
+
+export const DoubleInput = styled.div<IDoubleInputProps>`
+  display: grid;
+  grid-template-columns: ${props => props.sizeOfFirst}fr 1fr;
+
+  grid-gap: 1rem;
+`;
