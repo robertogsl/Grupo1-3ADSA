@@ -38,7 +38,7 @@ public class UsuarioController {
 
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity getUsuario(@PathVariable int id){
 
         return ResponseEntity.of(repository.findById(id));
@@ -57,7 +57,7 @@ public class UsuarioController {
 
     }
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     public ResponseEntity putUsuario(@PathVariable int id,
                                      @RequestBody Usuario usuarioAtualizado){
         if(repository.existsById(id)){
