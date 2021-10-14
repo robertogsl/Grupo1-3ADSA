@@ -11,7 +11,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idUsuario;
+    private Integer id;
 
     private String nome;
     private String cpf;
@@ -22,12 +22,12 @@ public class Usuario {
     //private Boolean autenticado;   -- Não mais necessário
 
 
-    public Integer getIdUsuario() {
-        return idUsuario;
+    public Integer getId() {
+        return id;
     }
 
     public void setId(Integer id) {
-        this.idUsuario = idUsuario;
+        this.id = id;
     }
 
     public String getNome() {

@@ -3,37 +3,13 @@ package com.example.projeto.projeto.dominio;
 import javax.persistence.*;
 
 @Entity
-public class Contratada {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idContratada;
-
-    @OneToMany
-    @JoinColumn(name = "fkUsuario")
-    private Usuario fkUsuario;
+public class Contratada extends Usuario {
 
     private String cep;
     private String complemento;
     private String numero;
     private Double longitude;
     private Double latitude;
-
-    public int getIdContratada() {
-        return idContratada;
-    }
-
-    public void setIdContratada(int idContratada) {
-        this.idContratada = idContratada;
-    }
-
-    public Usuario getFkUsuario() {
-        return fkUsuario;
-    }
-
-    public void setFkUsuario(Usuario fkUsuario) {
-        this.fkUsuario = fkUsuario;
-    }
 
     public String getCep() {
         return cep;

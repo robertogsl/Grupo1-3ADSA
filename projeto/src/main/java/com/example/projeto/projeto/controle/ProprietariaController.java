@@ -1,30 +1,30 @@
 package com.example.projeto.projeto.controle;
 
 import com.example.projeto.projeto.dominio.Proprietaria;
-import com.example.projeto.projeto.dominio.Usuario;
 import com.example.projeto.projeto.repositorio.ProprietariaRepository;
-import com.example.projeto.projeto.repositorio.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@RestController
+@RequestMapping("/proprietarias")
 public class ProprietariaController {
 
     @Autowired
     private ProprietariaRepository repository;
 
-    @Autowired
-    private UsuarioRepository userRepository;
-
     @CrossOrigin
-    @PostMapping("/{fkUsuario}")
-    public ResponseEntity criarProprietaria(@RequestBody Proprietaria novaProprietaria,
-                                          @PathVariable int fkUsuario) {
-        Usuario usuario = userRepository.findById(fkUsuario).get();
-        novaProprietaria.setFkUsuario(usuario);
+    @PostMapping
+    public ResponseEntity criarProprietaria(@RequestBody Proprietaria novaProprietaria) {
         repository.save(novaProprietaria);
 
         return ResponseEntity.status(201).build();
+    }
+
+    @CrossOrigin
+    @GetMapping
+    public ResponseEntity getProprietarias() {
+        return ResponseEntity.status(200).body(repository.findAll());
     }
 
     @CrossOrigin
@@ -58,7 +58,6 @@ public class ProprietariaController {
                                         @RequestBody Proprietaria proprietariaAtualizado) {
 
         if (repository.existsById(id)) {
-            proprietariaAtualizado.setIdProprietaria(id);
             repository.save(proprietariaAtualizado);
 
             return ResponseEntity.status(200).build();

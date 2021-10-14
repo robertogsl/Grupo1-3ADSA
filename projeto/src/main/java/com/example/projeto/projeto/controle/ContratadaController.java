@@ -1,32 +1,30 @@
 package com.example.projeto.projeto.controle;
 
 import com.example.projeto.projeto.dominio.Contratada;
-import com.example.projeto.projeto.dominio.Usuario;
 import com.example.projeto.projeto.repositorio.ContratadaRepository;
-import com.example.projeto.projeto.repositorio.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("contratadas")
+@RequestMapping("/contratadas")
 public class ContratadaController {
 
     @Autowired
     private ContratadaRepository repository;
 
-    @Autowired
-    private UsuarioRepository userRepository;
-
     @CrossOrigin
-    @PostMapping("/{fkUsuario}")
-    public ResponseEntity criarContratada(@RequestBody Contratada novaContratada,
-                                          @PathVariable int fkUsuario) {
-        Usuario usuario = userRepository.findById(fkUsuario).get();
-        novaContratada.setFkUsuario(usuario);
+    @PostMapping
+    public ResponseEntity criarContratada(@RequestBody Contratada novaContratada) {
         repository.save(novaContratada);
 
         return ResponseEntity.status(201).build();
+    }
+
+    @CrossOrigin
+    @GetMapping
+    public ResponseEntity getContratadas() {
+        return ResponseEntity.status(200).body(repository.findAll());
     }
 
     @CrossOrigin
@@ -60,7 +58,6 @@ public class ContratadaController {
                                         @RequestBody Contratada contratadaAtualizado) {
 
         if (repository.existsById(id)) {
-            contratadaAtualizado.setIdContratada(id);
             repository.save(contratadaAtualizado);
 
             return ResponseEntity.status(200).build();
