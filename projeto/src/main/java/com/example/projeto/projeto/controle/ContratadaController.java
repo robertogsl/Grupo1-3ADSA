@@ -1,5 +1,6 @@
 package com.example.projeto.projeto.controle;
 
+import com.example.projeto.projeto.Csv;
 import com.example.projeto.projeto.dominio.Contratada;
 import com.example.projeto.projeto.repositorio.ContratadaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/contratadas")
 public class ContratadaController {
+
+    Csv csv = new Csv();
 
     @Autowired
     private ContratadaRepository repository;
@@ -26,7 +29,12 @@ public class ContratadaController {
     @CrossOrigin
     @GetMapping
     public ResponseEntity getContratadas() {
-        return ResponseEntity.status(200).body(repository.findAll());
+        List<Contratada> lista = repository.findAll();
+        List<Contratada> listaContratadas = repository.findAll();
+
+        csv.gravaLista(listaContratadas, "listaContratadas");
+
+        return ResponseEntity.status(200).body(lista);
     }
 
     @CrossOrigin
@@ -73,17 +81,18 @@ public class ContratadaController {
     }
 
     @CrossOrigin
-    @PostMapping("/autenticar/{id}")
-    public ResponseEntity autenticar(@PathVariable int id, @RequestBody Contratada contratada) {
-        Contratada c = repository.findById(id).get();
-        if (c.autenticar(contratada.getEmail(), contratada.senha())) {
-            c.setAutenticado(true);
+    @PostMapping("/autenticar")
+    public ResponseEntity autenticar(@RequestBody Contratada contratada) {
+        List<Contratada> contratadas = repository.findAll();
+        for(Contratada c : contratadas) {
+            if (c.autenticar(contratada.getEmail(), contratada.senha())) {
+                c.setAutenticado(true);
+                repository.save(c);
+                return ResponseEntity.status(200).build();
+            }
+            c.setAutenticado(false);
             repository.save(c);
-            return ResponseEntity.status(200).build();
-        }
-        c.setAutenticado(false);
-        repository.save(c);
-        return ResponseEntity.status(404).build();
+        } return ResponseEntity.status(404).build();
     };
 
     @CrossOrigin

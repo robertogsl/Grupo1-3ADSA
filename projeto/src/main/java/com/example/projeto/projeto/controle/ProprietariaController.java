@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/proprietarias")
 public class ProprietariaController {
@@ -72,17 +74,18 @@ public class ProprietariaController {
     }
 
     @CrossOrigin
-    @PostMapping("/autenticar/{id}")
-    public ResponseEntity autenticar(@PathVariable int id, @RequestBody Proprietaria proprietaria) {
-        Proprietaria p = repository.findById(id).get();
-        if (p.autenticar(proprietaria.getEmail(), proprietaria.senha())) {
-            p.setAutenticado(true);
+    @PostMapping("/autenticar")
+    public ResponseEntity autenticar(@RequestBody Proprietaria proprietaria) {
+        List<Proprietaria> proprietarias = repository.findAll();
+        for(Proprietaria p : proprietarias) {
+            if (p.autenticar(proprietaria.getEmail(), proprietaria.senha())) {
+                p.setAutenticado(true);
+                repository.save(p);
+                return ResponseEntity.status(200).build();
+            }
+            p.setAutenticado(false);
             repository.save(p);
-            return ResponseEntity.status(200).build();
-        }
-        p.setAutenticado(false);
-        repository.save(p);
-        return ResponseEntity.status(404).build();
+        } return ResponseEntity.status(404).build();
     };
 
     @CrossOrigin
