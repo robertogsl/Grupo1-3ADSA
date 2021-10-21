@@ -1,6 +1,7 @@
 package com.example.projeto.projeto.controle;
 
 import com.example.projeto.projeto.dominio.Contratada;
+import com.example.projeto.projeto.dominio.Proprietaria;
 import com.example.projeto.projeto.repositorio.ContratadaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -73,17 +74,18 @@ public class ContratadaController {
     }
 
     @CrossOrigin
-    @PostMapping("/autenticar/{id}")
-    public ResponseEntity autenticar(@PathVariable int id, @RequestBody Contratada contratada) {
-        Contratada c = repository.findById(id).get();
-        if (c.autenticar(contratada.getEmail(), contratada.senha())) {
-            c.setAutenticado(true);
+    @PostMapping("/autenticar")
+    public ResponseEntity autenticar(@RequestBody Contratada contratada) {
+        List<Contratada> contratadas = repository.findAll();
+        for(Contratada c : contratadas) {
+            if (c.autenticar(contratada.getEmail(), contratada.senha())) {
+                c.setAutenticado(true);
+                repository.save(c);
+                return ResponseEntity.status(200).build();
+            }
+            c.setAutenticado(false);
             repository.save(c);
-            return ResponseEntity.status(200).build();
-        }
-        c.setAutenticado(false);
-        repository.save(c);
-        return ResponseEntity.status(404).build();
+        } return ResponseEntity.status(404).build();
     };
 
     @CrossOrigin
