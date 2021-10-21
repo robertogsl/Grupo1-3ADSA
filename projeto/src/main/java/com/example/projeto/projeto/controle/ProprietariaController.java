@@ -1,5 +1,6 @@
 package com.example.projeto.projeto.controle;
 
+import com.example.projeto.projeto.dominio.Contratada;
 import com.example.projeto.projeto.dominio.Proprietaria;
 import com.example.projeto.projeto.repositorio.ProprietariaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,30 @@ public class ProprietariaController {
 
     }
 
+    @CrossOrigin
+    @PostMapping("/autenticar/{id}")
+    public ResponseEntity autenticar(@PathVariable int id, @RequestBody Proprietaria proprietaria) {
+        Proprietaria p = repository.findById(id).get();
+        if (p.autenticar(proprietaria.getEmail(), proprietaria.senha())) {
+            p.setAutenticado(true);
+            repository.save(p);
+            return ResponseEntity.status(200).build();
+        }
+        p.setAutenticado(false);
+        repository.save(p);
+        return ResponseEntity.status(404).build();
+    };
 
+    @CrossOrigin
+    @PostMapping("/logoff/{id}")
+    public ResponseEntity logoff(@PathVariable int id) {
+        Proprietaria p = repository.findById(id).get();
+        if (repository.existsById(id)) {
+            p.setAutenticado(false);
+            repository.save(p);
+            return ResponseEntity.status(200).build();
+        }
+        return ResponseEntity.status(404).build();
+    };
 
 }

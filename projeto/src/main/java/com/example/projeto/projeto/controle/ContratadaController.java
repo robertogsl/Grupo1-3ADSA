@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/contratadas")
 public class ContratadaController {
@@ -29,7 +31,7 @@ public class ContratadaController {
 
     @CrossOrigin
     @GetMapping("/{id}")
-    public ResponseEntity getContrada(@PathVariable int id) {
+    public ResponseEntity getContradada(@PathVariable int id) {
 
         return ResponseEntity.of(repository.findById(id));
 
@@ -69,5 +71,31 @@ public class ContratadaController {
         }
 
     }
+
+    @CrossOrigin
+    @PostMapping("/autenticar/{id}")
+    public ResponseEntity autenticar(@PathVariable int id, @RequestBody Contratada contratada) {
+        Contratada c = repository.findById(id).get();
+        if (c.autenticar(contratada.getEmail(), contratada.senha())) {
+            c.setAutenticado(true);
+            repository.save(c);
+            return ResponseEntity.status(200).build();
+        }
+        c.setAutenticado(false);
+        repository.save(c);
+        return ResponseEntity.status(404).build();
+    };
+
+    @CrossOrigin
+    @PostMapping("/logoff/{id}")
+    public ResponseEntity logoff(@PathVariable int id) {
+        Contratada c = repository.findById(id).get();
+        if (repository.existsById(id)) {
+            c.setAutenticado(false);
+            repository.save(c);
+            return ResponseEntity.status(200).build();
+        }
+        return ResponseEntity.status(404).build();
+    };
 
 }
