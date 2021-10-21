@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  & > form {
+  & > div {
     align-self: center;
     width: 100%;
 

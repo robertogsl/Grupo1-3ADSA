@@ -10,7 +10,7 @@ import { InputRegister } from '../../../components/InputRegister';
 import { Container, DoubleInput } from './styles';
 
 export function Four() {
-  const { registerData, handleChangeRegisterData } = useRegister();
+  const { registerData, handleChangeRegisterData, submitContratada } = useRegister();
 
   const handleMapClick = useCallback((event: LeafletMouseEvent) => {
     handleChangeRegisterData({ ...registerData, latitude: event.latlng.lat, longitude: event.latlng.lng})
@@ -29,7 +29,7 @@ export function Four() {
     <Container>
       <h1>Credenciais de acesso: </h1>
 
-      <form>
+      <div>
         <DoubleInput sizeOfFirst={1}>
           <InputRegister value={registerData.latitude || ""} onChange={(e: React.FormEvent<HTMLInputElement>) => handleChangeRegisterData({ ...registerData, latitude: Number(e.currentTarget.value)})} label="Latitude" />
           <InputRegister value={registerData.longitude || ""} onChange={(e: React.FormEvent<HTMLInputElement>) => handleChangeRegisterData({ ...registerData, longitude: Number(e.currentTarget.value)})} label="Longitude" />
@@ -53,8 +53,8 @@ export function Four() {
           </Marker>
         </Map>
 
-        <DoubleButton isFinalStep={true} />
-      </form>
+        <DoubleButton onSubmitForm={submitContratada} isFinalStep={true} />
+      </div>
     </Container>
   );
 }

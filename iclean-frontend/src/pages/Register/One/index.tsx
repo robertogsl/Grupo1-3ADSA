@@ -14,7 +14,7 @@ export function One() {
       <form>
         <InputRegister value={registerData.nome} onChange={(e: React.FormEvent<HTMLInputElement>) => handleChangeRegisterData({ ...registerData, nome: e.currentTarget.value})} label="Nome" />
         <InputRegister value={registerData.cpf} onChange={(e: React.FormEvent<HTMLInputElement>) => handleChangeRegisterData({ ...registerData, cpf: e.currentTarget.value})} label="CPF" />
-        <InputRegister value={registerData.celular} onChange={(e: React.FormEvent<HTMLInputElement>) => handleChangeRegisterData({ ...registerData, celular: e.currentTarget.value})} label="Celular" />
+        <InputRegister value={registerData.telefone} onChange={(e: React.FormEvent<HTMLInputElement>) => handleChangeRegisterData({ ...registerData, telefone: e.currentTarget.value})} label="Telefone" />
         <InputRegister value={registerData.dataNascimento} onChange={(e: React.FormEvent<HTMLInputElement>) => handleChangeRegisterData({ ...registerData, dataNascimento: e.currentTarget.value})} label="Data de nascimento" />
 
         <DoubleButton />

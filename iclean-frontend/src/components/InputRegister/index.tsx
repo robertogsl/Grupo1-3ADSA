@@ -7,9 +7,10 @@ interface InputRegisterProps {
   value: string | number;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   disabled?: boolean;
+  type?: string;
 }
 
-export function InputRegister({ label, value, onChange, disabled = false }: InputRegisterProps) {
+export function InputRegister({ label, value, onChange, disabled = false, type = "text" }: InputRegisterProps) {
   const defaultFormEvent = useCallback((e: FormEvent<HTMLInputElement>) => {
     console.log("rsrs")
   }, []);
@@ -17,7 +18,7 @@ export function InputRegister({ label, value, onChange, disabled = false }: Inpu
   return (
     <Container>
       <label htmlFor="">{label}</label>
-      <input disabled={disabled} onChange={onChange || defaultFormEvent} type="text" value={value} />
+      <input type={type} disabled={disabled} onChange={onChange || defaultFormEvent} value={value} />
     </Container>
   )
 }

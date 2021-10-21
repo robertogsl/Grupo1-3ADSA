@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  & > form {
+  & > div {
     width: 100%;
 
     max-width: 500px;

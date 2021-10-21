@@ -6,10 +6,13 @@ import { Container, Button } from './styles';
 
 interface IDoubleButtonProps {
   isFinalStep?: boolean;
+  onSubmitForm?: () => void;
 }
 
-export function DoubleButton({ isFinalStep = false }: IDoubleButtonProps) {
+export function DoubleButton({ isFinalStep = false, onSubmitForm }: IDoubleButtonProps) {
   const { changeStep } = useRegister();
+
+  const functionRenderedOnSecondButton = isFinalStep ? onSubmitForm : () => changeStep('next');
 
   return (
     <Container>
@@ -17,7 +20,7 @@ export function DoubleButton({ isFinalStep = false }: IDoubleButtonProps) {
         <FiArrowLeft size={18} color="#5762C3" />
         Voltar
       </Button>
-      <Button main={true} onClick={() => changeStep('next')}>
+      <Button main={true} onClick={functionRenderedOnSecondButton}>
         {isFinalStep ? "Cadastrar" : (
           <>
             Próximo

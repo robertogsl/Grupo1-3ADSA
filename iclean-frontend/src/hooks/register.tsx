@@ -1,11 +1,15 @@
-import React, { useContext, createContext, useState, useCallback, useEffect } from 'react';
+import React, { useContext, createContext, useState, useCallback } from 'react';
+import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
+
+import { api } from '../services/api';
 
 interface IRegisterData {
   email: string;
   senha: string;
   nome: string;
   cpf: string;
-  celular: string;
+  telefone: string;
   dataNascimento: string;
   cep?: string;
   numero?: string;
@@ -21,6 +25,8 @@ interface RegisterContextData {
   registerData: IRegisterData;
   getUserType: () => number;
   handleChangeRegisterData: (data: IRegisterData) => void;
+  submitProprietaria: () => void;
+  submitContratada: () => void;
 }
 
 const RegisterContext = createContext<RegisterContextData>({} as RegisterContextData);
@@ -29,6 +35,8 @@ export const RegisterProvider: React.FC = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [userType, setUserType] = useState(0);
   const [registerData, setRegisterData] = useState<IRegisterData>({} as IRegisterData);
+
+  const history = useHistory();
 
   const handleChangeRegisterData = useCallback((data: IRegisterData): void => {
     setRegisterData({...registerData, ...data});
@@ -50,8 +58,51 @@ export const RegisterProvider: React.FC = ({ children }) => {
 
   const getUserType = useCallback((): number => userType, [userType]);
 
+  const submitContratada = async () => {
+    const data = {
+      ...registerData,
+    }
+
+    try {
+      await api.post("/contratadas", data);
+
+      // toast("Cadastro realizado com sucesso", { type: "success" });
+      alert("Cadastro realizado com sucesso");
+
+      history.push("/login")
+    } catch (error) {
+      // toast("Não foi possível realizar o cadastro, tente novamente.", { type: "error" })
+
+      alert("Não foi possível efetuar o cadastro, tente novamente.");
+    }
+  };
+
+  const submitProprietaria = async () => {
+    const data = {
+      nome: registerData.nome,
+      cpf: registerData.cpf,
+      telefone: registerData.telefone,
+      dataNascimento: registerData.dataNascimento,
+      email: registerData.email,
+      senha: registerData.senha,
+    }
+
+    try {
+      await api.post("/proprietarias", data);
+
+      // toast("Cadastro realizado com sucesso", { type: "success" });
+      alert("Cadastro realizado com sucesso");
+
+      history.push("/login")
+    } catch (error) {
+      // toast("Não foi possível realizar o cadastro, tente novamente.", { type: "error" })
+
+      alert("Não foi possível efetuar o cadastro, tente novamente.");
+    }
+  };
+
   return (
-    <RegisterContext.Provider value={{ currentStep, changeStep, handleChooseUserType, registerData, getUserType, handleChangeRegisterData }}>
+    <RegisterContext.Provider value={{ currentStep, changeStep, handleChooseUserType, registerData, getUserType, handleChangeRegisterData, submitProprietaria, submitContratada }}>
       {children}
     </RegisterContext.Provider>
   )

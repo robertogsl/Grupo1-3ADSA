@@ -19,7 +19,7 @@ export function MultiplesCheck({ title, items }: IMultiplesCheckProps) {
 
               return (
                 <li>
-                  <Icon />
+                  hello
                   </li>
               )
             })}
