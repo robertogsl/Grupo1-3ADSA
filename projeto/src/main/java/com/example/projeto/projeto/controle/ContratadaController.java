@@ -1,7 +1,7 @@
 package com.example.projeto.projeto.controle;
 
+import com.example.projeto.projeto.Csv;
 import com.example.projeto.projeto.dominio.Contratada;
-import com.example.projeto.projeto.dominio.Proprietaria;
 import com.example.projeto.projeto.repositorio.ContratadaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +12,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/contratadas")
 public class ContratadaController {
+
+    Csv csv = new Csv();
 
     @Autowired
     private ContratadaRepository repository;
@@ -27,7 +29,12 @@ public class ContratadaController {
     @CrossOrigin
     @GetMapping
     public ResponseEntity getContratadas() {
-        return ResponseEntity.status(200).body(repository.findAll());
+        List<Contratada> lista = repository.findAll();
+        List<Contratada> listaContratadas = repository.findAll();
+
+        csv.gravaLista(listaContratadas, "listaContratadas");
+
+        return ResponseEntity.status(200).body(lista);
     }
 
     @CrossOrigin
