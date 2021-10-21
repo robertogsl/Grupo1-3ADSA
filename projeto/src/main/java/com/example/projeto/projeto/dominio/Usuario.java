@@ -19,10 +19,16 @@ public class Usuario {
     private LocalDate dataNascimento;
     private String email;
     private String senha;
-    //private Boolean autenticado;   -- Não mais necessário
+    private Boolean autenticado = false;
 
+    public Boolean autenticar(String login, String senha) {
+        if (login.equals(this.email) && senha.equals(this.senha)) {
+            return true;
+        }
+        return false;
+    }
 
-    public Integer getId() {
+    public Integer getId    () {
         return id;
     }
 
@@ -78,4 +84,11 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public Boolean getAutenticado() {
+        return autenticado;
+    }
+
+    public void setAutenticado(Boolean autenticado) {
+        this.autenticado = autenticado;
+    }
 }
