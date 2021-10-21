@@ -1,5 +1,6 @@
 package com.example.projeto.projeto.controle;
 
+import com.example.projeto.projeto.Csv;
 import com.example.projeto.projeto.dominio.Contratada;
 import com.example.projeto.projeto.dominio.Proprietaria;
 import com.example.projeto.projeto.repositorio.ProprietariaRepository;
@@ -12,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/proprietarias")
 public class ProprietariaController {
+    Csv csv = new Csv();
 
     @Autowired
     private ProprietariaRepository repository;
@@ -27,7 +29,9 @@ public class ProprietariaController {
     @CrossOrigin
     @GetMapping
     public ResponseEntity getProprietarias() {
-        return ResponseEntity.status(200).body(repository.findAll());
+        List<Proprietaria> lista = repository.findAll();
+        csv.gravaListaProprietaria(lista, "listaProprietaria");
+        return ResponseEntity.status(200).body(lista);
     }
 
     @CrossOrigin
@@ -81,7 +85,7 @@ public class ProprietariaController {
             if (p.autenticar(proprietaria.getEmail(), proprietaria.senha())) {
                 p.setAutenticado(true);
                 repository.save(p);
-                return ResponseEntity.status(200).build();
+                return ResponseEntity.status(200).body(p);
             }
             p.setAutenticado(false);
             repository.save(p);
