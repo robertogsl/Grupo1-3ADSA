@@ -88,7 +88,7 @@ public class ContratadaController {
             if (c.autenticar(contratada.getEmail(), contratada.senha())) {
                 c.setAutenticado(true);
                 repository.save(c);
-                return ResponseEntity.status(200).build();
+                return ResponseEntity.status(200).body(c);
             }
             c.setAutenticado(false);
             repository.save(c);
