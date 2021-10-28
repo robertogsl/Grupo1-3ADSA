@@ -32,9 +32,14 @@ public class ContratadaController {
         List<Contratada> lista = repository.findAll();
         List<Contratada> listaContratadas = repository.findAll();
 
-        csv.gravaLista(listaContratadas, "listaContratadas");
+        if (lista.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        }
+        else {
+            csv.gravaLista(listaContratadas, "listaContratadas");
 
-        return ResponseEntity.status(200).body(lista);
+            return ResponseEntity.status(200).body(lista);
+        }
     }
 
     @CrossOrigin
@@ -104,7 +109,9 @@ public class ContratadaController {
             repository.save(c);
             return ResponseEntity.status(200).build();
         }
-        return ResponseEntity.status(404).build();
+        else {
+            return ResponseEntity.status(404).build();
+        }
     };
 
 }
