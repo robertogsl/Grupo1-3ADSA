@@ -10,6 +10,8 @@ public class Contratada extends Usuario {
     private String numero;
     private Double longitude;
     private Double latitude;
+    private String email;
+    private String senha;
 
     public String getCep() {
         return cep;
@@ -49,5 +51,21 @@ public class Contratada extends Usuario {
 
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String senha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }
