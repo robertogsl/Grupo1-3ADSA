@@ -90,15 +90,21 @@ public class ContratadaController {
     public ResponseEntity autenticar(@RequestBody Contratada contratada) {
         List<Contratada> contratadas = repository.findAll();
         for(Contratada c : contratadas) {
-            if (c.autenticar(contratada.getEmail(), contratada.senha())) {
+            if (!(repository.findByEmailAndSenha(contratada.getEmail(), contratada.senha())).isEmpty()) {
                 c.setAutenticado(true);
                 repository.save(c);
                 return ResponseEntity.status(200).body(c);
+            } else {
+                c.setAutenticado(false);
+                repository.save(c);
             }
-            c.setAutenticado(false);
-            repository.save(c);
         } return ResponseEntity.status(404).build();
-    };
+//        if (!(repository.findByEmailAndSenha(contratada.getEmail(), contratada.senha())).isEmpty()) {
+//            return ResponseEntity.status(200).body(contratada);
+//        } else {
+//            return ResponseEntity.status(404).build();
+//        }
+    }
 
     @CrossOrigin
     @PostMapping("/logoff/{id}")
@@ -113,5 +119,4 @@ public class ContratadaController {
             return ResponseEntity.status(404).build();
         }
     };
-
 }
