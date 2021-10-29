@@ -2,7 +2,7 @@ package com.example.projeto.projeto;
 
 import com.example.projeto.projeto.dominio.Contratada;
 import com.example.projeto.projeto.dominio.Proprietaria;
-import com.example.projeto.projeto.dominio.Usuario;
+//import com.example.projeto.projeto.dominio.Usuario;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
