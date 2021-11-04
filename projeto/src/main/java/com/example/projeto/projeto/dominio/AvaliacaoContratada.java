@@ -6,15 +6,15 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class Avaliacao {
+public class AvaliacaoContratada {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAvaliacao;
 
-    private Integer starsOwner;
-    private Integer starsWorker;
+    private Double estrelas;
     private LocalDate data = LocalDate.now();
+    private String comentario;
 
     public int getIdAvaliacao() {
         return idAvaliacao;
@@ -24,20 +24,12 @@ public class Avaliacao {
         this.idAvaliacao = idAvaliacao;
     }
 
-    public Integer getStarsOwner() {
-        return starsOwner;
+    public Double getEstrelas() {
+        return estrelas;
     }
 
-    public void setStarsOwner(Integer starsOwner) {
-        this.starsOwner = starsOwner;
-    }
-
-    public Integer getStarsWorker() {
-        return starsWorker;
-    }
-
-    public void setStarsWorker(Integer starsWorker) {
-        this.starsWorker = starsWorker;
+    public void setEstrelas(Double estrelas) {
+        this.estrelas = estrelas;
     }
 
     public LocalDate getData() {
@@ -48,4 +40,11 @@ public class Avaliacao {
         this.data = data;
     }
 
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
 }
