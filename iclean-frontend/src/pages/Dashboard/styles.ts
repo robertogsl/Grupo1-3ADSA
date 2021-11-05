@@ -92,15 +92,26 @@ export const Title = styled.div `
 `;
 
 export const PrimaryCard = styled.div`
-    width: 80%;
-    height: 17.75rem;
-    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: 15rem;
+    color: white;
     background-color: var(--primary);
     margin-bottom: 1rem;
+    box-shadow: -20px 20px 35px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+
+    span{
+        padding: 3.5rem;
+    }
 `
 export const SecondCard = styled.div`
-    width: 80%;
-    height: 17.75rem;
+color: white;
+display: flex;
+flex-direction: row;
+    width: 90%;
+    height: 15rem;
     border-radius: 8px;  
     margin-bottom: 1rem;
     display: inline-flex;
