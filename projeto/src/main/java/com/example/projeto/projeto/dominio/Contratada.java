@@ -1,6 +1,7 @@
 package com.example.projeto.projeto.dominio;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -10,17 +11,40 @@ public class Contratada {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     private String nome;
+
+    @NotNull
     private String cpf;
+
+    @NotNull
     private String telefone;
+
+    @NotNull
     private LocalDate dataNascimento;
+
+    @NotNull
     private String email;
+
+    @NotNull
     private String senha;
+
+    @NotNull
     private Boolean autenticado = false;
+
+    @NotNull
     private String cep;
+
+    @NotNull
     private String complemento;
+
+    @NotNull
     private String numero;
+
+    @NotNull
     private Double longitude;
+
+    @NotNull
     private Double latitude;
 
     public Integer getId() {
