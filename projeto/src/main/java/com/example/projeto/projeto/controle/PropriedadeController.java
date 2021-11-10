@@ -1,6 +1,7 @@
 package com.example.projeto.projeto.controle;
 
 import com.example.projeto.projeto.dominio.Propriedade;
+import com.example.projeto.projeto.dominio.Proprietaria;
 import com.example.projeto.projeto.repositorio.PropriedadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,4 +44,23 @@ public class PropriedadeController {
         repository.deleteById(id);
         return ResponseEntity.status(200).build();
     }
+
+    @CrossOrigin
+    @PutMapping("/{id}")
+    public ResponseEntity putPropriedade(@PathVariable int id,
+                                          @RequestBody Propriedade propriedadeAtualizado) {
+
+        if (repository.existsById(id)) {
+            repository.save(propriedadeAtualizado);
+
+            return ResponseEntity.status(200).build();
+
+        } else {
+
+            return ResponseEntity.status(404).build();
+
+        }
+
+    }
+
 }

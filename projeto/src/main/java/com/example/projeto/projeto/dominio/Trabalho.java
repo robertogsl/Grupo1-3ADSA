@@ -1,6 +1,7 @@
 package com.example.projeto.projeto.dominio;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -13,6 +14,7 @@ public class Trabalho {
     @OneToMany
     private List<Contratada> candidatas;
 
+    @NotNull
     private Double preco; //Valor do trabalho
 
     public Integer getId() {
