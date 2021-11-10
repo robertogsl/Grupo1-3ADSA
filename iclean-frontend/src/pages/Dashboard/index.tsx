@@ -4,6 +4,8 @@ import {
   FaIdCard,
   FaFileAlt,
   FaSignOutAlt,
+  FaChevronLeft,
+  FaChevronRight
 } from "react-icons/fa";
 
 import {
@@ -23,6 +25,35 @@ import foguete from "../../assets/foguete.png";
 import mapa from "../../assets/mapa.png";
 import tasks from "../../assets/task.png";
 import cards from "../../assets/cards.png";
+
+interface IScardsDash {
+  id: number;
+  title: string;
+  explicacao: string;
+  src: string;
+  alt: string;
+  iconDash: () => JSX.Element;
+}
+
+const dashOptions: IScardsDash[] = [
+  {
+    id: 1,
+    title: "Novo serviço",
+    explicacao:
+      "Cadastre os seus imóveis e consiga a melhor limpeza em menos tempo",
+    src: foguete,
+    alt: foguete,
+    iconDash: () => <FaChevronRight size={13} color="#fff" />
+  },
+  {
+    id: 2,
+    title: "Busca na sua área",
+    explicacao: "Descubra os profissionais mais proximos da sua localização",
+    src: mapa,
+    alt: mapa,
+    iconDash: () => <FaChevronRight size={13} color="#fff" />
+  },
+];
 
 interface IStypeIcons {
   icon: () => JSX.Element;
@@ -60,10 +91,10 @@ export function Dashboard() {
           </Logo>
 
           <Options>
-            {staticSideBar.map((seila) => (
+            {staticSideBar.map((option) => (
               <li>
-                <div>{seila.icon()}</div>
-                <span>{seila.desc}</span>
+                <div>{option.icon()}</div>
+                <span>{option.desc}</span>
               </li>
             ))}
           </Options>
@@ -71,47 +102,29 @@ export function Dashboard() {
         <div style={{ height: "100px" }}>
           <Helper>
             <span>SingOut</span>
-            <FaSignOutAlt size={32} color="var(--primary)" />
+            <FaSignOutAlt size={28} color="var(--primary)" />
           </Helper>
         </div>
       </SideBar>
       <Content>
-        <Title>Home/ Dashboard</Title>
+        <Title> Voltar </Title>
 
-        <PrimaryCard>
-          <span>
-            <h1>Novo serviço</h1>
-            <p>
-              Cadastre os seus imóveis e consiga a melhor limpeza em menos tempo
-            </p>
-          </span>
+        {dashOptions.map((dash) => (
+          <PrimaryCard left={dash.id === 1}>
+            <span>
+              <h1>{dash.title}</h1>
+              <p>{dash.explicacao}</p><br />
+              <p>cadastre um novo serviço {dash.iconDash()}</p> 
+            </span>
+            <img src={dash.src} alt={dash.alt} />
+          </PrimaryCard>
+        ))}
 
-          <img src={foguete} alt="foguetão" />
-        </PrimaryCard>
-        <PrimaryCard>
-          <img src={mapa} alt="foguetão" />
-
-          <span>
-            <h1>Novo serviço</h1>
-            <p>
-              Cadastre os seus imóveis e consiga a melhor limpeza em menos tempo
-            </p>
-          </span>
-        </PrimaryCard>
         <SecondCard>
-          <div>
-            <span>
-              <img src={cards} alt="foguetão" />
-              <h1>Perfil</h1>
-            </span>
-          </div>
-          <div>
-            <span>
-              <h1>Serviços</h1>
-              <img src={tasks} alt="foguetão" />
-            </span>
-          </div>
+          <div></div>
+          <div></div>
         </SecondCard>
+        
       </Content>
     </Container>
   );
