@@ -33,3 +33,15 @@ export const NumberControllerContainer = styled.div`
     margin-right: 2rem;
   }
 `;
+
+interface ITypography {
+  fontSize: number;
+  fontWeight: number;
+  lineHeight: number;
+}
+
+export const Typography = styled.span<ITypography>`
+  font-size: ${props => props.fontSize}px;
+  font-weight: ${props => props.fontWeight};
+  line-height: ${props => props.lineHeight}px;
+`;

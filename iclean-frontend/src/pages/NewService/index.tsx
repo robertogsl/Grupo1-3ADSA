@@ -3,11 +3,12 @@ import { FaFacebook } from 'react-icons/fa';
 
 import { ServiceOptions } from '../../components/ServiceOptions';
 import { NumberController } from '../../components/NumberController';
+import { MultiplesCheck } from '../../components/MultiplesCheck';
+
 import { ItemServiceOptionsProps } from '../../types/serviceOptions';
+import { IAdditionalServiceProps } from '../../types/additionalServices';
 
 import { Container, Content, NumberControllerContainer } from './styles';
-import { MultiplesCheck } from '../../components/MultiplesCheck';
-import { IAdditionalServiceProps } from '../../types/additionalServices';
 
 const serviceTypeItems: ItemServiceOptionsProps[] = [
   {

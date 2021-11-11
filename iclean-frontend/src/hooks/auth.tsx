@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
+import { useHistory } from 'react-router-dom';
 
 import { api } from "../services/api";
 
@@ -50,6 +51,8 @@ const AuthProvider: React.FC = ({ children }) => {
     return {} as Contratada | Proprietaria;
   });
 
+  const history = useHistory();
+
   const signIn = useCallback(
     async ({ email, password, userType }) => {
       try {
@@ -65,6 +68,8 @@ const AuthProvider: React.FC = ({ children }) => {
         localStorage.setItem("@iclean:user", JSON.stringify(user));
 
         setUser(user);
+
+        history.push("/dashboard")
       } catch (err) {
 
       }
