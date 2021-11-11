@@ -1,41 +1,33 @@
-import { FiMonitor } from 'react-icons/fi';
-
-import { ItemMultiplesCheckProps } from '../../types/multiplesCheck';
-
-import { Container } from './styles';
+import { IAdditionalServiceProps } from '../../types/additionalServices';
+import { Container, AdditionalServicesContainer, AdditionalServiceItem } from './styles';
 
 interface IMultiplesCheckProps {
   title: string;
-  items: ItemMultiplesCheckProps[];
+  items: IAdditionalServiceProps[];
+  checkFn(id: number): void;
+  state: number[];
 }
 
-export function MultiplesCheck({ title, items }: IMultiplesCheckProps) {
+export function MultiplesCheck({ title, items, checkFn, state }: IMultiplesCheckProps) {
   return (
     <Container>
       <h1>{title}</h1>
-          <ul>
-            {items.map(item => {
-              const Icon = item.Icon;
 
-              return (
-                <li>
-                  hello
-                  </li>
-              )
-            })}
-            <li>
-              <FiMonitor size={32} color="#333" />
-              <span>Limpeza padrão</span>
-            </li>
-            <li>
-              <FiMonitor size={32} color="#333" />
-              <span>Limpeza pesada</span>
-            </li>
-            <li>
-              <FiMonitor size={32} color="#333" />
-              <span>Passar roupa</span>
-            </li>
-          </ul>
+      <AdditionalServicesContainer>
+        {items.map(item => {
+
+          const itemChecked = state.some(stateItem => stateItem === item.id);
+
+          return (
+            <AdditionalServiceItem onClick={() => checkFn(item.id)} serviceChecked={itemChecked}>
+              <button />
+              <div>
+                <span key={item.id}>{item.title}</span>
+              </div>
+            </AdditionalServiceItem>
+          )
+        })}
+      </AdditionalServicesContainer>
     </Container>
   )
 }

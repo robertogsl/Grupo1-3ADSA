@@ -23,3 +23,13 @@ export const Content = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const NumberControllerContainer = styled.div`
+  display: flex;
+
+  margin-top: 2rem;
+
+  & > div:first-of-type {
+    margin-right: 2rem;
+  }
+`;

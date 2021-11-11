@@ -1,13 +1,30 @@
+import { FormEvent, useState, useCallback } from 'react';
 import { FaFacebook, FaApple, FaGoogle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
+import { useAuth } from '../../hooks/auth';
 
 import { Header } from '../../components/Header';
 
 import loginPNG from '../../assets/login.png';
 
 import { Container, Content, InputGroup } from './styles';
-import { Link } from 'react-router-dom';
 
 export function Login() {
+    const [data, setData] = useState({
+      email: "",
+      senha: ""
+    })
+
+    const handleChange = useCallback((value, name) => {
+      setData({ ...data, [name]: value })
+    }, [data]);
+
+    const handleSubmit = useCallback((e: FormEvent) => {
+      e.preventDefault();
+      console.log(data);
+    }, [data]);
+
     return (
         <Container>
             <Header />
@@ -18,29 +35,29 @@ export function Login() {
 
                 <InputGroup>
                   <label htmlFor="">E-mail</label>
-                  <input type="text" />
+                  <input name="email" type="text" onChange={(e) => handleChange(e.target.value, e.target.name)} />
                 </InputGroup>
 
 
                 <InputGroup>
                   <label htmlFor="">Senha</label>
-                  <input type="text" />
+                  <input name="senha" onChange={(e) => handleChange(e.target.value, e.target.name)} />
                 </InputGroup>
 
                 <strong>Esqueceu a senha?</strong>
 
-                <button type="submit">Login</button>
+                <button type="submit" onClick={handleSubmit}>Login</button>
 
                 <span>ou continuar com</span>
 
                 <div className="buttons">
-                  <button>
+                  <button type="button">
                     <FaGoogle size={36} color="#F14336" />
                   </button>
-                  <button>
+                  <button type="button">
                     <FaFacebook size={36} color="#5762C3" />
                   </button>
-                  <button>
+                  <button type="button">
                     <FaApple size={36} color="#444B59" />
                   </button>
                 </div>
