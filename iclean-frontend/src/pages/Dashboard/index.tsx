@@ -5,7 +5,8 @@ import {
   FaFileAlt,
   FaSignOutAlt,
   FaChevronLeft,
-  FaChevronRight
+  FaChevronCircleLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 
 import {
@@ -18,20 +19,22 @@ import {
   PrimaryCard,
   SecondCard,
   Title,
+  ChildrenCards,
 } from "./styles";
 
 import logoSVG from "../../assets/Logo.svg";
 import foguete from "../../assets/foguete.png";
 import mapa from "../../assets/mapa.png";
-import tasks from "../../assets/task.png";
-import cards from "../../assets/cards.png";
+import tasks from "../../assets/tasks.png";
+import cards from "../../assets/card.png";
 
 interface IScardsDash {
   id: number;
   title: string;
-  explicacao: string;
+  desc: string;
   src: string;
   alt: string;
+  path: string;
   iconDash: () => JSX.Element;
 }
 
@@ -39,19 +42,48 @@ const dashOptions: IScardsDash[] = [
   {
     id: 1,
     title: "Novo serviço",
-    explicacao:
-      "Cadastre os seus imóveis e consiga a melhor limpeza em menos tempo",
+    desc: "Cadastre os seus imóveis e consiga a melhor limpeza em menos tempo",
     src: foguete,
-    alt: foguete,
-    iconDash: () => <FaChevronRight size={13} color="#fff" />
+    alt: "foguete",
+    path: "Cadastre um novo serviço",
+    iconDash: () => <FaChevronRight size={13} color="#fff" />,
   },
   {
     id: 2,
     title: "Busca na sua área",
-    explicacao: "Descubra os profissionais mais proximos da sua localização",
+    desc: "Descubra os profissionais mais proximos da sua localização",
     src: mapa,
     alt: mapa,
-    iconDash: () => <FaChevronRight size={13} color="#fff" />
+    path: "Descubra profissionais na região",
+    iconDash: () => <FaChevronRight size={13} color="#fff" />,
+  },
+];
+
+interface IScardsSecondDash {
+  id: number;
+  title: string;
+  desc: string;
+  src: string;
+  alt: string;
+  iconDash: () => JSX.Element;
+}
+
+const secondDashOptions: IScardsSecondDash[] = [
+  {
+    id: 1,
+    title: "Perfil",
+    desc: "Confira o seu perfil",
+    src: cards,
+    alt: cards,
+    iconDash: () => <FaChevronRight size={13} color="#fff" />,
+  },
+  {
+    id: 2,
+    title: "Serviços",
+    desc: "Veja os serviços abertos",
+    src: tasks,
+    alt: tasks,
+    iconDash: () => <FaChevronRight size={13} color="#fff" />,
   },
 ];
 
@@ -99,7 +131,7 @@ export function Dashboard() {
             ))}
           </Options>
         </div>
-        <div style={{ height: "100px" }}>
+        <div style={{ height: "fit-content" }}>
           <Helper>
             <span>SingOut</span>
             <FaSignOutAlt size={28} color="var(--primary)" />
@@ -107,24 +139,31 @@ export function Dashboard() {
         </div>
       </SideBar>
       <Content>
-        <Title> Voltar </Title>
+        <Title> <FaChevronCircleLeft size={20} color="black" /> Voltar </Title>
 
         {dashOptions.map((dash) => (
           <PrimaryCard left={dash.id === 1}>
             <span>
               <h1>{dash.title}</h1>
-              <p>{dash.explicacao}</p><br />
-              <p>cadastre um novo serviço {dash.iconDash()}</p> 
+              <p>{dash.desc}</p>
+              <br />
+              <p>{dash.path} {dash.iconDash()}</p>
             </span>
             <img src={dash.src} alt={dash.alt} />
           </PrimaryCard>
         ))}
 
-        <SecondCard>
-          <div></div>
-          <div></div>
-        </SecondCard>
-        
+        <ChildrenCards>
+        {secondDashOptions.map((dash) => (
+          <SecondCard left={dash.id === 1}>
+            <span>
+              <h1>{dash.title}</h1>
+              <p>{dash.desc} {dash.iconDash()}</p>
+            </span>
+            <img src={dash.src} alt={dash.alt}/>
+          </SecondCard>
+        ))}
+        </ChildrenCards>
       </Content>
     </Container>
   );

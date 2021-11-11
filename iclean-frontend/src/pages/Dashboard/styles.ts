@@ -124,7 +124,7 @@ export const PrimaryCard = styled.button<PrimaryCardProps>`
       text-align: right;
 
       span {
-        padding: 1.8rem 2.2rem;
+        padding: 1rem 2.2rem;
         font-size: 1.2rem;
         height: fit-content;
       }
@@ -139,22 +139,53 @@ export const PrimaryCard = styled.button<PrimaryCardProps>`
     height: 12.5rem;
   }
 `;
-export const SecondCard = styled.div`
+
+export const ChildrenCards = styled.div`
+  width: 80%;
+  display: inline-flex;
+  justify-content: space-between;
+`
+interface SecondCardProps {
+  left: boolean;
+}
+
+export const SecondCard = styled.button<SecondCardProps>`
   color: white;
   display: flex;
   flex-direction: row;
-  width: 80%;
-  height: 15rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  display: inline-flex;
+  width: 49%;
+  height: 12.5rem;
   justify-content: space-between;
-  div {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    background-color: var(--primary);
-    width: 49%;
-    border-radius: 8px;
+  background-color: var(--primary);
+  text-align: justify;
+  margin-bottom: 1rem;
+  box-shadow: -20px 20px 35px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  border: none;
+  padding: 1.4rem 2.2rem;
+
+  img {
+    height: 10rem;
   }
+
+  span {
+    font-size: 1.2rem;
+    min-height: 9rem;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  p {
+    font-size: 1rem;
+    width: fit-content;
+  }
+
+  ${(props) =>
+    !props.left &&
+    css`
+      flex-direction: row-reverse;
+      text-align: right;
+    `}
 `;
