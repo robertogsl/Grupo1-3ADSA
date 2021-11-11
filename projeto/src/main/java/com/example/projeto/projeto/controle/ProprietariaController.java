@@ -82,7 +82,7 @@ public class ProprietariaController {
     public ResponseEntity autenticar(@RequestBody Proprietaria proprietaria) {
         List<Proprietaria> proprietarias = repository.findAll();
         for(Proprietaria p : proprietarias) {
-            if (p.autenticar(proprietaria.getEmail(), proprietaria.senha())) {
+            if (!(repository.findByEmailAndSenha(proprietaria.getEmail(), proprietaria.senha())).isEmpty()) {
                 p.setAutenticado(true);
                 repository.save(p);
                 return ResponseEntity.status(200).body(p);
