@@ -36,6 +36,9 @@ interface IScardsDash {
   alt: string;
   path: string;
   iconDash: () => JSX.Element;
+  titleContract: string;
+  descContract: string;
+  pathContract: string;
 }
 
 const dashOptions: IScardsDash[] = [
@@ -47,6 +50,10 @@ const dashOptions: IScardsDash[] = [
     alt: "foguete",
     path: "Cadastre um novo serviço",
     iconDash: () => <FaChevronRight size={13} color="#fff" />,
+
+    titleContract: "Procurar novo serviço",
+    descContract: "Procure os imóveis disponiveis para limpeza",
+    pathContract: "Procurar um novo serviço",
   },
   {
     id: 2,
@@ -56,6 +63,9 @@ const dashOptions: IScardsDash[] = [
     alt: mapa,
     path: "Descubra profissionais na região",
     iconDash: () => <FaChevronRight size={13} color="#fff" />,
+    titleContract: "Serviços candidatados",
+    descContract: "Veja os serviços aos quais você se candidatou",
+    pathContract: "Veja detalhes dos serviços",
   },
 ];
 
@@ -112,6 +122,8 @@ const staticSideBar: IStypeIcons[] = [
 ];
 
 export function Dashboard() {
+  const isContracted = true;
+
   return (
     <Container>
       <SideBar>
@@ -139,31 +151,51 @@ export function Dashboard() {
         </div>
       </SideBar>
       <Content>
-        <Title> <FaChevronCircleLeft size={20} color="black" /> Voltar </Title>
+        <Title>
+          {" "}
+          <FaChevronCircleLeft size={20} color="black" /> Voltar{" "}
+        </Title>
 
         {dashOptions.map((dash) => (
           <PrimaryCard left={dash.id === 1}>
             <span>
-              <h1>{dash.title}</h1>
-              <p>{dash.desc}</p>
+              <h1>{isContracted ? dash.title : dash.titleContract}</h1>
+              <p>{isContracted ? dash.desc : dash.descContract}</p>
               <br />
-              <p>{dash.path} {dash.iconDash()}</p>
+              <p>
+                {isContracted ? dash.path : dash.pathContract} {dash.iconDash()}
+              </p>
             </span>
             <img src={dash.src} alt={dash.alt} />
           </PrimaryCard>
         ))}
 
-        <ChildrenCards>
-        {secondDashOptions.map((dash) => (
-          <SecondCard left={dash.id === 1}>
+        {isContracted ? (
+          <ChildrenCards>
+            {secondDashOptions.map((dash) => (
+              <SecondCard left={dash.id === 1}>
+                <span>
+                  <h1>{dash.title}</h1>
+                  <p>
+                    {dash.desc} {dash.iconDash()}
+                  </p>
+                </span>
+                <img src={dash.src} alt={dash.alt} />
+              </SecondCard>
+            ))}
+          </ChildrenCards>
+        ) : (
+          <PrimaryCard left={true}>
             <span>
-              <h1>{dash.title}</h1>
-              <p>{dash.desc} {dash.iconDash()}</p>
+              <h1>Convites de serviços</h1>
+              <p>
+                Veja os convites para serviços recebidos{" "}
+                <FaChevronRight size={13} color="#fff" />
+              </p>
             </span>
-            <img src={dash.src} alt={dash.alt}/>
-          </SecondCard>
-        ))}
-        </ChildrenCards>
+            <img src={tasks} alt="tasks" />
+          </PrimaryCard>
+        )}
       </Content>
     </Container>
   );
