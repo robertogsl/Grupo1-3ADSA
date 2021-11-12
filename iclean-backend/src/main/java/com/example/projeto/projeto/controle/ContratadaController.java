@@ -37,7 +37,6 @@ public class ContratadaController {
         }
         else {
             csv.gravaLista(listaContratadas, "listaContratadas");
-
             return ResponseEntity.status(200).body(lista);
         }
     }
@@ -47,7 +46,6 @@ public class ContratadaController {
     public ResponseEntity getContradada(@PathVariable int id) {
 
         return ResponseEntity.of(repository.findById(id));
-
     }
 
     @CrossOrigin
