@@ -3,6 +3,7 @@ package com.example.projeto.projeto.controle;
 import com.example.projeto.projeto.dominio.Contratada;
 import com.example.projeto.projeto.dominio.Trabalho;
 import com.example.projeto.projeto.repositorio.ContratadaRepository;
+import com.example.projeto.projeto.repositorio.ProprietariaRepository;
 import com.example.projeto.projeto.repositorio.TrabalhoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,11 @@ public class TrabalhoController {
 
     @Autowired
     private ContratadaRepository repositoryContratada;
+
+    @Autowired
+    private ProprietariaRepository repositoryProprietaria;
+
+    // ENDPOINTS DE TRABALHO
 
     @CrossOrigin
     @PostMapping
@@ -37,6 +43,12 @@ public class TrabalhoController {
     }
 
     @CrossOrigin
+    @GetMapping("/{id}")
+    public ResponseEntity getTrabalho(@PathVariable Integer id) {
+        return ResponseEntity.of(repository.findById(id));
+    }
+
+    @CrossOrigin
     @PutMapping("/{idTrabalho}/candidata/{id}")
     public ResponseEntity candidatarEmpregado(@PathVariable Integer idTrabalho, @PathVariable Integer id) {
         Trabalho trabalho = repository.getById(idTrabalho);
@@ -51,4 +63,12 @@ public class TrabalhoController {
             return ResponseEntity.status(404).build();
         }
     }
+
+    @CrossOrigin
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteTrabalho(@PathVariable Integer id) {
+        repository.deleteById(id);
+        return ResponseEntity.status(200).build();
+    }
+
 }
