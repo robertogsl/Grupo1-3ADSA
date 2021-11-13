@@ -133,7 +133,6 @@ export function Dashboard() {
             <strong>iClean</strong>
             <div />
           </Logo>
-
           <Options>
             {staticSideBar.map((option) => (
               <li>
