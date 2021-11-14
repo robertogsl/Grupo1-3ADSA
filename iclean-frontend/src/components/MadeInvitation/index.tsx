@@ -2,8 +2,10 @@ import { Title, Content, CardInvite } from "./styles";
 import CardGeneric from "../CardGeneric";
 import { FaArrowRight } from "react-icons/fa";
 
-import personInvite from "../../assets/inviteZero.svg";
-import cards from "../../assets/card.png";
+import Invite from "../../assets/inviteZero.svg";
+import InviteOne from "../../assets/inviteOne.svg";
+import InviteTwo from "../../assets/inviteTwo.svg";
+import InviteThree from "../../assets/inviteThree.svg";
 
 interface ISserviceInvitation {
   src: string;
@@ -13,23 +15,23 @@ interface ISserviceInvitation {
 
 const descInvite: ISserviceInvitation[] = [
   {
-    src: personInvite,
+    src: Invite,
     name: "Brad Pitt",
     iconArrow: () => <FaArrowRight size={30} color="#000" />,
   },
   {
-    src: personInvite,
-    name: "Brad Pitt",
+    src: InviteOne,
+    name: "Giorgio Felicce",
     iconArrow: () => <FaArrowRight size={30} color="#000" />,
   },
   {
-    src: personInvite,
-    name: "Brad Pitt",
+    src: InviteTwo,
+    name: "Dulce Saverin",
     iconArrow: () => <FaArrowRight size={30} color="#000" />,
   },
   {
-    src: personInvite,
-    name: "Brad Pitt",
+    src: InviteThree,
+    name: "Marcel Herrman",
     iconArrow: () => <FaArrowRight size={30} color="#000" />,
   },
 ];

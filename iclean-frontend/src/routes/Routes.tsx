@@ -6,7 +6,7 @@ import { Register } from '../pages/Register';
 import { NewService } from '../pages/NewService';
 import { Dashboard } from '../pages/Dashboard';
 import { ServicesHired } from '../pages/ServicesHired';
-import { MadeInvitation } from '../components/MadeInvitation';
+import { Candidature } from '../components/Candidature';
 
 export function Routes() {
     return (
@@ -17,7 +17,7 @@ export function Routes() {
             <Route path="/newService" component={NewService} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/servicesHired" component={ServicesHired} />
-            <Route path="/testeComponente" component={MadeInvitation} />
+            <Route path="/testeComponente" component={Candidature} />
 
         </Switch>
     );
