@@ -1,7 +1,3 @@
-import { useHistory } from 'react-router-dom';
-
-import { api } from '../../../services/api';
-
 import { useRegister } from '../../../hooks/register';
 
 import { DoubleButton } from '../../../components/DoubleButton';

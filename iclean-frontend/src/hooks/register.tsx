@@ -1,5 +1,4 @@
 import React, { useContext, createContext, useState, useCallback } from 'react';
-import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 
 import { api } from '../services/api';
@@ -40,8 +39,6 @@ export const RegisterProvider: React.FC = ({ children }) => {
 
   const handleChangeRegisterData = useCallback((data: IRegisterData): void => {
     setRegisterData({...registerData, ...data});
-
-    console.log(registerData);
   }, [registerData]);
 
   const changeStep = useCallback((direction: 'next' | 'back'): void => {
