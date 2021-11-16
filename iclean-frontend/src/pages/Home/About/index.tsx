@@ -9,8 +9,8 @@ export function About() {
                 <img src={aboutPNG} alt="Sobre Foto" />
                 <div>
                     <h1>Proposta da iClean</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam maximus sapien quis sem egestas varius.</p>
-                    <p>Etiam tincidunt, sem sagittis accumsan sollicitudin, ex justo tempus ipsum, eu luctus enim felis eget arcu. Nullam placerat bibendum eros sed tincidunt.</p>
+                    <p>Iclean é uma empresa de tecnologia com sociedade limitada.</p>
+                    <p>Com o intuito de revolucionar a contração de auxiliares domésticos.Nossa solução busca inovar tornando o processo de contratação mais simples e eficaz.</p>
                 </div>
             </Content>
         </Container>

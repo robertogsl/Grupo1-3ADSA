@@ -10,9 +10,6 @@ import { Container, Content, ButtonMain } from './styles';
 
 import homeMainSVG from '../../assets/homeMain.png';
 import { Qualities } from './Qualities';
-import { ToastContainer, toast } from 'react-toastify';
-
-  import 'react-toastify/dist/ReactToastify.css';
 
 export function Home() {
     const history = useHistory();
