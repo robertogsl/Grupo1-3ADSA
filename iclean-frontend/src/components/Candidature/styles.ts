@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
 export const Title = styled.div`
   color: white;
   font-size: 2rem;
@@ -17,7 +22,7 @@ export const CardInvite = styled.div`
   min-height: 4.5rem;
   background-color: white;
   border-radius: 4px;
-  
+
   div{
       width: 23%;
   }
@@ -27,7 +32,7 @@ export const CardInvite = styled.div`
       padding: 0rem 1rem;
       margin-left: 1rem;
   }
-  
+
   span {
     display: flex;
     justify-content: space-between;
