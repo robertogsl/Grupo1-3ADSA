@@ -6,13 +6,13 @@ import Cleaner from "../../assets/cleaner.svg";
 import LigthCleaner from "../../assets/lightCleaner.svg";
 import Flatiron from "../../assets/flatiron.svg";
 
-interface ISserviceCandidature {
+interface ISopenServices {
   src: string;
   name: string;
   iconArrow: () => JSX.Element;
 }
 
-const descCandidature: ISserviceCandidature[] = [
+const descOpenServices: ISopenServices[] = [
   {
     src: Cleaner,
     name: "Limpeza pesada",
@@ -27,33 +27,23 @@ const descCandidature: ISserviceCandidature[] = [
     src: LigthCleaner,
     name: "Limpeza padrão",
     iconArrow: () => <FaArrowRight size={30} color="#000" />,
-  },
-  {
-    src: LigthCleaner,
-    name: "Passar roupa",
-    iconArrow: () => <FaArrowRight size={30} color="#000" />,
-  },
-  {
-    src: Flatiron,
-    name: "Passar roupa",
-    iconArrow: () => <FaArrowRight size={30} color="#000" />,
-  },
+  }
 ];
 
-export function Candidature() {
+export function OpenServices() {
   return (
     <CardGeneric>
-      <Title> Candidaturas: </Title>
+      <Title> Serviços em aberto: </Title>
       <Content>
-        {descCandidature.map((candidature) => (
+        {descOpenServices.map((services) => (
           <CardInvite>
             <div>
-              <img src={candidature.src} />
+              <img src={services.src} />
             </div>
 
             <span>
-              {candidature.name}
-              {candidature.iconArrow()}
+              {services.name}
+              {services.iconArrow()}
             </span>
           </CardInvite>
         ))}

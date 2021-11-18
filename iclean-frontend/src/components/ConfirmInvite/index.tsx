@@ -36,7 +36,7 @@ const descAdd: ISdescService[] = [
   },
 ];
 
-export function DetailsService() {
+export function ConfirmInvite() {
   return (
     <CardGeneric>
       <Content>
@@ -77,7 +77,7 @@ export function DetailsService() {
           </Format>
         ))}
         <Button>
-          <button>Voltar</button>
+          <button>Convidar</button>
         </Button>
       </Content>
     </CardGeneric>

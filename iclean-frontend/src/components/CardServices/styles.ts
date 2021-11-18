@@ -7,16 +7,30 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.div`
-margin: 0 auto;
-    width: 80%;
+  margin: 0 auto;
+    width: 83%;
     display: flex;
-    align-items: center;
+    
+    span{
+      width : 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-top: 0.8rem;
+    }
+
+    p{
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-left: 0.7rem;
+    }
 `;
 
 export const Content = styled.div`
   width: 85%;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-gap: 0rem 1.5rem;
   margin: 0 auto;
   padding: 1rem;
   color: white;
@@ -26,8 +40,8 @@ export const CardService = styled.div`
   background-color: var(--primary);
   height: 12.5rem;
   border-radius: 12px;
-  width: 95%;
-  margin-bottom: 1rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: row;
   padding: 1rem;

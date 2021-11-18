@@ -21,9 +21,16 @@ public class ContratadaController {
     @CrossOrigin
     @PostMapping
     public ResponseEntity criarContratada(@RequestBody Contratada novaContratada) {
-        repository.save(novaContratada);
+        List<Contratada> lista = repository.findByEmail(novaContratada.getEmail());
 
-        return ResponseEntity.status(201).build();
+        if (!lista.isEmpty()) {
+            return ResponseEntity.status(409).build();
+        }
+        else {
+            repository.save(novaContratada);
+
+            return ResponseEntity.status(201).build();
+        }
     }
 
     @CrossOrigin

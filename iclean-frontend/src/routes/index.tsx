@@ -9,7 +9,12 @@ import { Dashboard } from '../pages/Dashboard';
 import { ListOnMap } from '../pages/ListOnMap';
 import { Profile } from '../pages/Profile';
 import { ServicesHired } from '../pages/ServicesHired';
-import { Candidature } from '../components/Candidature';
+import { InterestedProfessional } from '../components/InterestedProfessional';
+import { ChooseProfile } from '../components/ChooseProfile';
+import { InviteForService } from '../components/InviteForService';
+import { OpenServices } from '../components/OpenServices';
+import { ConfirmInvite } from '../components/ConfirmInvite';
+import { PageServices } from '../components/PageServices';
 
 export function Routes() {
     return (
@@ -22,7 +27,13 @@ export function Routes() {
             <Route path="/listOnMap" isPrivate component={ListOnMap} />
             <Route path="/profile" isPrivate component={Profile} />
             <Route path="/servicesHired" isPrivate component={ServicesHired} />
-            <Route path="/testeComponente" component={Candidature} />
+            {/* <Route path="/testeComponente" component={Candidature} /> */}
+            <Route path="/newService" component={NewService} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/listOnMap" component={ListOnMap} />
+            <Route path="/servicesHired" component={ServicesHired} />
+            <Route path="/testeComponente" component={PageServices} />
+
         </Switch>
     );
 };

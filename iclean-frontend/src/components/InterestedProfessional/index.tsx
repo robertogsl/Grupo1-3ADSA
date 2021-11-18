@@ -1,4 +1,4 @@
-import { Title, Content, CardInvite } from "./styles";
+import { Title, Content, CardInvite, Button } from "./styles";
 import CardGeneric from "../CardGeneric";
 import { FaArrowRight } from "react-icons/fa";
 
@@ -7,60 +7,53 @@ import InviteOne from "../../assets/inviteOne.svg";
 import InviteTwo from "../../assets/inviteTwo.svg";
 import InviteThree from "../../assets/inviteThree.svg";
 
-interface ISserviceInvitation {
+interface ISserviceInteres {
   src: string;
   name: string;
   iconArrow: () => JSX.Element;
 }
 
-const descInvite: ISserviceInvitation[] = [
+const descInterest: ISserviceInteres[] = [
   {
     src: Invite,
-    name: "Brad Pitt",
+    name: "André Oliveira",
     iconArrow: () => <FaArrowRight size={30} color="#000" />,
   },
   {
     src: InviteOne,
-    name: "Giorgio Felicce",
+    name: "José Augusto",
     iconArrow: () => <FaArrowRight size={30} color="#000" />,
   },
   {
     src: InviteTwo,
-    name: "Dulce Saverin",
+    name: "Maria das Dores",
     iconArrow: () => <FaArrowRight size={30} color="#000" />,
   },
   {
     src: InviteThree,
-    name: "Marcel Herrman",
-    iconArrow: () => <FaArrowRight size={30} color="#000" />,
-  },
-  {
-    src: InviteThree,
-    name: "Marcel Herrman",
-    iconArrow: () => <FaArrowRight size={30} color="#000" />,
-  },
-  {
-    src: InviteThree,
-    name: "Marcel Herrman",
+    name: "Carlos Silva",
     iconArrow: () => <FaArrowRight size={30} color="#000" />,
   }
 ];
 
-export function MadeInvitation() {
+export function InterestedProfessional() {
   return (
     <CardGeneric>
-      <Title> Convite feitos: </Title>
+      <Title> Profissionais interessados: </Title>
       <Content>
-        {descInvite.map((invites) => (
+        {descInterest.map((interest) => (
           <CardInvite>
-            <img src={invites.src} />
+            <img src={interest.src} />
 
             <span>
-              {invites.name}
-              {invites.iconArrow()}
+              {interest.name}
+              {interest.iconArrow()}
             </span>
           </CardInvite>
         ))}
+        <Button>
+          <button>Serviço finalizado</button>
+        </Button>
       </Content>
     </CardGeneric>
   );

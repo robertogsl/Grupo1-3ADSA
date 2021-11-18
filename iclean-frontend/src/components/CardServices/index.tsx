@@ -10,7 +10,14 @@ import {
   Option,
 } from "./styles";
 
-import { FaChevronRight, FaUserAlt, FaMapMarkerAlt, FaArrowAltCircleLeft } from "react-icons/fa";
+import { Header } from "../Header";
+
+import {
+  FaChevronRight,
+  FaUserAlt,
+  FaMapMarkerAlt,
+  FaArrowAltCircleLeft,
+} from "react-icons/fa";
 
 interface ISdescServices {
   title: string;
@@ -85,28 +92,31 @@ const descServices: ISdescServices[] = [
     iconPerson: () => <FaUserAlt size={13} color="#FFF" />,
     iconLocation: () => <FaMapMarkerAlt size={13} color="#FFF" />,
     iconArrow: () => <FaChevronRight size={30} color="#FFF" />,
-  }
+  },
 ];
 
 export function CardServices() {
   return (
     <Container>
-        <Title>
-        <FaArrowAltCircleLeft size={30} color="#000" /> Voltar
-        </Title> 
-      <Content>      
-        
+      <Header />
+      <Title>
+        <span>
+          <FaArrowAltCircleLeft size={28} color="#000" />
+          <p>Voltar</p>
+        </span>
+      </Title>
+      <Content>
         {descServices.map((services) => (
           <CardService>
             <Candidacts>
               <Separator>
-                  <h1>{services.title}</h1>
-                  <p>
-                    {services.iconPerson()} {services.person}
-                  </p>
-                  <p>
-                    {services.iconLocation()} {services.distance}
-                  </p>
+                <h1>{services.title}</h1>
+                <p>
+                  {services.iconPerson()} {services.person}
+                </p>
+                <p>
+                  {services.iconLocation()} {services.distance}
+                </p>
               </Separator>
 
               {services.candidact === 0 ? (
