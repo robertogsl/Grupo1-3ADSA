@@ -8,6 +8,7 @@ import user1 from '../../assets/user1.svg';
 import user2 from '../../assets/user2.svg';
 import user3 from '../../assets/user3.svg';
 import user4 from '../../assets/user4.svg';
+import { Header } from '../../components/Header';
 
 const positions = [
   [-23.5668698, -46.6608874],
@@ -34,6 +35,7 @@ export function ListOnMap() {
 
   return (
     <Container>
+      <Header />
       <Content>
         <Map center={initialPosition} zoom={15} scrollWheelZoom={false} style={{
           width: "100%",

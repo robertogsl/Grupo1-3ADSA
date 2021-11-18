@@ -8,13 +8,27 @@ import { Header } from '../../components/Header';
 
 import loginPNG from '../../assets/login.png';
 
-import { Container, Content, InputGroup } from './styles';
+import { Container, Content, InputGroup, UserType, UserOption } from './styles';
+
+const userTypes = [
+  {
+    id: 0,
+    title: "Proprietária"
+  },
+  {
+    id: 1,
+    title: "Contratada"
+  }
+]
 
 export function Login() {
     const [data, setData] = useState({
       email: "",
       senha: ""
     })
+    const [userChecked, setUserChecked] = useState(0);
+
+    const { signIn, fnSetUserType } = useAuth();
 
     const handleChange = useCallback((value, name) => {
       setData({ ...data, [name]: value })
@@ -22,8 +36,11 @@ export function Login() {
 
     const handleSubmit = useCallback((e: FormEvent) => {
       e.preventDefault();
-      console.log(data);
-    }, [data]);
+
+      fnSetUserType(userChecked);
+
+      signIn({ email: data.email, senha: data.senha, userType: userChecked });
+    }, [data, signIn, userChecked, fnSetUserType]);
 
     return (
         <Container>
@@ -41,8 +58,14 @@ export function Login() {
 
                 <InputGroup>
                   <label htmlFor="">Senha</label>
-                  <input name="senha" onChange={(e) => handleChange(e.target.value, e.target.name)} />
+                  <input type="password" name="senha" onChange={(e) => handleChange(e.target.value, e.target.name)} />
                 </InputGroup>
+
+                <UserType>
+                  {userTypes.map(type => (
+                    <UserOption isChecked={type.id === userChecked} onClick={() => setUserChecked(type.id)} key={type.id}>{type.title}</UserOption>
+                  ))}
+                </UserType>
 
                 <strong>Esqueceu a senha?</strong>
 

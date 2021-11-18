@@ -4,10 +4,11 @@ import {
   FaIdCard,
   FaFileAlt,
   FaSignOutAlt,
-  FaChevronLeft,
-  FaChevronCircleLeft,
   FaChevronRight,
 } from "react-icons/fa";
+import { useHistory } from 'react-router-dom';
+
+import { useAuth } from '../../hooks/auth';
 
 import {
   Container,
@@ -27,6 +28,7 @@ import foguete from "../../assets/foguete.png";
 import mapa from "../../assets/mapa.png";
 import tasks from "../../assets/tasks.png";
 import cards from "../../assets/card.png";
+import { BackButton } from "../../components/BackButton";
 
 interface IScardsDash {
   id: number;
@@ -122,7 +124,10 @@ const staticSideBar: IStypeIcons[] = [
 ];
 
 export function Dashboard() {
-  const isContracted = true;
+  const { getUserType, signOut } = useAuth();
+  const history = useHistory();
+
+  const isContracted = getUserType() === 0;
 
   return (
     <Container>
@@ -144,17 +149,12 @@ export function Dashboard() {
         </div>
         <div style={{ height: "fit-content" }}>
           <Helper>
-            <span>SingOut</span>
+            <span style={{ cursor: "pointer" }} onClick={signOut}>SingOut</span>
             <FaSignOutAlt size={28} color="var(--primary)" />
           </Helper>
         </div>
       </SideBar>
       <Content>
-        <Title>
-          {" "}
-          <FaChevronCircleLeft size={20} color="black" /> Voltar{" "}
-        </Title>
-
         {dashOptions.map((dash) => (
           <PrimaryCard left={dash.id === 1}>
             <span>
@@ -171,17 +171,21 @@ export function Dashboard() {
 
         {isContracted ? (
           <ChildrenCards>
-            {secondDashOptions.map((dash) => (
-              <SecondCard left={dash.id === 1}>
-                <span>
-                  <h1>{dash.title}</h1>
-                  <p>
-                    {dash.desc} {dash.iconDash()}
-                  </p>
-                </span>
-                <img src={dash.src} alt={dash.alt} />
-              </SecondCard>
-            ))}
+            {secondDashOptions.map((dash) => {
+              const fn = dash.id === 1 ? () => history.push("/profile") : () => history.push("/dashboard")
+
+              return (
+                <SecondCard onClick={fn} left={dash.id === 1}>
+                  <span>
+                    <h1>{dash.title}</h1>
+                    <p>
+                      {dash.desc} {dash.iconDash()}
+                    </p>
+                  </span>
+                  <img src={dash.src} alt={dash.alt} />
+                </SecondCard>
+              )
+            })}
           </ChildrenCards>
         ) : (
           <PrimaryCard left={true}>
