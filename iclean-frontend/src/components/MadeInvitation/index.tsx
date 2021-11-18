@@ -34,6 +34,16 @@ const descInvite: ISserviceInvitation[] = [
     name: "Marcel Herrman",
     iconArrow: () => <FaArrowRight size={30} color="#000" />,
   },
+  {
+    src: InviteThree,
+    name: "Marcel Herrman",
+    iconArrow: () => <FaArrowRight size={30} color="#000" />,
+  },
+  {
+    src: InviteThree,
+    name: "Marcel Herrman",
+    iconArrow: () => <FaArrowRight size={30} color="#000" />,
+  }
 ];
 
 export function MadeInvitation() {

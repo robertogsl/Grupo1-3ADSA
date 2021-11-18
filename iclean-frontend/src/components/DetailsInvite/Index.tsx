@@ -1,6 +1,7 @@
 import { Title, Subtitle, Line, Format, Content, Button, Icon } from "./styles";
 import CardGeneric from "../CardGeneric";
 import { FaMapMarkerAlt, FaCircle, FaMinus } from "react-icons/fa";
+
 interface ISdescService {
   icon: () => JSX.Element;
   desc: string;
@@ -39,6 +40,57 @@ const descAdd: ISdescService[] = [
 export function DetailsInvite() {
   return (
     <CardGeneric>
+<<<<<<< HEAD
+      <Content>
+        <Title>Convite para o serviço de:</Title>
+        <Subtitle>Limpeza padrão:</Subtitle>
+        <Line />
+        <Icon>
+          <FaMapMarkerAlt size={20} color="#FFF" />
+          <span> 5 km de distancia</span>
+        </Icon>
+        <Line />
+
+        <Title>
+          <FaCircle size={20} color="#FFF" />
+          <span>Descrição</span>
+        </Title>
+
+        {descService.map((service) => (
+          <Format>
+            <span>
+              {service.icon()}
+              <p>{service.desc}</p>
+            </span>
+          </Format>
+        ))}
+
+        <Title>
+          <FaCircle size={20} color="#FFF" />
+          <span>Adicionais</span>
+        </Title>
+
+        {descAdd.map((service) => (
+          <Format>
+            <span>
+              {service.icon()}
+              <p>{service.desc}</p>
+            </span>
+          </Format>
+        ))}
+        <Button>
+          <button>Candidatar-se</button>
+        </Button>
+      </Content>
+    </CardGeneric>
+  );
+}
+
+{
+  /* <Title>Convite para o serviço de:</Title>
+        <Subtitle>Limpeza padrão:</Subtitle>
+        <Line />
+=======
       <Title>Convite para o serviço de:</Title>
       <Subtitle>Limpeza padrão:</Subtitle>
       <Line />
@@ -80,6 +132,7 @@ export function DetailsInvite() {
   /* <Title>Convite para o serviço de:</Title>
         <Subtitle>Limpeza padrão:</Subtitle>
         <Line />
+>>>>>>> 32ddf9cef6db8ee1b0636a77845743664098fa9d
         <FaMapMarkerAlt size={20} color="#FFF" />
         <span>5 km de distancia</span>
         <Line />
