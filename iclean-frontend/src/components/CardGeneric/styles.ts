@@ -4,7 +4,6 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-
   width: 100%;
 `;
 
@@ -22,9 +21,3 @@ export const Content = styled.div`
   overflow-x: hidden;
   overflow-y: hidden;
 `;
-
-export const Icon = styled.div`
-    position: absolute;
-    right: 31.2%;
-    top: 3%;
-`
