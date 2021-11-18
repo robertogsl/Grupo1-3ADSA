@@ -3,6 +3,7 @@ package com.example.projeto.projeto.dominio;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Contratada {
@@ -149,5 +150,9 @@ public class Contratada {
 
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
+    }
+
+    public String getSenha() {
+        return senha;
     }
 }
