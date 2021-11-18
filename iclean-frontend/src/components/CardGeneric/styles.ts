@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -16,8 +16,9 @@ export const Content = styled.div`
   box-shadow: 0px 20px 27px rgba(0, 0, 0, 0.05);
   border-radius: 4px;
   padding: 2rem;
+  overflow: auto;
 
-  overflow: scroll;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
 `;

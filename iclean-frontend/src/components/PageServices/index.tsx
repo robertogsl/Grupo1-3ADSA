@@ -1,12 +1,12 @@
-import { Candidature } from "../Candidature";
-import { MadeInvitation } from "../MadeInvitation";
+import { OpenServices } from "../OpenServices";
+import { RecentProfessional } from "../RecentProfessional";
 
 
 export function PageServices() {
   return (
     <>
-    <Candidature />
-    <MadeInvitation />
+    <OpenServices />
+    <RecentProfessional />
     </>
   );
 }
