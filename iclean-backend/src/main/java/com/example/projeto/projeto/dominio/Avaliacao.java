@@ -16,9 +16,10 @@ public class Avaliacao {
     private Double estrelas;
     private LocalDate data = LocalDate.now();
     private String comentario;
-    @NotNull
     @ManyToOne
     private Contratada contratada;
+    @ManyToOne
+    private Proprietaria proprietaria;
 
     public int getIdAvaliacao() {
         return idAvaliacao;
@@ -58,5 +59,13 @@ public class Avaliacao {
 
     public void setContratada(Contratada contratada) {
         this.contratada = contratada;
+    }
+
+    public Proprietaria getProprietaria() {
+        return proprietaria;
+    }
+
+    public void setProprietaria(Proprietaria proprietaria) {
+        this.proprietaria = proprietaria;
     }
 }
