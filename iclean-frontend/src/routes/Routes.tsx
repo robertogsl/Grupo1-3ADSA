@@ -8,6 +8,7 @@ import { Dashboard } from '../pages/Dashboard';
 import { ListOnMap } from '../pages/ListOnMap';
 import { ServicesHired } from '../pages/ServicesHired';
 import { Candidature } from '../components/Candidature';
+import { DetailsInvite } from '../components/DetailsInvite/Index';
 
 export function Routes() {
     return (
@@ -19,7 +20,7 @@ export function Routes() {
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/listOnMap" component={ListOnMap} />
             <Route path="/servicesHired" component={ServicesHired} />
-            <Route path="/testeComponente" component={Candidature} />
+            <Route path="/testeComponente" component={DetailsInvite} />
         </Switch>
     );
 };

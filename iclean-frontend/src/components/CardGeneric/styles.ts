@@ -11,6 +11,7 @@ export const Container = styled.div`
 export const Content = styled.div`
   background: #5762c3;
   min-height: 85vh;
+  max-height: 90vh;
   width: 100%;
   max-width: 30rem;
   box-shadow: 0px 20px 27px rgba(0, 0, 0, 0.05);

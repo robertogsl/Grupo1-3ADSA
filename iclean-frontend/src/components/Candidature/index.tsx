@@ -1,4 +1,4 @@
-import { Title, Content, CardInvite, Container } from "./styles";
+import { Title, Content, CardInvite } from "./styles";
 import CardGeneric from "../CardGeneric";
 import { FaArrowRight } from "react-icons/fa";
 
@@ -42,7 +42,6 @@ const descCandidature: ISserviceCandidature[] = [
 
 export function Candidature() {
   return (
-    <Container>
     <CardGeneric>
       <Title> Candidaturas: </Title>
       <Content>
@@ -60,7 +59,5 @@ export function Candidature() {
         ))}
       </Content>
     </CardGeneric>
-    </Container>
-
   );
 }
