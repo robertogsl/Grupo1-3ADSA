@@ -71,4 +71,7 @@ public class TrabalhoController {
         return ResponseEntity.status(200).build();
     }
 
+//    @CrossOrigin
+//    @PatchMapping("/")
+
 }

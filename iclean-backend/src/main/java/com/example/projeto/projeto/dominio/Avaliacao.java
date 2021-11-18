@@ -3,6 +3,7 @@ package com.example.projeto.projeto.dominio;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -15,6 +16,9 @@ public class Avaliacao {
     private Double estrelas;
     private LocalDate data = LocalDate.now();
     private String comentario;
+    @NotNull
+    @ManyToOne
+    private Contratada contratada;
 
     public int getIdAvaliacao() {
         return idAvaliacao;
@@ -46,5 +50,13 @@ public class Avaliacao {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public Contratada getContratada() {
+        return contratada;
+    }
+
+    public void setContratada(Contratada contratada) {
+        this.contratada = contratada;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.projeto.projeto.controle;
 
 import com.example.projeto.projeto.dominio.Avaliacao;
+import com.example.projeto.projeto.dominio.Contratada;
 import com.example.projeto.projeto.repositorio.AvaliacaoContratadaRepository;
 import com.example.projeto.projeto.repositorio.AvaliacaoProprietariaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +36,56 @@ public class AvaliacaoController {
         return ResponseEntity.status(200).body(lista);
     }
 
+    // Retorna uma avaliação especifica
     @CrossOrigin
-    @GetMapping("/contratadas/{id}")
+    @GetMapping("{id}/contratadas")
     public ResponseEntity getAvaliacaoContratada(@PathVariable Integer id) {
         return ResponseEntity.of(repositoryContratada.findById(id));
+    }
+
+    // Retorna todas as avaliações de uma contratada
+//    @CrossOrigin
+//    @GetMapping("/contratadas/{id}")
+//    public ResponseEntity getAvaliacoesContratada(@PathVariable Integer id) {
+//        List<Avaliacao> lista = repositoryContratada.findByContratadaId(id);
+//
+//        if (lista.isEmpty()) {
+//            return ResponseEntity.status(404).build();
+//        }
+//        else {
+//            return ResponseEntity.status(200).body(lista);
+//        }
+//    }
+
+    @CrossOrigin
+    @GetMapping("/contratadas/{id}")
+    public ResponseEntity getMediaAvaliacaoContratada(@PathVariable Integer id) {
+        List<Avaliacao> lista = repositoryContratada.findByContratadaId(id);
+
+        Double totalEstrelas = 0.0;
+        Double media = 0.0;
+        int i = 0;
+
+        if (lista.isEmpty()) {
+            return ResponseEntity.status(404).build();
+        }
+        else {
+            while (i < lista.size()) {
+                totalEstrelas += lista.get(i).getEstrelas();
+                i++;
+            }
+            media = totalEstrelas / i;
+
+            return ResponseEntity.status(200).body(media);
+        }
+    }
+
+    @CrossOrigin
+    @GetMapping("/contratadas/{id}/total")
+    public ResponseEntity getTotalAvaliacao(@PathVariable Integer id) {
+        List<Avaliacao> lista = repositoryContratada.findByContratadaId(id);
+
+        return ResponseEntity.status(200).body(lista.size());
     }
 
     @CrossOrigin
