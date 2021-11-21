@@ -127,7 +127,7 @@ export function Dashboard() {
   const { getUserType, signOut } = useAuth();
   const history = useHistory();
 
-  const isContracted = getUserType() === 0;
+  const isOwner = getUserType() === 0;
 
   return (
     <Container>
@@ -155,21 +155,25 @@ export function Dashboard() {
         </div>
       </SideBar>
       <Content>
-        {dashOptions.map((dash) => (
-          <PrimaryCard left={dash.id === 1}>
-            <span>
-              <h1>{isContracted ? dash.title : dash.titleContract}</h1>
-              <p>{isContracted ? dash.desc : dash.descContract}</p>
-              <br />
-              <p>
-                {isContracted ? dash.path : dash.pathContract} {dash.iconDash()}
-              </p>
-            </span>
-            <img src={dash.src} alt={dash.alt} />
-          </PrimaryCard>
-        ))}
+        {dashOptions.map((dash) => {
+          const fn = dash.id === 2 && isOwner ? () => history.push("/listOnMap") : () => history.push("/newService")
 
-        {isContracted ? (
+          return (
+            <PrimaryCard onClick={fn} left={dash.id === 1}>
+              <span>
+                <h1>{isOwner ? dash.title : dash.titleContract}</h1>
+                <p>{isOwner ? dash.desc : dash.descContract}</p>
+                <br />
+                <p>
+                  {isOwner ? dash.path : dash.pathContract} {dash.iconDash()}
+                </p>
+              </span>
+              <img src={dash.src} alt={dash.alt} />
+            </PrimaryCard>
+          )
+        })}
+
+        {isOwner ? (
           <ChildrenCards>
             {secondDashOptions.map((dash) => {
               const fn = dash.id === 1 ? () => history.push("/profile") : () => history.push("/dashboard")

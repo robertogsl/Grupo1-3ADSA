@@ -28,11 +28,11 @@ export function Routes() {
             <Route path="/profile" isPrivate component={Profile} />
             <Route path="/servicesHired" isPrivate component={ServicesHired} />
             {/* <Route path="/testeComponente" component={Candidature} /> */}
-            <Route path="/newService" component={NewService} />
+            {/* <Route path="/newService" component={NewService} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/listOnMap" component={ListOnMap} />
             <Route path="/servicesHired" component={ServicesHired} />
-            <Route path="/testeComponente" component={PageServices} />
+            <Route path="/testeComponente" component={PageServices} /> */}
 
         </Switch>
     );

@@ -12,6 +12,8 @@ import { IAdditionalServiceProps } from '../../types/additionalServices';
 import { Container, Content, NumberControllerContainer, ContainerMap, ContainerInputLine, ContainerMapAndInputs, ContainerInputs } from './styles';
 import { InputRegister } from '../../components/InputRegister';
 import { LeafletMouseEvent } from 'leaflet';
+import { BackButton } from '../../components/BackButton';
+import { Header } from '../../components/Header';
 
 const serviceTypeItems: ItemServiceOptionsProps[] = [
   {
@@ -144,7 +146,9 @@ export function NewService() {
 
   return (
     <Container>
+      <Header />
       <Content>
+        <BackButton />
         <ServiceOptions idChecked={serviceTypeChecked} fnCheck={handleCheckService} items={serviceTypeItems} title="Escolha um serviço" />
 
         <ServiceOptions idChecked={houseTypeChecked} fnCheck={handleCheckHouse} items={houseTypeItems} title="Como é o seu lar?" />
