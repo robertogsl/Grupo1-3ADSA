@@ -10,8 +10,6 @@ import {
   Option,
 } from "./styles";
 
-import { Header } from "../Header";
-
 import {
   FaChevronRight,
   FaUserAlt,
@@ -19,124 +17,84 @@ import {
   FaArrowAltCircleLeft,
 } from "react-icons/fa";
 
-interface ISdescServices {
-  title: string;
-  person: string;
-  distance: string;
-  candidact: number;
-  iconPerson: () => JSX.Element;
-  iconLocation: () => JSX.Element;
-  iconArrow: () => JSX.Element;
+import { useEffect, useState } from "react";
+import { Header } from "../Header";
+import { api } from "../../services/api";
+import { OpenServices } from "../OpenServices";
+import { BackButton } from "../BackButton";
+
+interface IJobs {
+  id: number;
+  candidatas: [];
+  preco: number;
+  especificacao: string;
+  cep: string;
+  complemento: string;
+  numero: string;
+  longitude: number;
+  latitude: number;
 }
 
-const descServices: ISdescServices[] = [
-  {
-    title: "Diarista - Limpeza padrão",
-    person: "Dulce S.",
-    distance: "5 KM",
-    candidact: 3,
-    iconPerson: () => <FaUserAlt size={13} color="#FFF" />,
-    iconLocation: () => <FaMapMarkerAlt size={13} color="#FFF" />,
-    iconArrow: () => <FaChevronRight size={30} color="#FFF" />,
-  },
-  {
-    title: "Diarista - Limpeza padrão",
-    person: "Carlos A.",
-    distance: "3 KM",
-    candidact: 4,
-    iconPerson: () => <FaUserAlt size={13} color="#FFF" />,
-    iconLocation: () => <FaMapMarkerAlt size={13} color="#FFF" />,
-    iconArrow: () => <FaChevronRight size={30} color="#FFF" />,
-  },
-  {
-    title: "Diarista - Limpeza pesada",
-    person: "Dulce S.",
-    distance: "5 KM",
-    candidact: 0,
-    iconPerson: () => <FaUserAlt size={13} color="#FFF" />,
-    iconLocation: () => <FaMapMarkerAlt size={13} color="#FFF" />,
-    iconArrow: () => <FaChevronRight size={30} color="#FFF" />,
-  },
-  {
-    title: "Diarista - Limpeza padrão",
-    person: "Carlos A.",
-    distance: "3 KM",
-    candidact: 1,
-    iconPerson: () => <FaUserAlt size={13} color="#FFF" />,
-    iconLocation: () => <FaMapMarkerAlt size={13} color="#FFF" />,
-    iconArrow: () => <FaChevronRight size={30} color="#FFF" />,
-  },
-  {
-    title: "Diarista - Limpeza padrão",
-    person: "Dulce S.",
-    distance: "5 KM",
-    candidact: 3,
-    iconPerson: () => <FaUserAlt size={13} color="#FFF" />,
-    iconLocation: () => <FaMapMarkerAlt size={13} color="#FFF" />,
-    iconArrow: () => <FaChevronRight size={30} color="#FFF" />,
-  },
-  {
-    title: "Diarista - Limpeza padrão",
-    person: "Carlos A.",
-    distance: "3 KM",
-    candidact: 0,
-    iconPerson: () => <FaUserAlt size={13} color="#FFF" />,
-    iconLocation: () => <FaMapMarkerAlt size={13} color="#FFF" />,
-    iconArrow: () => <FaChevronRight size={30} color="#FFF" />,
-  },
-  {
-    title: "Diarista - Limpeza padrão",
-    person: "Dulce S.",
-    distance: "5 KM",
-    candidact: 3,
-    iconPerson: () => <FaUserAlt size={13} color="#FFF" />,
-    iconLocation: () => <FaMapMarkerAlt size={13} color="#FFF" />,
-    iconArrow: () => <FaChevronRight size={30} color="#FFF" />,
-  },
-];
-
 export function CardServices() {
+  const [jobs, setJobs] = useState<IJobs[]>([]);
+  const [modal, setModal] = useState(Boolean);
+
+  useEffect(() => {
+    api.get(`/trabalhos`).then((response) => {
+      setJobs(response.data);
+      console.log(response.data);
+    });
+  }, []);
+
   return (
     <Container>
       <Header />
       <Title>
-        <span>
-          <FaArrowAltCircleLeft size={28} color="#000" />
-          <p>Voltar</p>
-        </span>
+        <BackButton />
       </Title>
-      <Content>
-        {descServices.map((services) => (
-          <CardService>
-            <Candidacts>
-              <Separator>
-                <h1>{services.title}</h1>
-                <p>
-                  {services.iconPerson()} {services.person}
-                </p>
-                <p>
-                  {services.iconLocation()} {services.distance}
-                </p>
-              </Separator>
+      {modal ? (
+        <OpenServices />
+        ) : (
+          <Content>
+          {jobs.map((services) => {
+            const arr = services.especificacao.split(",");
 
-              {services.candidact === 0 ? (
-                <p> SEJA O PRIMEIRO A SE CANDIDATAR! </p>
-              ) : (
-                <Option>
-                  {Array.from({ length: 4 }).map((a, index) => {
-                    return index + 1 <= services.candidact ? (
-                      <CardApagado />
-                    ) : (
-                      <CardColorido />
-                    );
-                  })}
-                </Option>
-              )}
-            </Candidacts>
-            <span>{services.iconArrow()}</span>
-          </CardService>
-        ))}
-      </Content>
+            return (
+              <CardService>
+                <Candidacts onClick={() => setModal(true)}>
+                  <Separator>
+                    <h1>Diarista - {arr[0]}</h1>
+                    <p>
+                      <FaUserAlt size={13} color="#FFF" /> Carlos Gomes
+                    </p>
+                    <p>
+                      <FaMapMarkerAlt size={13} color="#FFF" /> 5 KM de
+                      distancia
+                    </p>
+                  </Separator>
+
+                  {services.candidatas.length === 0 ? (
+                    <p> SEJA O PRIMEIRO A SE CANDIDATAR! </p>
+                  ) : (
+                    <Option>
+                      {Array.from({ length: 4 }).map((a, index) => {
+                        return index + 1 <= services.candidatas.length ? (
+                          <CardApagado />
+                        ) : (
+                          <CardColorido />
+                        );
+                      })}
+                    </Option>
+                  )}
+                </Candidacts>
+                <span>
+                  <FaChevronRight size={30} color="#FFF" />
+                </span>
+              </CardService>
+            );
+          })}
+        </Content>
+      )}
     </Container>
   );
 }
