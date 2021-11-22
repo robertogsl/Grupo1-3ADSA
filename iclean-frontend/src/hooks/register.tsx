@@ -39,8 +39,6 @@ export const RegisterProvider: React.FC = ({ children }) => {
 
   const handleChangeRegisterData = useCallback((data: IRegisterData): void => {
     setRegisterData({...registerData, ...data});
-
-    console.log(registerData);
   }, [registerData]);
 
   const changeStep = useCallback((direction: 'next' | 'back'): void => {

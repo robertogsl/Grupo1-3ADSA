@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -155,4 +155,38 @@ export const InputGroup = styled.div`
 
     border-radius: 4px;
   }
+`;
+
+interface ICardProps {
+  isChecked: boolean;
+}
+
+export const UserType = styled.div`
+  margin-top: 1rem;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+`;
+
+export const UserOption = styled.div<ICardProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: .6rem;
+
+  border: 1px solid #E4E3E3;
+  border-radius: 4px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.07);
+
+  cursor: pointer;
+
+  ${props => props.isChecked && css`
+    background-color: #5762C3;
+    color: white;
+  `}
+
+  font-weight: 500;
+  font-size: 1.1rem;
 `;

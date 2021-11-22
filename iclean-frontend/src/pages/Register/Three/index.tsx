@@ -8,12 +8,6 @@ import { DoubleButton } from '../../../components/DoubleButton';
 import { InputRegister } from '../../../components/InputRegister';
 import { Container, DoubleInput } from './styles';
 
-interface IThreeDataProps {
-  cep: string;
-  numero: string;
-  complemento: string;
-}
-
 interface IThreeDataViaCepProps {
   logradouro: string;
   cidade: string;

@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
+import { useHistory } from 'react-router-dom';
 
 import { api } from "../services/api";
 
@@ -29,18 +30,15 @@ interface AuthContextData {
   user: Proprietaria | Contratada;
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
-}
-
-interface ResponseData {
-  data: {
-    user: Proprietaria | Contratada
-  }
+  getUser(): Contratada | Proprietaria | {};
+  getUserType(): number;
+  fnSetUserType(user: number): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<Contratada | Proprietaria>(() => {
+  const [user, setUser] = useState<Proprietaria>(() => {
     const user = localStorage.getItem("@iclean:user");
 
     if (user) {
@@ -50,32 +48,54 @@ const AuthProvider: React.FC = ({ children }) => {
     return {} as Contratada | Proprietaria;
   });
 
+  const [userType, setUserType] = useState(0);
+
+  const getUserType = useCallback(() => {
+    return userType;
+  }, [userType]);
+
+  const fnSetUserType = useCallback((user: number) => {
+    setUserType(user);
+  }, []);
+
+  const getUser = useCallback(() => {
+    const user = localStorage.getItem("@iclean:user");
+
+    if (user) {
+      return JSON.parse(user);
+    }
+
+    return null;
+  }, []);
+
+  const history = useHistory();
+
   const signIn = useCallback(
-    async ({ email, password, userType }) => {
+    async ({ email, senha, userType }) => {
       try {
         const url = userType === 0 ? "/proprietarias/autenticar" : "/contratadas/autenticar";
 
-        const response: ResponseData = await api.post(url, {
+        const response = await api.post(url, {
           email,
-          password,
+          senha,
         });
 
-        const { user } = response.data;
+        const user = response.data;
 
         localStorage.setItem("@iclean:user", JSON.stringify(user));
 
-        setUser(user);
+        history.push("/dashboard")
       } catch (err) {
-
+        console.log(err)
       }
     },
-    [],
+    [history],
   );
 
   const signOut = useCallback(() => {
     localStorage.removeItem("@iclean:user");
 
-    setUser({} as Contratada | Proprietaria);
+    setUser({} as Contratada)
   }, []);
 
   return (
@@ -84,6 +104,9 @@ const AuthProvider: React.FC = ({ children }) => {
         user,
         signIn,
         signOut,
+        getUser,
+        getUserType,
+        fnSetUserType
       }}
     >
       {children}

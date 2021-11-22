@@ -1,6 +1,7 @@
-import { Title, Subtitle, Line, Format, Content, Button } from "./styles";
+import { Title, Subtitle, Line, Format, Content, Button, Icon } from "./styles";
 import CardGeneric from "../CardGeneric";
 import { FaMapMarkerAlt, FaCircle, FaMinus } from "react-icons/fa";
+
 interface ISdescService {
   icon: () => JSX.Element;
   desc: string;
@@ -39,14 +40,62 @@ const descAdd: ISdescService[] = [
 export function DetailsInvite() {
   return (
     <CardGeneric>
-      <Format>
+      <Content>
         <Title>Convite para o serviço de:</Title>
         <Subtitle>Limpeza padrão:</Subtitle>
         <Line />
-        <FaMapMarkerAlt size={20} color="#FFF" /><span>5 km de distancia</span>
+        <Icon>
+          <FaMapMarkerAlt size={20} color="#FFF" />
+          <span> 5 km de distancia</span>
+        </Icon>
+        <Line />
+
+        <Title>
+          <FaCircle size={20} color="#FFF" />
+          <span>Descrição</span>
+        </Title>
+
+        {descService.map((service) => (
+          <Format>
+            <span>
+              {service.icon()}
+              <p>{service.desc}</p>
+            </span>
+          </Format>
+        ))}
+
+        <Title>
+          <FaCircle size={20} color="#FFF" />
+          <span>Adicionais</span>
+        </Title>
+
+        {descAdd.map((service) => (
+          <Format>
+            <span>
+              {service.icon()}
+              <p>{service.desc}</p>
+            </span>
+          </Format>
+        ))}
+        <Button>
+          <button>Candidatar-se</button>
+        </Button>
+      </Content>
+    </CardGeneric>
+  );
+}
+
+{
+  /* <Title>Convite para o serviço de:</Title>
+        <Subtitle>Limpeza padrão:</Subtitle>
+        <Line />
+        <FaMapMarkerAlt size={20} color="#FFF" />
+        <span>5 km de distancia</span>
         <Line />
         <FaCircle size={20} color="#FFF" />
         <span>Descrição</span>
+
+        
         <Content>
           {descService.map((service) => (
             <>
@@ -57,8 +106,12 @@ export function DetailsInvite() {
             </>
           ))}
         </Content>
+
+
         <FaCircle size={20} color="#FFF" />
         <span>Adicionais</span>
+
+
         <Content>
           {descAdd.map((service) => (
             <>
@@ -68,11 +121,9 @@ export function DetailsInvite() {
               </span>
             </>
           ))}
-          <div>
-          <Button>Candidatar-se</Button>
-          </div>
         </Content>
-      </Format>
-    </CardGeneric>
-  );
+        <div>
+          <Button>Candidatar-se</Button>
+        </div>
+      </Format> */
 }

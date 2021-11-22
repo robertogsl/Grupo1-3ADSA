@@ -11,11 +11,15 @@ interface INumberControllerProps {
 export function NumberController({ title, counter, fnCounter }: INumberControllerProps) {
   return (
     <Container>
-      <button onClick={() => fnCounter("decrease")}><FiMinus size={24} color="#000" /></button>
+      <button onClick={() => fnCounter("decrease")}>
+        <FiMinus size={24} color="#000" />
+      </button>
       <div>
         <span>{counter} {title}</span>
       </div>
-      <button onClick={() => fnCounter("increase")}><FiPlus size={24} color="#000" /></button>
+      <button onClick={() => fnCounter("increase")}>
+        <FiPlus size={24} color="#000" />
+      </button>
     </Container>
   )
 }
