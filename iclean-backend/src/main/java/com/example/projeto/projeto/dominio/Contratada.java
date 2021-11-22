@@ -15,6 +15,9 @@ public class Contratada {
     @NotNull
     private String nome;
 
+//    @NotNull
+//    private String descricao;
+
     @NotNull
     private String cpf;
 
@@ -63,6 +66,14 @@ public class Contratada {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+//    public String getDescricao() {
+//        return descricao;
+//    }
+//
+//    public void setDescricao(String descricao) {
+//        this.descricao = descricao;
+//    }
 
     public String getCpf() {
         return cpf;
