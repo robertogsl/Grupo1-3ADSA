@@ -16,6 +16,7 @@ import { OpenServices } from '../components/OpenServices';
 import { ConfirmInvite } from '../components/ConfirmInvite';
 import { PageServices } from '../components/PageServices';
 import { CardServices } from '../components/CardServices';
+import { PersonService } from '../components/PersonService';
 
 export function Routes() {
     return (
@@ -28,7 +29,7 @@ export function Routes() {
             <Route path="/listOnMap" isPrivate component={ListOnMap} />
             <Route path="/profile" isPrivate component={Profile} />
             <Route path="/servicesHired" isPrivate component={ServicesHired} />
-            <Route path="/testeComponente" component={CardServices} />
+            <Route path="/testeComponente" isPrivate component={CardServices} />
             {/* <Route path="/newService" component={NewService} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/listOnMap" component={ListOnMap} />
