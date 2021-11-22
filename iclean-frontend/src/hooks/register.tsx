@@ -1,5 +1,6 @@
 import React, { useContext, createContext, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { api } from '../services/api';
 
@@ -64,13 +65,13 @@ export const RegisterProvider: React.FC = ({ children }) => {
       await api.post("/contratadas", data);
 
       // toast("Cadastro realizado com sucesso", { type: "success" });
-      alert("Cadastro realizado com sucesso");
+      toast.success("Cadastro realizado com sucesso");
 
       history.push("/login")
     } catch (error) {
       // toast("Não foi possível realizar o cadastro, tente novamente.", { type: "error" })
 
-      alert("Não foi possível efetuar o cadastro, tente novamente.");
+      toast.error("Não foi possível efetuar o cadastro, tente novamente.");
     }
   };
 
@@ -88,13 +89,13 @@ export const RegisterProvider: React.FC = ({ children }) => {
       await api.post("/proprietarias", data);
 
       // toast("Cadastro realizado com sucesso", { type: "success" });
-      alert("Cadastro realizado com sucesso");
+      toast.success("Cadastro realizado com sucesso");
 
       history.push("/login")
     } catch (error) {
       // toast("Não foi possível realizar o cadastro, tente novamente.", { type: "error" })
 
-      alert("Não foi possível efetuar o cadastro, tente novamente.");
+      toast.error("Não foi possível efetuar o cadastro, tente novamente.");
     }
   };
 

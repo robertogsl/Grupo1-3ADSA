@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { TileLayer, Marker, Popup, Map, } from 'react-leaflet';
 import Leaflet from 'leaflet';
-import { Container, Content, MarkerUser } from "./styles";
+import { Container, Content } from "./styles";
 
 import user1 from '../../assets/user1.svg';
 import user2 from '../../assets/user2.svg';
 import user3 from '../../assets/user3.svg';
 import user4 from '../../assets/user4.svg';
+
 import { Header } from '../../components/Header';
 import { BackButton } from '../../components/BackButton';
 import { api } from '../../services/api';
@@ -26,14 +27,6 @@ interface IUserProps {
   longitude: number;
   latitude: number;
 }
-
-// const positions = [
-//   [-23.5668698, -46.6608874],
-//   [-23.56614448909031, -46.66715383529664],
-//   [-23.56999937691473, -46.668226718902595],
-//   [-23.574050820736684, -46.65968656539917],
-//   [-23.57794480911962, -46.6532063484192]
-// ]
 
 export function ListOnMap() {
   const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);

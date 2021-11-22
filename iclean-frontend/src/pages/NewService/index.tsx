@@ -1,6 +1,7 @@
 import { FormEvent, useCallback, useEffect, useState } from 'react';
-import { FaFacebook } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 import { TileLayer, Marker, Popup, Map } from 'react-leaflet';
+import { useHistory } from 'react-router-dom';
 
 import { ServiceOptions } from '../../components/ServiceOptions';
 import { NumberController } from '../../components/NumberController';
@@ -14,22 +15,20 @@ import { InputRegister } from '../../components/InputRegister';
 import { LeafletMouseEvent } from 'leaflet';
 import { BackButton } from '../../components/BackButton';
 import { Header } from '../../components/Header';
+import { api } from '../../services/api';
 
 const serviceTypeItems: ItemServiceOptionsProps[] = [
   {
     id: 1,
     title: "Limpeza padrão",
-    icon: () => <FaFacebook />
   },
   {
     id: 2,
     title: "Limpeza pesada",
-    icon: () => <FaFacebook />
   },
   {
     id: 3,
     title: "Passar roupa",
-    icon: () => <FaFacebook />
   }
 ]
 
@@ -91,10 +90,56 @@ export function NewService() {
     telefone: "",
   });
 
+  const history = useHistory();
+
+  const generateEspecification = (): String => {
+    const arrEspec = [];
+
+    arrEspec.push(serviceTypeItems[serviceTypeChecked - 1].title);
+    arrEspec.push(houseTypeItems[houseTypeChecked - 1].title);
+    arrEspec.push(`${bedroomsCounter} quartos`);
+    arrEspec.push(`${bathroomsCounter} banheiros`);
+    additionalServicesChecked.forEach(item => {
+      arrEspec.push(additionalServices[item - 1].title);
+    })
+
+    return arrEspec.join(", ");
+  }
+
+  const calcPrice = (): number => {
+    let value = 0.0;
+
+    value += bathroomsCounter * 50.5;
+    value += bedroomsCounter * 100.0;
+
+    return value;
+  };
+
+  const handleCreateJob = () => {
+    const especificacao = generateEspecification();
+
+    const dataApi = {
+      especificacao,
+      preco: calcPrice(),
+      cep: data.cep,
+      complemento: data.complemento,
+      numero: data.numero,
+      latitude: initialPosition[0],
+      longitude: initialPosition[1],
+    }
+
+    api.post("/trabalhos", dataApi).then(() => {
+      toast.success("Trabalho criado com sucesso!");
+
+      history.push("/dashboard")
+    }).catch(err => {
+      toast.error("Erro ao criar trabalho, tente novamente mais tarde.")
+    })
+  };
+
   const handleMapClick = useCallback((event: LeafletMouseEvent) => {
     setInitialPosition([event.latlng.lat, event.latlng.lng])
   }, []);
-
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(position => {
@@ -195,7 +240,7 @@ export function NewService() {
 
         <MultiplesCheck title="Serviços adicionais?" items={additionalServices} checkFn={handleClickCheckAdditionalServices} state={additionalServicesChecked} />
 
-        <button onClick={() => console.log(data)}>Cadastrar serviço</button>
+        <button onClick={handleCreateJob}>Cadastrar serviço</button>
       </Content>
     </Container>
   )
