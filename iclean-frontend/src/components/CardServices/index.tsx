@@ -22,6 +22,7 @@ import { Header } from "../Header";
 import { api } from "../../services/api";
 import { OpenServices } from "../OpenServices";
 import { BackButton } from "../BackButton";
+import { PersonService } from "../PersonService";
 
 interface IJobs {
   id: number;
@@ -38,6 +39,12 @@ interface IJobs {
 export function CardServices() {
   const [jobs, setJobs] = useState<IJobs[]>([]);
   const [modal, setModal] = useState(Boolean);
+  const [selectedJob, setSelectedJob] = useState<IJobs>({} as IJobs);
+
+  function openModal(job : IJobs){
+    setModal(true);
+    setSelectedJob(job);
+  } 
 
   useEffect(() => {
     api.get(`/trabalhos`).then((response) => {
@@ -53,7 +60,7 @@ export function CardServices() {
         <BackButton />
       </Title>
       {modal ? (
-        <OpenServices />
+        <PersonService job={selectedJob} />
         ) : (
           <Content>
           {jobs.map((services) => {
@@ -61,7 +68,7 @@ export function CardServices() {
 
             return (
               <CardService>
-                <Candidacts onClick={() => setModal(true)}>
+                <Candidacts onClick={() => openModal(services)}>
                   <Separator>
                     <h1>Diarista - {arr[0]}</h1>
                     <p>
