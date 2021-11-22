@@ -21,44 +21,44 @@ public class AvaliacaoController {
     private AvaliacaoProprietariaRepository repositoryProprietaria;
 
     @CrossOrigin
-    @PostMapping("/contratadas")
+    @PostMapping("/contratada")
     public ResponseEntity postAvaliarContratada(@RequestBody Avaliacao novaAvaliacaoContratada) {
         repositoryContratada.save(novaAvaliacaoContratada);
 
         return ResponseEntity.status(201).build();
     }
 
-    @CrossOrigin
-    @GetMapping("/contratadas")
-    public ResponseEntity getAvaliacoesContratada() {
-        List<Avaliacao> lista = repositoryContratada.findAll();
-
-        return ResponseEntity.status(200).body(lista);
-    }
+//    @CrossOrigin
+//    @GetMapping("/contratadas")
+//    public ResponseEntity getAvaliacoesContratada() {
+//        List<Avaliacao> lista = repositoryContratada.findAll();
+//
+//        return ResponseEntity.status(200).body(lista);
+//    }
 
     // Retorna uma avaliação especifica
     @CrossOrigin
-    @GetMapping("{id}/contratadas")
+    @GetMapping("{id}/contratada")
     public ResponseEntity getAvaliacaoContratada(@PathVariable Integer id) {
         return ResponseEntity.of(repositoryContratada.findById(id));
     }
 
-    // Retorna todas as avaliações de uma contratada
-//    @CrossOrigin
-//    @GetMapping("/contratadas/{id}")
-//    public ResponseEntity getAvaliacoesContratada(@PathVariable Integer id) {
-//        List<Avaliacao> lista = repositoryContratada.findByContratadaId(id);
-//
-//        if (lista.isEmpty()) {
-//            return ResponseEntity.status(404).build();
-//        }
-//        else {
-//            return ResponseEntity.status(200).body(lista);
-//        }
-//    }
+//     Retorna todas as avaliações de uma contratada
+    @CrossOrigin
+    @GetMapping("/contratada/{id}")
+    public ResponseEntity getAvaliacoesContratada(@PathVariable Integer id) {
+        List<Avaliacao> lista = repositoryContratada.findByContratadaId(id);
+
+        if (lista.isEmpty()) {
+            return ResponseEntity.status(404).build();
+        }
+        else {
+            return ResponseEntity.status(200).body(lista);
+        }
+    }
 
     @CrossOrigin
-    @GetMapping("/contratadas/{id}")
+    @GetMapping("/contratada/{id}/media")
     public ResponseEntity getMediaAvaliacaoContratada(@PathVariable Integer id) {
         List<Avaliacao> lista = repositoryContratada.findByContratadaId(id);
 
@@ -67,7 +67,7 @@ public class AvaliacaoController {
         int i = 0;
 
         if (lista.isEmpty()) {
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(204).build();
         }
         else {
             while (i < lista.size()) {
@@ -81,7 +81,7 @@ public class AvaliacaoController {
     }
 
     @CrossOrigin
-    @GetMapping("/contratadas/{id}/total")
+    @GetMapping("/contratada/{id}/total")
     public ResponseEntity getTotalAvaliacao(@PathVariable Integer id) {
         List<Avaliacao> lista = repositoryContratada.findByContratadaId(id);
 
@@ -96,13 +96,13 @@ public class AvaliacaoController {
         return ResponseEntity.status(201).build();
     }
 
-    @CrossOrigin
-    @GetMapping("/proprietaria")
-    public ResponseEntity getAvaliacoesProprietaria() {
-        List<Avaliacao> lista = repositoryProprietaria.findAll();
-
-        return ResponseEntity.status(200).body(lista);
-    }
+//    @CrossOrigin
+//    @GetMapping("/proprietaria")
+//    public ResponseEntity getAvaliacoesProprietaria() {
+//        List<Avaliacao> lista = repositoryProprietaria.findAll();
+//
+//        return ResponseEntity.status(200).body(lista);
+//    }
 
     @CrossOrigin
     @GetMapping("/{id}/proprietaria")
@@ -111,7 +111,20 @@ public class AvaliacaoController {
     }
 
     @CrossOrigin
-    @GetMapping("/proprietarias/{id}")
+    @GetMapping("/proprietaria/{id}")
+    public ResponseEntity getAvaliacoesProprietaria(@PathVariable Integer id) {
+        List<Avaliacao> lista = repositoryProprietaria.findByProprietariaId(id);
+
+        if (lista.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        }
+        else {
+            return ResponseEntity.status(200).body(lista);
+        }
+    }
+
+    @CrossOrigin
+    @GetMapping("/proprietaria/{id}/media")
     public ResponseEntity getMediaAvaliacaoProprietaria(@PathVariable Integer id) {
         List<Avaliacao> lista = repositoryProprietaria.findByProprietariaId(id);
 
@@ -120,7 +133,7 @@ public class AvaliacaoController {
         int i = 0;
 
         if (lista.isEmpty()) {
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(204).build();
         }
         else {
             while (i < lista.size()) {
@@ -134,7 +147,7 @@ public class AvaliacaoController {
     }
 
     @CrossOrigin
-    @GetMapping("/proprietarias/{id}/total")
+    @GetMapping("/proprietaria/{id}/total")
     public ResponseEntity getTotalAvaliacaoProprietaria(@PathVariable Integer id) {
         List<Avaliacao> lista = repositoryProprietaria.findByProprietariaId(id);
 
