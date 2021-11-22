@@ -3,6 +3,8 @@ package com.example.projeto.projeto.controle;
 import com.example.projeto.projeto.Csv;
 import com.example.projeto.projeto.dominio.Contratada;
 import com.example.projeto.projeto.repositorio.ContratadaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,8 @@ import java.util.List;
 @RequestMapping("/contratadas")
 public class ContratadaController {
 
+    Logger logger = LoggerFactory.getLogger(ContratadaController.class);
+
     Csv csv = new Csv();
 
     @Autowired
@@ -22,6 +26,8 @@ public class ContratadaController {
     @PostMapping
     public ResponseEntity criarContratada(@RequestBody Contratada novaContratada) {
         repository.save(novaContratada);
+        logger.info("\n" +
+                "successfully created a new assessment");
 
         return ResponseEntity.status(201).build();
     }
