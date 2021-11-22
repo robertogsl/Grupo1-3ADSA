@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
 import { useHistory } from 'react-router-dom';
+import { toast } from "react-toastify";
 
 import { api } from "../services/api";
 
@@ -10,7 +11,7 @@ interface SignInCredentials {
 }
 
 interface Proprietaria {
-  id: string;
+  id: number;
   nome: string;
   cpf: string;
   telefone: string;
@@ -38,7 +39,7 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<Proprietaria>(() => {
+  const [user, setUser] = useState<Proprietaria | Contratada>(() => {
     const user = localStorage.getItem("@iclean:user");
 
     if (user) {
@@ -75,18 +76,20 @@ const AuthProvider: React.FC = ({ children }) => {
       try {
         const url = userType === 0 ? "/proprietarias/autenticar" : "/contratadas/autenticar";
 
-        const response = await api.post(url, {
-          email,
-          senha,
-        });
+        const data = {
+          email, senha
+        }
+
+        const response = await api.post<Contratada | Proprietaria>(url, data);
 
         const user = response.data;
 
         localStorage.setItem("@iclean:user", JSON.stringify(user));
+        setUser(user);
 
         history.push("/dashboard")
       } catch (err) {
-        console.log(err)
+        toast.error("Erro ao logar, revise as informações e tente novamente.");
       }
     },
     [history],

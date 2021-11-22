@@ -176,7 +176,7 @@ export function Dashboard() {
         {isOwner ? (
           <ChildrenCards>
             {secondDashOptions.map((dash) => {
-              const fn = dash.id === 1 ? () => history.push("/profile") : () => history.push("/dashboard")
+              const fn = dash.id === 1 ? () => history.push("/profile") : () => history.push("/modal")
 
               return (
                 <SecondCard onClick={fn} left={dash.id === 1}>
