@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ProprietariaRepository extends JpaRepository<Proprietaria, Integer> {
 
-    Proprietaria findByEmailAndSenha(String email, String senha);
+    List<Proprietaria> findByEmailAndSenha(String email, String senha);
 }

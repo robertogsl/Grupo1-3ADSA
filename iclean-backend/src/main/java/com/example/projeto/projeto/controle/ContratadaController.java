@@ -103,23 +103,6 @@ public class ContratadaController {
         List<Contratada> c = repository.findByEmailAndSenha(contratada.getEmail(), contratada.getSenha());
 
         return ResponseEntity.status(200).body(c);
-
-//        List<Contratada> contratadas = repository.findAll();
-//        for(Contratada c : contratadas) {
-//            if (!(repository.findByEmailAndSenha(contratada.getEmail(), contratada.senha())).isEmpty()) {
-//                c.setAutenticado(true);
-//                repository.save(c);
-//                return ResponseEntity.status(200).body(c);
-//            } else {
-//                c.setAutenticado(false);
-//                repository.save(c);
-//            }
-//        } return ResponseEntity.status(404).build();
-//        if (!(repository.findByEmailAndSenha(contratada.getEmail(), contratada.senha())).isEmpty()) {
-//            return ResponseEntity.status(200).body(contratada);
-//        } else {
-//            return ResponseEntity.status(404).build();
-//        }
     }
 
     @CrossOrigin
