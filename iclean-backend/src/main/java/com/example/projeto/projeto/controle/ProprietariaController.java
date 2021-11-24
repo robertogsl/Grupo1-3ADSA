@@ -4,6 +4,8 @@ import com.example.projeto.projeto.Csv;
 import com.example.projeto.projeto.dominio.Contratada;
 import com.example.projeto.projeto.dominio.Proprietaria;
 import com.example.projeto.projeto.repositorio.ProprietariaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/proprietarias")
 public class ProprietariaController {
+
+    Logger logger = LoggerFactory.getLogger(ContratadaController.class);
+
     Csv csv = new Csv();
 
     @Autowired
@@ -21,9 +26,18 @@ public class ProprietariaController {
     @CrossOrigin
     @PostMapping
     public ResponseEntity criarProprietaria(@RequestBody Proprietaria novaProprietaria) {
-        repository.save(novaProprietaria);
+        logger.info("\n" +
+                "successfully created a new assessment");
+        List<Proprietaria> lista = repository.findByEmail(novaProprietaria.getEmail());
 
-        return ResponseEntity.status(201).build();
+        if (!lista.isEmpty()) {
+            return ResponseEntity.status(409).build();
+        }
+        else {
+            repository.save(novaProprietaria);
+
+            return ResponseEntity.status(201).build();
+        }
     }
 
     @CrossOrigin
