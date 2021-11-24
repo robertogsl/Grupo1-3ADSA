@@ -11,7 +11,10 @@ public class Trabalho {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany
+    @ManyToOne
+    private Proprietaria proprietaria;
+
+    @ManyToMany
     private List<Contratada> candidatas;
 
     @NotNull
@@ -49,6 +52,14 @@ public class Trabalho {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public Proprietaria getProprietaria() {
+        return proprietaria;
+    }
+
+    public void setProprietaria(Proprietaria proprietaria) {
+        this.proprietaria = proprietaria;
     }
 
     public List<Contratada> getCandidatas() {

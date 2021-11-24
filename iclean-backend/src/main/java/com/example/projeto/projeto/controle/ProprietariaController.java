@@ -80,17 +80,10 @@ public class ProprietariaController {
     @CrossOrigin
     @PostMapping("/autenticar")
     public ResponseEntity autenticar(@RequestBody Proprietaria proprietaria) {
-        List<Proprietaria> proprietarias = repository.findAll();
-        for(Proprietaria p : proprietarias) {
-            if (!(repository.findByEmailAndSenha(proprietaria.getEmail(), proprietaria.senha())).isEmpty()) {
-                p.setAutenticado(true);
-                repository.save(p);
-                return ResponseEntity.status(200).body(p);
-            }
-            p.setAutenticado(false);
-            repository.save(p);
-        } return ResponseEntity.status(404).build();
-    };
+        Proprietaria login = repository.findByEmailAndSenha(proprietaria.getEmail(), proprietaria.senha());
+
+        return ResponseEntity.status(200).body(login);
+    }
 
     @CrossOrigin
     @PostMapping("/logoff/{id}")

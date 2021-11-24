@@ -39,7 +39,6 @@ public class Contratada {
     @NotNull
     private String cep;
 
-    @NotNull
     private String complemento;
 
     @NotNull
