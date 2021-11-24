@@ -80,7 +80,8 @@ public class ProprietariaController {
     @CrossOrigin
     @PostMapping("/autenticar")
     public ResponseEntity autenticar(@RequestBody Proprietaria proprietaria) {
-        Proprietaria login = repository.findByEmailAndSenha(proprietaria.getEmail(), proprietaria.senha());
+
+        List<Proprietaria> login = repository.findByEmailAndSenha(proprietaria.getEmail(), proprietaria.senha());
 
         return ResponseEntity.status(200).body(login);
     }
