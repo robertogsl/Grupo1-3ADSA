@@ -39,17 +39,26 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
+  const [userType, setUserType] = useState(0);
   const [user, setUser] = useState<Proprietaria | Contratada>(() => {
     const user = localStorage.getItem("@iclean:user");
 
     if (user) {
-      return JSON.parse(user);
+
+      const userToReturn = JSON.parse(user)
+
+      if (userToReturn.latitude) {
+        setUserType(1);
+      } else {
+        setUserType(0);
+      }
+
+      return userToReturn;
     }
 
     return {} as Contratada | Proprietaria;
   });
 
-  const [userType, setUserType] = useState(0);
 
   const getUserType = useCallback(() => {
     return userType;
@@ -86,8 +95,6 @@ const AuthProvider: React.FC = ({ children }) => {
 
         localStorage.setItem("@iclean:user", JSON.stringify(user[0]));
         setUser(user[0]);
-
-        console.log(user)
 
         history.push("/dashboard")
       } catch (err) {

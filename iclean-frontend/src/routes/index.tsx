@@ -29,7 +29,7 @@ export function Routes() {
             <Route path="/dashboard" isPrivate component={Dashboard} />
             <Route path="/listOnMap" isPrivate component={ListOnMap} />
             <Route path="/profile" isPrivate component={Profile} />
-            <Route path="/modal" isPrivate component={ModalPage} />
+            <Route path="/modal/:user/:type" isPrivate component={ModalPage} />
             <Route path="/servicesHired" isPrivate component={ServicesHired} />
             <Route path="/testeComponente" isPrivate component={CardServices} />
             {/* <Route path="/newService" component={NewService} />
