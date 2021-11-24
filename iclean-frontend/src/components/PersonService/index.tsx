@@ -37,7 +37,7 @@ export function PersonService({job} : macs) {
   const { user } = useAuth();
 
   function MACSCSCS() {
-    api.put(`/${job.id}/candidata/${user.id}`);
+    api.put(`/trabalhos/${job.id}/candidata/${user.id}`);
   }
 
   return (

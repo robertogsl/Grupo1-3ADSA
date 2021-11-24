@@ -25,7 +25,6 @@ public class ContratadaController {
     @CrossOrigin
     @PostMapping
     public ResponseEntity criarContratada(@RequestBody Contratada novaContratada) {
-        repository.save(novaContratada);
         logger.info("\n" +
                 "successfully created a new assessment");
         List<Contratada> lista = repository.findByEmail(novaContratada.getEmail());
