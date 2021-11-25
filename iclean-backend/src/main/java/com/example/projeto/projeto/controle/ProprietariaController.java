@@ -1,6 +1,8 @@
 package com.example.projeto.projeto.controle;
 
 import com.example.projeto.projeto.Csv;
+import com.example.projeto.projeto.FilaObj;
+import com.example.projeto.projeto.ListaObj;
 import com.example.projeto.projeto.dominio.Contratada;
 import com.example.projeto.projeto.dominio.Proprietaria;
 import com.example.projeto.projeto.repositorio.ProprietariaRepository;
@@ -52,8 +54,20 @@ public class ProprietariaController {
     @GetMapping("/{id}")
     public ResponseEntity getProprietaria(@PathVariable int id) {
 
-        return ResponseEntity.of(repository.findById(id));
+        List<Proprietaria> lista = repository.findAll();
+        FilaObj<Proprietaria> filaObj = new FilaObj(lista.size());
 
+        for (Proprietaria p : lista) {
+            filaObj.insert(p);
+        }
+        while (!filaObj.isEmpty()) {
+            if (filaObj.peek().getId().equals(id)) {
+                return ResponseEntity.status(200).body(filaObj.peek());
+            } else {
+                filaObj.poll();
+            }
+        }
+        return ResponseEntity.status(404).build();
     }
 
     @CrossOrigin
