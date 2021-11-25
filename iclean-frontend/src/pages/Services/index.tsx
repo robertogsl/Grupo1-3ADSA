@@ -28,15 +28,10 @@ interface IJobs {
   }
 }
 
-interface IParams {
-  idCandidata: string;
-}
-
-export function ServicosAbertosConvite() {
+export function Services() {
   const [jobs, setJobs] = useState<IJobs[]>([]);
 
   const { user } = useAuth();
-  const params: IParams = useParams();
   const history = useHistory();
 
   const generateSrc = (id: number): string => {
@@ -67,7 +62,7 @@ export function ServicosAbertosConvite() {
       <CardGeneric>
       <Title> Serviços em aberto: </Title>
       {jobs.map((services) => (
-          <CardInvite onClick={() => history.push(`/convidar/${params.idCandidata}/${services.id}`)}>
+          <CardInvite onClick={() => history.push(`/interessados/${services.id}`)}>
             <div>
               <img src={generateSrc(services.id)} alt="Icone" />
             </div>

@@ -11,8 +11,8 @@ import { Profile } from '../pages/Profile';
 import { ServicosAbertosConvite } from '../pages/ServicosAbertosConvite';
 import { Convidar } from '../pages/Convidar';
 import { ServicesHired } from '../pages/ServicesHired';
-import { InterestedProfessional } from '../components/InterestedProfessional';
-import { ChooseProfile } from '../components/ChooseProfile';
+import { Services } from '../pages/Services';
+import { Interessados } from '../pages/Interessados';
 import { InviteForService } from '../components/InviteForService';
 import { OpenServices } from '../components/OpenServices';
 import { ConfirmInvite } from '../components/ConfirmInvite';
@@ -30,16 +30,12 @@ export function Routes() {
             <Route path="/dashboard" isPrivate component={Dashboard} />
             <Route path="/listOnMap" isPrivate component={ListOnMap} />
             <Route path="/profile" isPrivate component={Profile} />
+            <Route path="/services" isPrivate component={Services} />
+            <Route path="/interessados/:idTrabalho" isPrivate component={Interessados} />
             <Route path="/servicosAbertosConvite/:idCandidata" isPrivate component={ServicosAbertosConvite} />
             <Route path="/convidar/:idCandidata/:idTrabalho" isPrivate component={Convidar} />
             <Route path="/servicesHired" isPrivate component={ServicesHired} />
             <Route path="/testeComponente" isPrivate component={CardServices} />
-            {/* <Route path="/newService" component={NewService} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/listOnMap" component={ListOnMap} />
-            <Route path="/servicesHired" component={ServicesHired} />
-            <Route path="/testeComponente" component={PageServices} /> */}
-
         </Switch>
     );
 };

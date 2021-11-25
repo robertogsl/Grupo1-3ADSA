@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 
 import { Header } from "../../components/Header";
 
@@ -9,6 +9,7 @@ import { useAuth } from '../../hooks/auth';
 import { Container, Content, Line } from "./styles";
 
 import CardGeneric from '../../components/CardGeneric';
+import { toast } from 'react-toastify';
 
 interface IJobs {
   id: number;
@@ -33,14 +34,21 @@ interface IParams {
 export function Convidar() {
   const [job, setJob] = useState<IJobs>({} as IJobs)
 
-  const { user } = useAuth();
   const params: IParams = useParams();
+  const history = useHistory();
 
   useEffect(() => {
-    api.get(`/trabalhos/${params.idTrabalho}`).then(res => {
+    api.get(`/trabalhos/${Number(params.idTrabalho)}`).then(res => {
       setJob(res.data);
     })
   }, [])
+
+  const handleClick = async () => {
+    await api.put(`/trabalhos/${job.id}/candidata/${Number(params.idCandidata)}`);
+    toast.success("Doméstica convidada com sucesso!")
+
+    history.push("/listOnMap");
+  };
 
   return (
     <Container>
@@ -49,25 +57,38 @@ export function Convidar() {
         <CardGeneric>
           <h1>Convidar para o serviço: </h1>
 
-          <h2>{job.especificacao.split(",")[0]}</h2>
+          {job ? (
+            <>
+              <h2>{job.especificacao.split(",")[0]}</h2>
 
-          <Line />
-          5km de distância
-          <Line />
+              <Line />
+              5km de distância
+              <Line />
 
-          <h3>Descrição</h3>
-          <ul>
-            <li>{job.especificacao.split(",")[0]}</li>
-            <li>{job.especificacao.split(",")[1]}</li>
-            <li>{job.especificacao.split(",")[2]}</li>
-            <li>{job.especificacao.split(",")[3]}</li>
-          </ul>
+              <h3>Descrição</h3>
+              <ul>
+                <li>{job.especificacao.split(",")[0]}</li>
+                <li>{job.especificacao.split(",")[1]}</li>
+                <li>{job.especificacao.split(",")[2]}</li>
+                <li>{job.especificacao.split(",")[3]}</li>
+              </ul>
 
-          <h3>Adicionais</h3>
-          <ul>
-            <li>macaco</li>
-            <li>macaco</li>
-          </ul>
+              <h3>Adicionais</h3>
+              {job.especificacao.split(",").length > 4 && (
+                <ul>
+                  {job.especificacao.split(",").map((additional, index) => {
+                    if (index > 3) {
+                      return <li>{additional}</li>
+                    }
+                  })}
+                </ul>
+              )}
+            </>
+          ) : (
+            <h2>Carregando...</h2>
+          )}
+
+          <button onClick={handleClick}>Convidar</button>
         </CardGeneric>
       </Content>
     </Container>
