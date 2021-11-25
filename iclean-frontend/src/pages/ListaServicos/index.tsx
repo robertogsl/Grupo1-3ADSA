@@ -56,13 +56,12 @@ export function ListaServicos() {
       <Content>
         <CardGeneric>
           <h1>Convidar para o serviço: </h1>
-
           {job ? (
             <>
               <h2>{job.especificacao.split(",")[0]}</h2>
 
               <Line />
-              5km de distância
+              5 km de distância
               <Line />
 
               <h3>Descrição</h3>
@@ -88,7 +87,6 @@ export function ListaServicos() {
             <h2>Carregando...</h2>
           )}
 
-        
           <button onClick={handleClick}>Convidar</button>
           <button onClick={() => history.push(`/profile/${job.proprietaria.id}`)}>Visitar perfil</button>
         </CardGeneric>
