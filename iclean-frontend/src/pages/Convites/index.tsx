@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { Header } from "../../components/Header"
 
@@ -43,6 +43,8 @@ interface ICandProps {
 export function Convites() {
   const [jobs, setJobs] = useState<IJobs[]>([]);
 
+  const history = useHistory();
+
   function getRandomInt(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -65,7 +67,6 @@ export function Convites() {
 
   useEffect(() => {
     api.get("/trabalhos").then(res => {
-      let arr = []
       const filteredJobs = res.data.filter(({ candidatas }: IJobs) => {
         return candidatas.find(({ id }: ICandProps) => id === user.id)
       })
@@ -82,7 +83,7 @@ export function Convites() {
       <Title> Convites feitos: </Title>
       <Content>
         {jobs.map((interest) => (
-          <CardInvite>
+          <CardInvite onClick={() => history.push(`/detalhes/${interest.id}/convite`)}>
             <img src={generateSrc()} alt="icon" />
 
             <span>
@@ -91,9 +92,6 @@ export function Convites() {
             </span>
           </CardInvite>
         ))}
-        <Button>
-          <button>Serviço finalizado</button>
-        </Button>
       </Content>
       </CardGeneric>
       </Content>

@@ -1,15 +1,14 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { Header } from "../../components/Header";
+import CardGeneric from '../../components/CardGeneric';
 
 import { api } from '../../services/api';
-import { useAuth } from '../../hooks/auth';
 
 import { Container, Content, Line } from "./styles";
 
-import CardGeneric from '../../components/CardGeneric';
-import { toast } from 'react-toastify';
 
 interface IJobs {
   id: number;
@@ -27,11 +26,11 @@ interface IJobs {
 }
 
 interface IParams {
-  idCandidata: string;
+  tipo: string;
   idTrabalho: string;
 }
 
-export function Convidar() {
+export function Detalhes() {
   const [job, setJob] = useState<IJobs>();
 
   const params: IParams = useParams();
@@ -44,10 +43,13 @@ export function Convidar() {
   }, [])
 
   const handleClick = async () => {
-    await api.put(`/trabalhos/${job?.id}/candidata/${Number(params.idCandidata)}`);
-    toast.success("Doméstica convidada com sucesso!")
+    if (params.tipo === "convite") {
+      toast.success("Convite aceito com sucesso!")
 
-    history.push("/listOnMap");
+      history.push("/dashboard");
+    } else {
+      history.push("/convites")
+    }
   };
 
   return (
@@ -55,7 +57,7 @@ export function Convidar() {
       <Header />
       <Content>
         <CardGeneric>
-          <h1>Convidar para o serviço: </h1>
+          <h1>Detalhes do serviço</h1>
 
           {job ? (
             <>
@@ -88,7 +90,7 @@ export function Convidar() {
             <h2>Carregando...</h2>
           )}
 
-          <button onClick={handleClick}>Convidar</button>
+          <button onClick={handleClick}>{params.tipo === "convite" ? "Candidatar-se" : "Voltar"}</button>
         </CardGeneric>
       </Content>
     </Container>
