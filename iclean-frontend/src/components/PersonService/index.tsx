@@ -56,25 +56,12 @@ export function PersonService({job} : macs) {
           </p>
           <Button>
             <button onClick={MACSCSCS}>Candidatar-se</button>
+            <button onClick={MACSCSCS}>Visistar perfil</button>
+          </Button>
+          <Button>
+            
           </Button>
         </FirstCard>
-        <SecondCard>
-          <h1>Limpeza padrão</h1>
-          <LinePurple>
-            <span></span>
-          </LinePurple>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          <LinePurple />
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et
-            inventore, corporis veritatis autem nam provident est hic quasi
-            quibusdam eveniet, animi ut impedit possimus, itaque doloribus illum
-            deleniti dolore atque!
-          </p>
-          <Button>
-            <button>Visitar perfil</button>
-          </Button>
-        </SecondCard>
       </Content>
     </Container>
   );

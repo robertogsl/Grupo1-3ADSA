@@ -19,6 +19,7 @@ import { ConfirmInvite } from '../components/ConfirmInvite';
 import { PageServices } from '../components/PageServices';
 import { CardServices } from '../components/CardServices';
 import { PersonService } from '../components/PersonService';
+import { ListaServicos } from '../pages/ListaServicos';
 
 export function Routes() {
     return (
@@ -35,7 +36,7 @@ export function Routes() {
             <Route path="/servicosAbertosConvite/:idCandidata" isPrivate component={ServicosAbertosConvite} />
             <Route path="/convidar/:idCandidata/:idTrabalho" isPrivate component={Convidar} />
             <Route path="/servicesHired" isPrivate component={ServicesHired} />
-            <Route path="/testeComponente" isPrivate component={CardServices} />
+            <Route path="/listaServicos/:idTrabalho" isPrivate component={ListaServicos} />
         </Switch>
     );
 };
