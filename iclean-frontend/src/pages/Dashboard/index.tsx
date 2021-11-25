@@ -163,7 +163,7 @@ export function Dashboard() {
         {dashOptions.map((dash) => {
           // const fn = dash.id === 2 && isOwner ? () => history.push("/listOnMap") : () => history.push("/newService")
 
-          const fn = dash.id === 2 ? isOwner ? () => history.push("/listOnMap") : () => history.push("/convites") : isOwner ? () => history.push("newService") : () => history.push("servicesHired")
+          const fn = dash.id === 2 ? isOwner ? () => history.push("/listOnMap") : () => history.push("/candidaturas") : isOwner ? () => history.push("newService") : () => history.push("servicesHired")
 
           return (
             <PrimaryCard onClick={fn} left={dash.id === 1}>
@@ -187,7 +187,7 @@ export function Dashboard() {
 
               return (
                 <SecondCard onClick={fns} left={dash.id === 1}>
-                  <span>
+                  <span>services
                     <h1>{dash.title}</h1>
                     <p>
                       {dash.desc} {dash.iconDash()}

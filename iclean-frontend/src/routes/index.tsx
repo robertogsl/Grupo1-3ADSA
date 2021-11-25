@@ -14,12 +14,9 @@ import { ServicesHired } from '../pages/ServicesHired';
 import { Services } from '../pages/Services';
 import { Interessados } from '../pages/Interessados';
 import { Convites } from '../pages/Convites';
-import { InviteForService } from '../components/InviteForService';
-import { OpenServices } from '../components/OpenServices';
-import { ConfirmInvite } from '../components/ConfirmInvite';
-import { PageServices } from '../components/PageServices';
-import { CardServices } from '../components/CardServices';
-import { PersonService } from '../components/PersonService';
+import { Escolher } from '../pages/Escolher';
+import { Detalhes } from '../pages/Detalhes';
+import { Candidaturas } from '../pages/Candidaturas';
 import { ListaServicos } from '../pages/ListaServicos';
 
 export function Routes() {
@@ -34,6 +31,9 @@ export function Routes() {
             <Route path="/profile/:idProprietaria" isPrivate component={Profile} />
             <Route path="/services" isPrivate component={Services} />
             <Route path="/convites" isPrivate component={Convites} />
+            <Route path="/candidaturas" isPrivate component={Candidaturas} />
+            <Route path="/detalhes/:idTrabalho/:tipo" isPrivate component={Detalhes} />
+            <Route path="/escolher/:idCandidata/:idTrabalho" isPrivate component={Escolher} />
             <Route path="/interessados/:idTrabalho" isPrivate component={Interessados} />
             <Route path="/servicosAbertosConvite/:idCandidata" isPrivate component={ServicosAbertosConvite} />
             <Route path="/convidar/:idCandidata/:idTrabalho" isPrivate component={Convidar} />

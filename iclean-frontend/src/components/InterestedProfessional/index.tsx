@@ -8,6 +8,7 @@ import InviteTwo from "../../assets/inviteTwo.svg";
 import InviteThree from "../../assets/inviteThree.svg";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
+import { useHistory } from "react-router-dom";
 
 interface ISserviceInteres {
   src: string;
@@ -52,7 +53,9 @@ interface IJob {
 }
 
 export function InterestedProfessional({ idTrabalho }: IInterestedProfessional) {
-  const [job, setJob] = useState<IJob>({} as IJob)
+  const [job, setJob] = useState<IJob>()
+
+  const history = useHistory();
 
   function getRandomInt(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -86,8 +89,8 @@ export function InterestedProfessional({ idTrabalho }: IInterestedProfessional) 
     <CardGeneric>
       <Title> Profissionais interessados: </Title>
       <Content>
-        {job.candidatas.map((interest) => (
-          <CardInvite>
+        {job && job.candidatas.map((interest) => (
+          <CardInvite onClick={() => history.push(`/escolher/${interest.id}/${idTrabalho}`)}>
             <img src={generateSrc()} alt="icon" />
 
             <span>
