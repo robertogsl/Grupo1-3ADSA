@@ -8,7 +8,8 @@ import { NewService } from '../pages/NewService';
 import { Dashboard } from '../pages/Dashboard';
 import { ListOnMap } from '../pages/ListOnMap';
 import { Profile } from '../pages/Profile';
-import { ModalPage } from '../pages/ModalPage';
+import { ServicosAbertosConvite } from '../pages/ServicosAbertosConvite';
+import { Convidar } from '../pages/Convidar';
 import { ServicesHired } from '../pages/ServicesHired';
 import { InterestedProfessional } from '../components/InterestedProfessional';
 import { ChooseProfile } from '../components/ChooseProfile';
@@ -29,7 +30,8 @@ export function Routes() {
             <Route path="/dashboard" isPrivate component={Dashboard} />
             <Route path="/listOnMap" isPrivate component={ListOnMap} />
             <Route path="/profile" isPrivate component={Profile} />
-            <Route path="/modal/:user/:type" isPrivate component={ModalPage} />
+            <Route path="/servicosAbertosConvite/:idCandidata" isPrivate component={ServicosAbertosConvite} />
+            <Route path="/convidar/:idCandidata/:idTrabalho" isPrivate component={Convidar} />
             <Route path="/servicesHired" isPrivate component={ServicesHired} />
             <Route path="/testeComponente" isPrivate component={CardServices} />
             {/* <Route path="/newService" component={NewService} />

@@ -7,6 +7,7 @@ import Profile from "../../assets/Group.svg";
 import avaliacao1 from '../../assets/avaliacao-1.svg';
 import avaliacao2 from '../../assets/avaliacao-2.svg';
 import avaliacao3 from '../../assets/avaliacao-3.svg';
+import { useHistory } from "react-router-dom";
 
 interface ISdescProfile {
   src: string;
@@ -47,6 +48,8 @@ const avaliations = [
 ]
 
 export function ChooseProfile({ name, id }: IChooseProfileProps) {
+  const history = useHistory();
+
   return (
     <Container>
       <Content>
@@ -67,7 +70,7 @@ export function ChooseProfile({ name, id }: IChooseProfileProps) {
             </div>
           </Format>
         <Button>
-          <button>Convidar para serviço</button>
+          <button onClick={() => history.push(`/servicosAbertosConvite/${id}`)}>Convidar para serviço</button>
         </Button>
       </Content>
     </Container>

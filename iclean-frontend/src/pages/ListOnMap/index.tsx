@@ -93,7 +93,7 @@ export function ListOnMap() {
                 <Popup>
                   <ChooseProfile name={user.nome} id={user.id} />
                 </Popup>
-                </Marker>
+              </Marker>
             )
           })}
         </Map>

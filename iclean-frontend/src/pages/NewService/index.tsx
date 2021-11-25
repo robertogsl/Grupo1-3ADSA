@@ -16,6 +16,7 @@ import { LeafletMouseEvent } from 'leaflet';
 import { BackButton } from '../../components/BackButton';
 import { Header } from '../../components/Header';
 import { api } from '../../services/api';
+import { useAuth } from '../../hooks/auth';
 
 const serviceTypeItems: ItemServiceOptionsProps[] = [
   {
@@ -90,6 +91,8 @@ export function NewService() {
     telefone: "",
   });
 
+  const { user } = useAuth();
+
   const history = useHistory();
 
   const generateEspecification = (): String => {
@@ -126,6 +129,9 @@ export function NewService() {
       numero: data.numero,
       latitude: initialPosition[0],
       longitude: initialPosition[1],
+      proprietaria: {
+        id: user.id
+      }
     }
 
     api.post("/trabalhos", dataApi).then(() => {

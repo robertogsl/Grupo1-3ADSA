@@ -1,9 +1,8 @@
 import { useParams } from 'react-router-dom';
 
 import { Header } from "../../components/Header";
-import { InviteForService } from '../../components/InviteForService';
+import { Candidature } from '../../components/Candidature';
 import { MadeInvitation } from '../../components/MadeInvitation';
-import { OpenServices } from "../../components/OpenServices";
 
 import { Container, Content } from "./styles";
 
@@ -19,14 +18,13 @@ export function ModalPage() {
   function renderModal() {
 
     if (params.user === "candidata") {
-
-      if (params.type === "inviteForService") {
-        return <InviteForService />
-      } else if (params.type === "madeInvitation") {
+      if (params.type === "convites") {
         return <MadeInvitation />
+      } else if (params.type === "convidar") {
+        return <Candidature />
       }
     } else {
-      return "macaco"
+      return <h1>macaco</h1>
     }
 
   }
@@ -35,11 +33,7 @@ export function ModalPage() {
     <Container>
       <Header />
       <Content>
-        {params.type === "inviteForService" ? (
-          <InviteForService />
-        ) : (
-          <MadeInvitation />
-        )}
+        {renderModal()}
       </Content>
     </Container>
   )

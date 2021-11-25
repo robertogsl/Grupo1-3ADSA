@@ -2,9 +2,13 @@ import { Title, Content, CardInvite } from "./styles";
 import CardGeneric from "../CardGeneric";
 import { FaArrowRight } from "react-icons/fa";
 
+import { useAuth } from '../../hooks/auth';
+
 import Cleaner from "../../assets/cleaner.svg";
 import LigthCleaner from "../../assets/lightCleaner.svg";
 import Flatiron from "../../assets/flatiron.svg";
+import { useEffect } from "react";
+import { api } from "../../services/api";
 
 interface ISserviceCandidature {
   src: string;
@@ -41,6 +45,12 @@ const descCandidature: ISserviceCandidature[] = [
 ];
 
 export function Candidature() {
+  const { user } = useAuth();
+
+  useEffect(() => {
+    api.get("/")
+  }, []);
+
   return (
     <CardGeneric>
       <Title> Candidaturas: </Title>
