@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 
 import bgUser from '../../assets/bg-user.svg';
@@ -34,11 +35,17 @@ const avaliations = [
   }
 ]
 
+interface IParams {
+  idProprietaria: string;
+}
+
 export function Profile() {
   const [user, setUser] = useState<IUserProps>({} as IUserProps);
 
+  const params: IParams = useParams();
+
   useEffect(() => {
-    api.get("/contratadas/1").then(res => {
+    api.get(`/proprietarias/${params.idProprietaria}`).then(res => {
       setUser(res.data);
     })
   }, []);
