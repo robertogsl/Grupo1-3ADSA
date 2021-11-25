@@ -72,10 +72,14 @@ export function InterestedProfessional({ idTrabalho }: IInterestedProfessional) 
     }
   }
 
-  useEffect(() => {
-    api.get(`/trabalhos/${idTrabalho}`).then(res => {
+  async function getTrabalho() {
+    await api.get(`/trabalhos/${idTrabalho}`).then(res => {
       setJob(res.data)
     })
+  }
+
+  useEffect(() => {
+    getTrabalho();
   }, [])
 
   return (

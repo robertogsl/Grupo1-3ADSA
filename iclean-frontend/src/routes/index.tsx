@@ -13,6 +13,7 @@ import { Convidar } from '../pages/Convidar';
 import { ServicesHired } from '../pages/ServicesHired';
 import { Services } from '../pages/Services';
 import { Interessados } from '../pages/Interessados';
+import { Convites } from '../pages/Convites';
 import { InviteForService } from '../components/InviteForService';
 import { OpenServices } from '../components/OpenServices';
 import { ConfirmInvite } from '../components/ConfirmInvite';
@@ -29,8 +30,9 @@ export function Routes() {
             <Route path="/newService" isPrivate component={NewService} />
             <Route path="/dashboard" isPrivate component={Dashboard} />
             <Route path="/listOnMap" isPrivate component={ListOnMap} />
-            <Route path="/profile" isPrivate component={Profile} />
+            <Route path="/profile/:idProprietaria" isPrivate component={Profile} />
             <Route path="/services" isPrivate component={Services} />
+            <Route path="/convites" isPrivate component={Convites} />
             <Route path="/interessados/:idTrabalho" isPrivate component={Interessados} />
             <Route path="/servicosAbertosConvite/:idCandidata" isPrivate component={ServicosAbertosConvite} />
             <Route path="/convidar/:idCandidata/:idTrabalho" isPrivate component={Convidar} />

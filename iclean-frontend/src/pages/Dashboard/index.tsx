@@ -124,7 +124,7 @@ const staticSideBar: IStypeIcons[] = [
 ];
 
 export function Dashboard() {
-  const { getUserType, signOut } = useAuth();
+  const { getUserType, signOut, user } = useAuth();
   const history = useHistory();
 
   const isOwner = getUserType() === 0;
@@ -156,7 +156,9 @@ export function Dashboard() {
       </SideBar>
       <Content>
         {dashOptions.map((dash) => {
-          const fn = dash.id === 2 && isOwner ? () => history.push("/listOnMap") : () => history.push("/newService")
+          // const fn = dash.id === 2 && isOwner ? () => history.push("/listOnMap") : () => history.push("/newService")
+
+          const fn = dash.id === 2 ? isOwner ? () => history.push("/listOnMap") : () => history.push("/convites") : isOwner ? () => history.push("newService") : () => history.push("servicesHired")
 
           return (
             <PrimaryCard onClick={fn} left={dash.id === 1}>
@@ -176,10 +178,10 @@ export function Dashboard() {
         {isOwner ? (
           <ChildrenCards>
             {secondDashOptions.map((dash) => {
-              const fn = dash.id === 1 ? () => history.push("/profile") : () => history.push("/services")
+              const fns = dash.id === 1 ? () => history.push(`/profile/${user.id}`) : () => history.push("/services")
 
               return (
-                <SecondCard onClick={fn} left={dash.id === 1}>
+                <SecondCard onClick={fns} left={dash.id === 1}>
                   <span>
                     <h1>{dash.title}</h1>
                     <p>
@@ -192,7 +194,7 @@ export function Dashboard() {
             })}
           </ChildrenCards>
         ) : (
-          <PrimaryCard left={true}>
+          <PrimaryCard onClick={() => history.push("/convites")} left={true}>
             <span>
               <h1>Convites de serviços</h1>
               <p>
