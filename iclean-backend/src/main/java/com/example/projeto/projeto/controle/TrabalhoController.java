@@ -6,10 +6,13 @@ import com.example.projeto.projeto.repositorio.ContratadaRepository;
 import com.example.projeto.projeto.repositorio.ProprietariaRepository;
 import com.example.projeto.projeto.repositorio.TrabalhoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/trabalhos")
@@ -71,7 +74,25 @@ public class TrabalhoController {
         return ResponseEntity.status(200).build();
     }
 
-//    @CrossOrigin
-//    @PatchMapping("/")
+    @CrossOrigin
+    @PutMapping("/{idTrabalho}/candidata/{id}/deletar")
+    public ResponseEntity removerCandidata(@PathVariable Integer idTrabalho, @PathVariable Integer id) {
+        Optional<Trabalho> trabalhoOptional = repository.findById(idTrabalho);
+
+        if (trabalhoOptional.isEmpty()){
+            return ResponseEntity.status(404).build();
+        }
+
+        Trabalho trabalho = trabalhoOptional.get();
+
+        for (int i = 0; i < trabalho.getCandidatas().size(); i++) {
+            if (id.equals(trabalho.getCandidatas().get(i).getId())){
+                trabalho.getCandidatas().remove(i);
+            }
+        }
+
+
+        return ResponseEntity.status(200).body(repository.save(trabalho));
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.example.projeto.projeto.controle;
 
 import com.example.projeto.projeto.Csv;
+import com.example.projeto.projeto.PilhaObj;
 import com.example.projeto.projeto.dominio.Contratada;
 import com.example.projeto.projeto.repositorio.ContratadaRepository;
 import org.slf4j.Logger;
@@ -57,8 +58,20 @@ public class ContratadaController {
     @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity getContradada(@PathVariable int id) {
+        List<Contratada> lista = repository.findAll();
+        PilhaObj<Contratada> pilhaObj = new PilhaObj<>(lista.size());
 
-        return ResponseEntity.of(repository.findById(id));
+        for (Contratada p : lista) {
+            pilhaObj.push(p);
+        }
+        while (!pilhaObj.isEmpty()) {
+            if (pilhaObj.peek().getId().equals(id)) {
+                return ResponseEntity.status(200).body(pilhaObj.peek());
+            } else {
+                pilhaObj.pop();
+            }
+        }
+        return ResponseEntity.status(404).build();
     }
 
     @CrossOrigin

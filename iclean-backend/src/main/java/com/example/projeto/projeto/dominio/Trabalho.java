@@ -119,4 +119,8 @@ public class Trabalho {
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
+
+    public void removerCandidatas() {
+        this.candidatas.clear();
+    }
 }
