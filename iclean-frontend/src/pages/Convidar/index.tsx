@@ -32,7 +32,7 @@ interface IParams {
 }
 
 export function Convidar() {
-  const [job, setJob] = useState<IJobs>({} as IJobs)
+  const [job, setJob] = useState<IJobs>();
 
   const params: IParams = useParams();
   const history = useHistory();
@@ -44,7 +44,7 @@ export function Convidar() {
   }, [])
 
   const handleClick = async () => {
-    await api.put(`/trabalhos/${job.id}/candidata/${Number(params.idCandidata)}`);
+    await api.put(`/trabalhos/${job?.id}/candidata/${Number(params.idCandidata)}`);
     toast.success("Doméstica convidada com sucesso!")
 
     history.push("/listOnMap");

@@ -20,6 +20,7 @@ interface ISdescProfile {
 interface IChooseProfileProps {
   name: string;
   id: string;
+  hasChoosed?: boolean;
 }
 
 const descService: ISdescProfile[] = [
@@ -47,30 +48,35 @@ const avaliations = [
   }
 ]
 
-export function ChooseProfile({ name, id }: IChooseProfileProps) {
+export function ChooseProfile({ name, id, hasChoosed = false }: IChooseProfileProps) {
   const history = useHistory();
 
   return (
     <Container>
       <Content>
-          <Format>
-            <img src={descService[0].src} alt="" />
-            <p>{name}</p>
-            <div>
-              {Array.from({ length: descService[0].star }).map(() => (
-                <img src={starSVG} alt="Estrela" />
-              ))}
-            </div>
-            <div>
+        <Format>
+          <img src={descService[0].src} alt="" />
+          <p>{name}</p>
+          <div>
+            {Array.from({ length: descService[0].star }).map(() => (
+              <img src={starSVG} alt="Estrela" />
+            ))}
+          </div>
+          <div>
             {avaliations.map(avaliation => (
-                <div key={avaliation.id}>
-                  <img src={avaliation.img} alt="" />
-                </div>
-              ))}
-            </div>
-          </Format>
+              <div key={avaliation.id}>
+                <img src={avaliation.img} alt="" />
+              </div>
+            ))}
+          </div>
+        </Format>
         <Button>
-          <button onClick={() => history.push(`/servicosAbertosConvite/${id}`)}>Convidar para serviço</button>
+          {hasChoosed ? (
+            <button onClick={() => history.push("/dashboard")}>Escolher para o serviço</button>
+          ) : (
+              <button onClick={() => history.push(`/servicosAbertosConvite/${id}`)}>Convidar para serviço</button>
+            )
+          }
         </Button>
       </Content>
     </Container>
