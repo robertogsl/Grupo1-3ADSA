@@ -1,76 +1,85 @@
 package com.example.projeto.projeto.controle;
 
+import com.example.projeto.projeto.GravaTxt;
 import com.example.projeto.projeto.dominio.Avaliacao;
-import com.example.projeto.projeto.dominio.Contratada;
 import com.example.projeto.projeto.repositorio.AvaliacaoContratadaRepository;
 import com.example.projeto.projeto.repositorio.AvaliacaoProprietariaRepository;
+import com.example.projeto.projeto.repositorio.ContratadaRepository;
+import com.example.projeto.projeto.repositorio.ProprietariaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/avaliacoes")
 public class AvaliacaoController {
 
+    GravaTxt gravaTxt = new GravaTxt();
+
+    @Autowired
+    private ContratadaRepository contratadaRepository;
     Logger logger = LoggerFactory.getLogger(ContratadaController.class);
 
     @Autowired
-    private AvaliacaoContratadaRepository repositoryContratada;
+    ProprietariaRepository proprietariaRepository;
 
     @Autowired
-    private AvaliacaoProprietariaRepository repositoryProprietaria;
+    private AvaliacaoContratadaRepository repositoryContratadaAvaliacao;
+
+    @Autowired
+    private AvaliacaoProprietariaRepository repositoryProprietariaAvaliacao;
 
     @CrossOrigin
-    @PostMapping("/contratada")
-    public ResponseEntity postAvaliarContratada(@RequestBody Avaliacao novaAvaliacaoContratada) {
-
-        logger.info("\n" +
-                "successfully created a new assessment");
-
-        repositoryContratada.save(novaAvaliacaoContratada);
+    @PostMapping("/contratada/teste")
+    public ResponseEntity postAvaliarContratada(@RequestBody Avaliacao novaAvaliacao) {
+        repositoryContratadaAvaliacao.save(novaAvaliacao);
 
         return ResponseEntity.status(201).build();
 
     }
 
-//    @CrossOrigin
-//    @GetMapping("/contratadas")
-//    public ResponseEntity getAvaliacoesContratada() {
-//        List<Avaliacao> lista = repositoryContratada.findAll();
-//
-//        return ResponseEntity.status(200).body(lista);
-//    }
+    @CrossOrigin
+    @PostMapping("/contratada")
+    public ResponseEntity postAvaliarContratada(@RequestBody String nomeArq) {
+        Avaliacao a = GravaTxt.leArquivoTxtContratada(nomeArq, contratadaRepository.findAll(), proprietariaRepository.findAll());
+
+        repositoryContratadaAvaliacao.save(a);
+
+        return ResponseEntity.status(201).build();
+    }
 
     // Retorna uma avaliação especifica
     @CrossOrigin
     @GetMapping("{id}/contratada")
     public ResponseEntity getAvaliacaoContratada(@PathVariable Integer id) {
+        Optional<Avaliacao> avaliacao = repositoryContratadaAvaliacao.findById(id);
 
-        logger.info("\n" +
-                "successfully created a new assessment");
+        if (avaliacao.isEmpty()) {
+            return ResponseEntity.status(404).build();
+        }
 
-        return ResponseEntity.of(repositoryContratada.findById(id));
+        Avaliacao getAvalicao = avaliacao.get();
 
+        GravaTxt.gravaArquivoTxtAvaliacaoContratada(getAvalicao, "AvaliacaoContratada.txt");
+
+        return ResponseEntity.status(200).body(getAvalicao);
     }
 
 //     Retorna todas as avaliações de uma contratada
     @CrossOrigin
     @GetMapping("/contratada/{id}")
     public ResponseEntity getAvaliacoesContratada(@PathVariable Integer id) {
-
-        logger.info("\n" +
-                "successfully created a new assessment");
-
-        List<Avaliacao> lista = repositoryContratada.findByContratadaId(id);
+        List<Avaliacao> lista = repositoryContratadaAvaliacao.findByContratadaId(id);
 
         if (lista.isEmpty()) {
-
-            return ResponseEntity.status(404).build();
-
+            return ResponseEntity.status(204).build();
         }
         else {
 
@@ -83,11 +92,7 @@ public class AvaliacaoController {
     @CrossOrigin
     @GetMapping("/contratada/{id}/media")
     public ResponseEntity getMediaAvaliacaoContratada(@PathVariable Integer id) {
-
-        logger.info("\n" +
-                "successfully created a new assessment");
-
-        List<Avaliacao> lista = repositoryContratada.findByContratadaId(id);
+        List<Avaliacao> lista = repositoryContratadaAvaliacao.findByContratadaId(id);
 
         Double totalEstrelas = 0.0;
         Double media = 0.0;
@@ -114,11 +119,7 @@ public class AvaliacaoController {
     @CrossOrigin
     @GetMapping("/contratada/{id}/total")
     public ResponseEntity getTotalAvaliacao(@PathVariable Integer id) {
-
-        logger.info("\n" +
-                "successfully created a new assessment");
-
-        List<Avaliacao> lista = repositoryContratada.findByContratadaId(id);
+        List<Avaliacao> lista = repositoryContratadaAvaliacao.findByContratadaId(id);
 
         return ResponseEntity.status(200).body(lista.size());
 
@@ -127,11 +128,7 @@ public class AvaliacaoController {
     @CrossOrigin
     @PostMapping("/proprietaria")
     public ResponseEntity postAvaliacaoProprietaria(@RequestBody Avaliacao novaAvaliacaoProprietaria) {
-
-        logger.info("\n" +
-                "successfully created a new assessment");
-
-        repositoryProprietaria.save(novaAvaliacaoProprietaria);
+        repositoryProprietariaAvaliacao.save(novaAvaliacaoProprietaria);
 
         return ResponseEntity.status(201).build();
 
@@ -148,22 +145,13 @@ public class AvaliacaoController {
     @CrossOrigin
     @GetMapping("/{id}/proprietaria")
     public ResponseEntity getAvaliacaoProprietaria(@PathVariable Integer id) {
-
-        logger.info("\n" +
-                "successfully created a new assessment");
-
-        return ResponseEntity.of(repositoryProprietaria.findById(id));
-
+        return ResponseEntity.of(repositoryProprietariaAvaliacao.findById(id));
     }
 
     @CrossOrigin
     @GetMapping("/proprietaria/{id}")
     public ResponseEntity getAvaliacoesProprietaria(@PathVariable Integer id) {
-
-        logger.info("\n" +
-                "successfully created a new assessment");
-
-        List<Avaliacao> lista = repositoryProprietaria.findByProprietariaId(id);
+        List<Avaliacao> lista = repositoryProprietariaAvaliacao.findByProprietariaId(id);
 
         if (lista.isEmpty()) {
 
@@ -181,11 +169,7 @@ public class AvaliacaoController {
     @CrossOrigin
     @GetMapping("/proprietaria/{id}/media")
     public ResponseEntity getMediaAvaliacaoProprietaria(@PathVariable Integer id) {
-
-        logger.info("\n" +
-                "successfully created a new assessment");
-
-        List<Avaliacao> lista = repositoryProprietaria.findByProprietariaId(id);
+        List<Avaliacao> lista = repositoryProprietariaAvaliacao.findByProprietariaId(id);
 
         Double totalEstrelas = 0.0;
         Double media = 0.0;
@@ -212,11 +196,7 @@ public class AvaliacaoController {
     @CrossOrigin
     @GetMapping("/proprietaria/{id}/total")
     public ResponseEntity getTotalAvaliacaoProprietaria(@PathVariable Integer id) {
-
-        logger.info("\n" +
-                "successfully created a new assessment");
-
-        List<Avaliacao> lista = repositoryProprietaria.findByProprietariaId(id);
+        List<Avaliacao> lista = repositoryProprietariaAvaliacao.findByProprietariaId(id);
 
         return ResponseEntity.status(200).body(lista.size());
 
