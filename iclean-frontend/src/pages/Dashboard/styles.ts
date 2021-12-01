@@ -189,3 +189,7 @@ export const SecondCard = styled.button<SecondCardProps>`
       text-align: right;
     `}
 `;
+
+export const ExIn = styled.div`
+  display: flex;
+`

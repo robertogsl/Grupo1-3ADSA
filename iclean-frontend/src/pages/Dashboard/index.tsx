@@ -20,7 +20,7 @@ import {
   Content,
   PrimaryCard,
   SecondCard,
-  Title,
+  ExIn,
   ChildrenCards,
 } from "./styles";
 
@@ -122,10 +122,10 @@ const staticSideBar: IStypeIcons[] = [
     icon: () => <FaFileAlt size={20} color="#fff" />,
     desc: "Novo Serviço",
   },
-  {
-    icon: () => <FaStar size={20} color="#fff" />,
-    desc: "Aplicar feedbacks"
-  }
+  // {
+  //   icon: () => <FaStar size={20} color="#fff" />,
+  //   desc: "Aplicar feedbacks"
+  // }
 ];
 
 export function Dashboard() {
@@ -133,6 +133,10 @@ export function Dashboard() {
   const history = useHistory();
 
   const isOwner = getUserType() === 0;
+
+  function carlos(){
+
+  }
 
   return (
     <Container>
@@ -150,7 +154,16 @@ export function Dashboard() {
                 <span>{option.desc}</span>
               </li>
             ))}
+            <li onClick={carlos}>
+              <div><FaStar size={20} color="#fff" /></div>
+              <span>Importar feedbacks</span>
+            </li>
+            <li>
+              <div><FaStar size={20} color="#fff" /></div>
+              <span>Exportar trabalhos</span>
+            </li>
           </Options>
+
         </div>
         <div style={{ height: "fit-content" }}>
           <Helper>

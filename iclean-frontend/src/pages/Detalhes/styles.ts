@@ -34,6 +34,18 @@ export const Content = styled.div`
 
   color: white;
 
+  div.doublebutton {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+
+    button + button {
+      background-color: #db6262;
+      color: white;
+      border: 0;
+    }
+  }
+
   ul {
     list-style: disc;
     padding-left: 2rem;

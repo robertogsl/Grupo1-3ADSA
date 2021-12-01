@@ -41,7 +41,6 @@ export const LinePurple = styled.div`
 export const FirstCard = styled.div`
   background: #5762c3;
   color: white;
-  min-height: 85vh;
   max-height: 90vh;
   width: 100%;
   max-width: 30rem;
@@ -87,6 +86,7 @@ export const Button = styled.div`
     font-weight: bold;
     font-size: 1.2rem;
     height: 3.87rem;
+    margin-right: 1rem;
     width: 10rem;
     border-radius: 0.25rem;
     box-shadow: -15px 15px 25px rgba(0, 0, 0, 0.25);

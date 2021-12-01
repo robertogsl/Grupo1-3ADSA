@@ -24,14 +24,17 @@ const avaliations = [
   {
     id: 1,
     img: avaliacao1,
+    nome: "Amigável"
   },
   {
     id: 2,
     img: avaliacao2,
+    nome: "Receptiva"
   },
   {
     id: 3,
     img: avaliacao3,
+    nome: "Boa conversa"
   }
 ]
 
@@ -54,7 +57,7 @@ export function Profile() {
     <Container>
       <Header />
       <Content>
-          <BackButton />
+        <BackButton />
         <img src={bgUser} alt="" />
         <Main>
           <img src={user1} alt="" />
@@ -73,16 +76,17 @@ export function Profile() {
           </div>
 
         </Main>
-        <Description>
-          <h1>Descrição</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam orci tellus, pretium vitae malesuada eget, dictum sed quam. Cras placerat ornare rhoncus. Donec a augue et erat maximus commodo id non sem.</p>
-        </Description>
         <Praise>
-              {avaliations.map(avaliation => (
-                <div key={avaliation.id}>
-                  <img src={avaliation.img} alt="" />
-                </div>
-              ))}
+          {avaliations.map(avaliation => (
+            <>
+              <div key={avaliation.id}>
+                <img src={avaliation.img} alt="" />
+              </div>
+              <h3>
+                {avaliation.nome}
+              </h3>
+            </>
+          ))}
         </Praise>
       </Content>
     </Container>

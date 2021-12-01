@@ -87,7 +87,7 @@ export function ListaServicos() {
             <h2>Carregando...</h2>
           )}
 
-          <button onClick={handleClick}>Convidar</button>
+          <button onClick={handleClick}>Candidatar-se</button>
           <button onClick={() => history.push(`/profile/${job.proprietaria.id}`)}>Visitar perfil</button>
         </CardGeneric>
       </Content>

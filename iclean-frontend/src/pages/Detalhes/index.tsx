@@ -8,6 +8,7 @@ import CardGeneric from '../../components/CardGeneric';
 import { api } from '../../services/api';
 
 import { Container, Content, Line } from "./styles";
+import { useAuth } from '../../hooks/auth';
 
 
 interface IJobs {
@@ -35,6 +36,7 @@ export function Detalhes() {
 
   const params: IParams = useParams();
   const history = useHistory();
+  const { user } = useAuth();
 
   useEffect(() => {
     api.get(`/trabalhos/${Number(params.idTrabalho)}`).then(res => {
@@ -51,6 +53,12 @@ export function Detalhes() {
       history.push("/convites")
     }
   };
+
+  async function Decline() {
+    await api.put(`/trabalhos/${Number(params.idTrabalho)}/candidata/${user.id}/deletar`)
+    toast.success("Recusado com sucesso!")
+    history.push("/convites")
+  }
 
   return (
     <Container>
@@ -90,7 +98,12 @@ export function Detalhes() {
             <h2>Carregando...</h2>
           )}
 
-          <button onClick={handleClick}>{params.tipo === "convite" ? "Candidatar-se" : "Voltar"}</button>
+          <div className="doublebutton">
+            <button onClick={handleClick}>{params.tipo === "convite" ? "Candidatar-se" : "Voltar"}</button>
+            {params.tipo === "convite" && (
+              <button onClick={Decline}>Recusar</button>
+            )}
+          </div>
         </CardGeneric>
       </Content>
     </Container>

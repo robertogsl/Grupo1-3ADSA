@@ -34,6 +34,10 @@ interface IJobs {
   numero: string;
   longitude: number;
   latitude: number;
+  proprietaria: {
+    id: number;
+    nome: string;
+  }
 }
 
 export function CardServices() {
@@ -44,12 +48,11 @@ export function CardServices() {
   function openModal(job : IJobs){
     setModal(true);
     setSelectedJob(job);
-  } 
+  }
 
   useEffect(() => {
     api.get(`/trabalhos`).then((response) => {
       setJobs(response.data);
-      console.log(response.data);
     });
   }, []);
 
@@ -59,6 +62,7 @@ export function CardServices() {
       <Title>
         <BackButton />
       </Title>
+
       {modal ? (
         <PersonService job={selectedJob} />
         ) : (
@@ -67,12 +71,12 @@ export function CardServices() {
             const arr = services.especificacao.split(",");
 
             return (
-              <CardService>
-                <Candidacts onClick={() => openModal(services)}>
+              <CardService onClick={() => openModal(services)}>
+                <Candidacts>
                   <Separator>
-                    <h1>Diarista - {arr[0]}</h1>
+                    <h1>{arr[0]}</h1>
                     <p>
-                      <FaUserAlt size={13} color="#FFF" /> Carlos Gomes
+                      <FaUserAlt size={13} color="#FFF" /> {services.proprietaria.nome}
                     </p>
                     <p>
                       <FaMapMarkerAlt size={13} color="#FFF" /> 5 KM de
