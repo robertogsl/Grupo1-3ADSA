@@ -6,6 +6,8 @@ import com.example.projeto.projeto.repositorio.AvaliacaoContratadaRepository;
 import com.example.projeto.projeto.repositorio.AvaliacaoProprietariaRepository;
 import com.example.projeto.projeto.repositorio.ContratadaRepository;
 import com.example.projeto.projeto.repositorio.ProprietariaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,7 @@ public class AvaliacaoController {
 
     @Autowired
     private ContratadaRepository contratadaRepository;
+    Logger logger = LoggerFactory.getLogger(ContratadaController.class);
 
     @Autowired
     ProprietariaRepository proprietariaRepository;
@@ -39,6 +42,7 @@ public class AvaliacaoController {
         repositoryContratadaAvaliacao.save(novaAvaliacao);
 
         return ResponseEntity.status(201).build();
+
     }
 
     @CrossOrigin
@@ -78,8 +82,11 @@ public class AvaliacaoController {
             return ResponseEntity.status(204).build();
         }
         else {
+
             return ResponseEntity.status(200).body(lista);
+
         }
+
     }
 
     @CrossOrigin
@@ -92,7 +99,9 @@ public class AvaliacaoController {
         int i = 0;
 
         if (lista.isEmpty()) {
+
             return ResponseEntity.status(204).build();
+
         }
         else {
             while (i < lista.size()) {
@@ -102,7 +111,9 @@ public class AvaliacaoController {
             media = totalEstrelas / i;
 
             return ResponseEntity.status(200).body(media);
+
         }
+
     }
 
     @CrossOrigin
@@ -111,6 +122,7 @@ public class AvaliacaoController {
         List<Avaliacao> lista = repositoryContratadaAvaliacao.findByContratadaId(id);
 
         return ResponseEntity.status(200).body(lista.size());
+
     }
 
     @CrossOrigin
@@ -119,6 +131,7 @@ public class AvaliacaoController {
         repositoryProprietariaAvaliacao.save(novaAvaliacaoProprietaria);
 
         return ResponseEntity.status(201).build();
+
     }
 
 //    @CrossOrigin
@@ -141,11 +154,16 @@ public class AvaliacaoController {
         List<Avaliacao> lista = repositoryProprietariaAvaliacao.findByProprietariaId(id);
 
         if (lista.isEmpty()) {
+
             return ResponseEntity.status(204).build();
+
         }
         else {
+
             return ResponseEntity.status(200).body(lista);
+
         }
+
     }
 
     @CrossOrigin
@@ -158,7 +176,9 @@ public class AvaliacaoController {
         int i = 0;
 
         if (lista.isEmpty()) {
+
             return ResponseEntity.status(204).build();
+
         }
         else {
             while (i < lista.size()) {
@@ -168,7 +188,9 @@ public class AvaliacaoController {
             media = totalEstrelas / i;
 
             return ResponseEntity.status(200).body(media);
+
         }
+
     }
 
     @CrossOrigin
@@ -177,5 +199,7 @@ public class AvaliacaoController {
         List<Avaliacao> lista = repositoryProprietariaAvaliacao.findByProprietariaId(id);
 
         return ResponseEntity.status(200).body(lista.size());
-    }
+
+        }
+
 }

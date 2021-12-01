@@ -26,8 +26,10 @@ public class ContratadaController {
     @CrossOrigin
     @PostMapping
     public ResponseEntity criarContratada(@RequestBody Contratada novaContratada) {
+
         logger.info("\n" +
                 "successfully created a new assessment");
+
         List<Contratada> lista = repository.findByEmail(novaContratada.getEmail());
 
         if (!lista.isEmpty()) {
@@ -43,6 +45,10 @@ public class ContratadaController {
     @CrossOrigin
     @GetMapping
     public ResponseEntity getContratadas() {
+
+        logger.info("\n" +
+                "successfully created a new assessment");
+
         List<Contratada> lista = repository.findAll();
         List<Contratada> listaContratadas = repository.findAll();
 
@@ -58,6 +64,10 @@ public class ContratadaController {
     @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity getContradada(@PathVariable int id) {
+
+        logger.info("\n" +
+                "successfully created a new assessment");
+
         List<Contratada> lista = repository.findAll();
         PilhaObj<Contratada> pilhaObj = new PilhaObj<>(lista.size());
 
@@ -78,6 +88,9 @@ public class ContratadaController {
     @DeleteMapping("/{id}")
     public ResponseEntity deleteContratada(@PathVariable int id) {
 
+        logger.info("\n" +
+                "successfully created a new assessment");
+
         if (repository.existsById(id)) {
             repository.deleteById(id);
 
@@ -96,6 +109,9 @@ public class ContratadaController {
     public ResponseEntity putContratada(@PathVariable int id,
                                         @RequestBody Contratada contratadaAtualizado) {
 
+        logger.info("\n" +
+                "successfully created a new assessment");
+
         if (repository.existsById(id)) {
             repository.save(contratadaAtualizado);
 
@@ -113,6 +129,9 @@ public class ContratadaController {
     @PostMapping("/autenticar")
     public ResponseEntity autenticar(@RequestBody Contratada contratada) {
 
+        logger.info("\n" +
+                "successfully created a new assessment");
+
         List<Contratada> c = repository.findByEmailAndSenha(contratada.getEmail(), contratada.getSenha());
 
         return ResponseEntity.status(200).body(c);
@@ -121,6 +140,10 @@ public class ContratadaController {
     @CrossOrigin
     @PostMapping("/logoff/{id}")
     public ResponseEntity logoff(@PathVariable int id) {
+
+        logger.info("\n" +
+                "successfully created a new assessment");
+
         Contratada c = repository.findById(id).get();
         if (repository.existsById(id)) {
             c.setAutenticado(false);
