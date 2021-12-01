@@ -19,25 +19,18 @@ public class Trabalho {
     @ManyToMany
     private List<Contratada> candidatas;
 
-    @NotNull
     private Double preco; //Valor do trabalho
 
-    @NotNull
     private String especificacao;
 
-    @NotNull
     private String cep;
 
-    @NotNull
     private String complemento;
 
-    @NotNull
     private String numero;
 
-    @NotNull
     private Double longitude;
-
-    @NotNull
+    
     private Double latitude;
 
     public Integer getId() {
