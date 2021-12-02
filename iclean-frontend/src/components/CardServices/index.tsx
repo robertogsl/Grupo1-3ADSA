@@ -8,6 +8,7 @@ import {
   Candidacts,
   Separator,
   Option,
+  StyleHeader
 } from "./styles";
 
 import {
@@ -20,7 +21,6 @@ import {
 import { useEffect, useState } from "react";
 import { Header } from "../Header";
 import { api } from "../../services/api";
-import { OpenServices } from "../OpenServices";
 import { BackButton } from "../BackButton";
 import { PersonService } from "../PersonService";
 
@@ -58,7 +58,9 @@ export function CardServices() {
 
   return (
     <Container>
-      <Header />
+      <StyleHeader>
+        <Header />
+      </StyleHeader>
       <Title>
         <BackButton />
       </Title>

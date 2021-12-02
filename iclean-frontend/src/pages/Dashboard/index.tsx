@@ -1,15 +1,13 @@
 import {
-  FaStore,
-  FaCity,
-  FaIdCard,
-  FaFileAlt,
   FaSignOutAlt,
   FaChevronRight,
   FaStar
 } from "react-icons/fa";
-import { useHistory } from 'react-router-dom';
+
+import { useHistory, useParams } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/auth';
+import { api } from '../../services/api'
 
 import {
   Container,
@@ -20,7 +18,6 @@ import {
   Content,
   PrimaryCard,
   SecondCard,
-  ExIn,
   ChildrenCards,
 } from "./styles";
 
@@ -29,7 +26,7 @@ import foguete from "../../assets/foguete.png";
 import mapa from "../../assets/mapa.png";
 import tasks from "../../assets/tasks.png";
 import cards from "../../assets/card.png";
-import { BackButton } from "../../components/BackButton";
+import { useEffect, useState } from "react";
 
 interface IScardsDash {
   id: number;
@@ -100,43 +97,66 @@ const secondDashOptions: IScardsSecondDash[] = [
   },
 ];
 
-interface IStypeIcons {
-  icon: () => JSX.Element;
-  desc: string;
+interface IJobs {
+  id: number;
+  candidatas: [];
+  preco: number;
+  especificacao: string;
+  cep: string;
+  complemento: string;
+  numero: string;
+  longitude: number;
+  latitude: number;
+  proprietaria: {
+    id: number;
+  }
 }
 
-const staticSideBar: IStypeIcons[] = [
-  {
-    icon: () => <FaStore size={20} color="#fff" />,
-    desc: "Dashboard",
-  },
-  {
-    icon: () => <FaCity size={20} color="#fff" />,
-    desc: "Serviços",
-  },
-  {
-    icon: () => <FaIdCard size={20} color="#fff" />,
-    desc: "Perfil",
-  },
-  {
-    icon: () => <FaFileAlt size={20} color="#fff" />,
-    desc: "Novo Serviço",
-  },
-  // {
-  //   icon: () => <FaStar size={20} color="#fff" />,
-  //   desc: "Aplicar feedbacks"
-  // }
-];
+interface IParams {
+  idCandidata: string;
+  idTrabalho: string;
+}
+
+// interface IStypeIcons {
+//   icon: () => JSX.Element;
+//   desc: string;
+// }
+
+// const staticSideBar: IStypeIcons[] = [
+//   {
+//     icon: () => <FaStore size={20} color="#fff" />,
+//     desc: "Dashboard",
+//   },
+//   {
+//     icon: () => <FaCity size={20} color="#fff" />,
+//     desc: "Serviços",
+//   },
+//   {
+//     icon: () => <FaIdCard size={20} color="#fff" />,
+//     desc: "Perfil",
+//   },
+//   {
+//     icon: () => <FaFileAlt size={20} color="#fff" />,
+//     desc: "Novo Serviço",
+//   },
+// ];
 
 export function Dashboard() {
   const { getUserType, signOut, user } = useAuth();
+  const [job, setJob] = useState<IJobs>({} as IJobs)
+
+  const params: IParams = useParams();
   const history = useHistory();
 
   const isOwner = getUserType() === 0;
 
-  function carlos(){
-
-  }
+  // function Carlos(){
+  //   useEffect(() => {
+  //     api.get(`/avaliacoes/${Number(params.idTrabalho)}/contratada`).then(res => {
+  //       setJob(res.data);
+  //     })
+  //   }, [])
+  // }
 
   return (
     <Container>
@@ -148,15 +168,10 @@ export function Dashboard() {
             <div />
           </Logo>
           <Options>
-            {staticSideBar.map((option) => (
-              <li>
-                <div>{option.icon()}</div>
-                <span>{option.desc}</span>
-              </li>
-            ))}
-            <li onClick={carlos}>
+            <li >
               <div><FaStar size={20} color="#fff" /></div>
               <span>Importar feedbacks</span>
+              {/* onClick={Carlos} */}
             </li>
             <li>
               <div><FaStar size={20} color="#fff" /></div>

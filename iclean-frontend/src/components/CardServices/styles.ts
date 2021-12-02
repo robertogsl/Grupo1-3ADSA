@@ -1,15 +1,18 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+  height: 100vh;
   width: 100%;
+`;
+
+export const StyleHeader = styled.div`
+  position: relative;
+  top: 0;
 `;
 
 export const Title = styled.div`
   margin: 0 auto;
-    width: 83%;
-    display: flex;
+  width: 83%;
 `;
 
 export const Content = styled.div`
@@ -38,7 +41,7 @@ export const CardService = styled.div`
     margin: 3rem 0.2rem;
   }
 
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 `;

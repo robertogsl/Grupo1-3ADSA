@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const SideBar = styled.div`
   background-color: white;
   max-height: 100vh;
-  width: 18.25rem;
+  width: 24.25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -32,8 +32,8 @@ export const Logo = styled.div`
   &::after {
     content: "";
     position: absolute;
-    width: 80%;
-    height: 0.01rem;
+    width: 100%;
+    height: 0.095rem;
     bottom: -0.6rem;
     left: 10%;
 
@@ -42,7 +42,7 @@ export const Logo = styled.div`
 `;
 
 export const Options = styled.ul`
-  padding: 1.5rem 0.5rem 1.5rem 2rem;
+  padding: 1.5rem 0.5rem 1.5rem 1rem;
   li {
     padding: 1rem;
     display: inline-flex;
@@ -102,11 +102,11 @@ export const PrimaryCard = styled.button<PrimaryCardProps>`
   flex-direction: row;
   text-align: justify;
   justify-content: space-between;
-  width: 80%;
-  height: 12.5rem;
+  width: 90%;
+  height: 12rem;
   color: white;
   background-color: var(--primary);
-  margin-bottom: 1rem;
+  margin-top: 0.55rem;
   box-shadow: -20px 20px 35px rgba(0, 0, 0, 0.15);
   border-radius: 12px;
   border: none;
