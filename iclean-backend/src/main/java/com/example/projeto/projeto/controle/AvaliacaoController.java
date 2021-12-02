@@ -56,21 +56,17 @@ public class AvaliacaoController {
     }
 
     // Retorna uma avaliação especifica
-    @CrossOrigin
-    @GetMapping("{id}/contratada")
-    public ResponseEntity getAvaliacaoContratada(@PathVariable Integer id) {
-        Optional<Avaliacao> avaliacao = repositoryContratadaAvaliacao.findById(id);
-
-        if (avaliacao.isEmpty()) {
-            return ResponseEntity.status(404).build();
-        }
-
-        Avaliacao getAvalicao = avaliacao.get();
-
-        GravaTxt.gravaArquivoTxtAvaliacaoContratada(getAvalicao, "AvaliacaoContratada.txt");
-
-        return ResponseEntity.status(200).body(getAvalicao);
-    }
+//    @CrossOrigin
+//    @GetMapping("import/contratada")
+//    public ResponseEntity getAvaliacaoContratada() {
+//        List<Avaliacao> avaliacoes = repositoryContratadaAvaliacao.findAll();
+//
+//        for (int i = 0; i < avaliacoes.size(); i++) {
+//            GravaTxt.gravaArquivoTxtAvaliacaoContratada(getAvalicao, "Contratada.txt");
+//        }
+//
+//        return ResponseEntity.status(200).body(getAvalicao);
+//    }
 
 //     Retorna todas as avaliações de uma contratada
     @CrossOrigin
