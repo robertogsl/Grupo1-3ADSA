@@ -3,6 +3,7 @@ package com.example.projeto.projeto;
 import com.example.projeto.projeto.dominio.Avaliacao;
 import com.example.projeto.projeto.dominio.Contratada;
 import com.example.projeto.projeto.dominio.Proprietaria;
+import com.example.projeto.projeto.dominio.Trabalho;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -11,11 +12,11 @@ import java.util.Date;
 import java.util.List;
 
 public class GravaTxt {
-    public static void gravaRegistro(String nomeArq, String registro) {
+    public static void gravaRegistro(String nomeArq, String registro, Boolean append) {
         BufferedWriter saida = null;
         // Abre o arquivo
         try {
-            saida = new BufferedWriter (new FileWriter(nomeArq, true));
+            saida = new BufferedWriter (new FileWriter(nomeArq, append));
         }
         catch (IOException erro) {
             System.out.println("Erro na abertura do arquivo: " +
@@ -24,7 +25,7 @@ public class GravaTxt {
 
         // Grava o registro e finaliza
         try {
-            saida.append(registro + "\n");
+            saida.write(registro + "\n");
             saida.close();
         }
         catch (IOException erro) {
@@ -34,35 +35,45 @@ public class GravaTxt {
 
     }
 
-    public static void gravaArquivoTxtAvaliacaoContratada(Avaliacao lista, String nomeArq) {
+    public static void gravaArquivoTxtTrabalhoContratada(Trabalho lista, String nomeArq, Boolean append) {
 
         int contaRegistro = 0;
 
         // Monta o registro de header
-        String header = "00AVALIACAO";
+        String header = "00TRABALHO";
         Date dataDeHoje = new Date();
         SimpleDateFormat formataData =
                 new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         header += formataData.format(dataDeHoje);
         header += "01";
+        nomeArq += ".txt";
 
         // Grava o registro do header
-        gravaRegistro(nomeArq, header);
+        gravaRegistro(nomeArq, header, append);
 
         // Monta e grava o corpo
         String corpo;
             corpo = "02";
-            corpo += String.format("%-30s",lista.getContratada().getEmail());
-            corpo += String.format("%-11s", lista.getData());
-            corpo += String.format("%-2.0f", lista.getEstrelas());
-            corpo += String.format("%-50s", lista.getComentario());
-            gravaRegistro(nomeArq,corpo);
+            if (lista.getCandidatas().size() > 0) {
+                for(int i = 0; i < lista.getCandidatas().size(); i ++) {
+                    corpo += String.format("%30s",lista.getCandidatas().get(i).getEmail());
+                }
+            }
+            corpo += String.format("%-8s", lista.getCep());
+            corpo += String.format("%-10s", lista.getComplemento());
+            corpo += String.format("%6s", lista.getNumero());
+            corpo += String.format("%3.6f", lista.getLatitude());
+            corpo += String.format("%3.6f", lista.getLongitude());
+            corpo += String.format("%-5.2f", lista.getPreco());
+            corpo += String.format("%30s", lista.getEspecificacao());
+            corpo += String.format("%6s", lista.getProprietaria().getEmail());
+            gravaRegistro(nomeArq,corpo, true);
             contaRegistro++;
 
         // Monta e grava o trailer
         String trailer = "01";
         trailer += String.format("%010d", contaRegistro);
-        gravaRegistro(nomeArq,trailer);
+        gravaRegistro(nomeArq,trailer, true);
 
     }
 

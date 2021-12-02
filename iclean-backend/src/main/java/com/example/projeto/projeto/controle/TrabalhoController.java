@@ -1,5 +1,7 @@
 package com.example.projeto.projeto.controle;
 
+import com.example.projeto.projeto.GravaTxt;
+import com.example.projeto.projeto.dominio.Avaliacao;
 import com.example.projeto.projeto.dominio.Contratada;
 import com.example.projeto.projeto.dominio.Trabalho;
 import com.example.projeto.projeto.repositorio.ContratadaRepository;
@@ -8,10 +10,17 @@ import com.example.projeto.projeto.repositorio.TrabalhoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.Resource;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -67,6 +76,27 @@ public class TrabalhoController {
 
         return ResponseEntity.of(repository.findById(id));
 
+    }
+
+    @CrossOrigin
+    @GetMapping("/import/proprietaria/{id}")
+    public ResponseEntity getJobContratada(@PathVariable Integer id) throws IOException {
+        List<Trabalho> trabalhos = repository.findByProprietariaId(id);
+
+        if (trabalhos.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        }
+
+        Integer contador = 0;
+        for (Trabalho t : trabalhos) {
+            if (contador == 0) {
+                GravaTxt.gravaArquivoTxtTrabalhoContratada(t, t.getProprietaria().getNome(), false);
+                contador++;
+            }
+            GravaTxt.gravaArquivoTxtTrabalhoContratada(t, t.getProprietaria().getNome(), true);
+        }
+
+        return ResponseEntity.status(200).build();
     }
 
     @CrossOrigin
