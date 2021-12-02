@@ -148,6 +148,9 @@ public class ProprietariaController {
 
         List<Proprietaria> login = repository.findByEmailAndSenha(proprietaria.getEmail(), proprietaria.senha());
 
+        if (login.isEmpty()) {
+            return ResponseEntity.status(404).build();
+        }
         return ResponseEntity.status(200).body(login);
 
     }

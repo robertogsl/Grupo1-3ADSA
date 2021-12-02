@@ -14,17 +14,17 @@ const qualities: IQualities[] = [
   {
     image: missaoPNG,
     title: "Missão",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque viverra turpis commodo accumsan molestie. Duis tempus tortor dui, tincidunt tempus est sollicitudin in."
+    text: "Nosso objetivo é acabar com a complexidade de procura por serviço."
   },
   {
     image: visaoPNG,
     title: "Visão",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque viverra turpis commodo accumsan molestie. Duis tempus tortor dui, tincidunt tempus est sollicitudin in."
+    text: "Tornar o processo cada vez mais humano e seguro."
   },
   {
     image: valoresPNG,
     title: "Valores",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque viverra turpis commodo accumsan molestie. Duis tempus tortor dui, tincidunt tempus est sollicitudin in."
+    text: "Empenho para com os clientes, parceiros e tecnologia. Capacidade para aceitar grandes desafios e conduzi-los até ao final. Atitude crítica, dedicação para com a qualidade e melhoramento pessoal"
   },
 ]
 

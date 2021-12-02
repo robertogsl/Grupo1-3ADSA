@@ -118,8 +118,22 @@ export function NewService() {
     return value;
   };
 
+  const validarCamposVazios = () => {
+    if (data.cep === "" || data.complemento === "" || data.numero === "" || data.data === "" || data.telefone === "" || data.telefone === "") {
+      return true;
+    }
+
+    return false;
+  }
+
   const handleCreateJob = () => {
     const especificacao = generateEspecification();
+
+    if (validarCamposVazios()) {
+      toast.error("Preencha todos os campos.")
+
+      return;
+    }
 
     const dataApi = {
       especificacao,

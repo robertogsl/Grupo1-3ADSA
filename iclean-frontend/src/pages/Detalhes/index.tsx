@@ -9,6 +9,7 @@ import { api } from '../../services/api';
 
 import { Container, Content, Line } from "./styles";
 import { useAuth } from '../../hooks/auth';
+import { Loading } from '../../components/Loading';
 
 
 interface IJobs {
@@ -33,14 +34,17 @@ interface IParams {
 
 export function Detalhes() {
   const [job, setJob] = useState<IJobs>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const params: IParams = useParams();
   const history = useHistory();
   const { user } = useAuth();
 
   useEffect(() => {
+    setIsLoading(true)
     api.get(`/trabalhos/${Number(params.idTrabalho)}`).then(res => {
       setJob(res.data);
+      setIsLoading(false)
     })
   }, [])
 
@@ -50,7 +54,7 @@ export function Detalhes() {
 
       history.push("/dashboard");
     } else {
-      history.push("/convites")
+      history.push("/candidaturas")
     }
   };
 
@@ -67,38 +71,37 @@ export function Detalhes() {
         <CardGeneric>
           <h1>Detalhes do serviço</h1>
 
-          {job ? (
-            <>
-              <h2>{job.especificacao.split(",")[0]}</h2>
+          {isLoading ? <Loading /> :
+            job && (
+              <>
+                <h2>{job.especificacao.split(",")[0]}</h2>
 
-              <Line />
-              5km de distância
-              <Line />
+                <Line />
+                5km de distância
+                <Line />
 
-              <h3>Descrição</h3>
-              <ul>
-                <li>{job.especificacao.split(",")[0]}</li>
-                <li>{job.especificacao.split(",")[1]}</li>
-                <li>{job.especificacao.split(",")[2]}</li>
-                <li>{job.especificacao.split(",")[3]}</li>
-              </ul>
-
-              <h3>Adicionais</h3>
-              {job.especificacao.split(",").length > 4 && (
+                <h3>Descrição</h3>
                 <ul>
-                  {job.especificacao.split(",").map((additional, index) => {
-                    if (index > 3) {
-                      return <li>{additional}</li>
-                    }
-                  })}
+                  <li>{job.especificacao.split(",")[0]}</li>
+                  <li>{job.especificacao.split(",")[1]}</li>
+                  <li>{job.especificacao.split(",")[2]}</li>
+                  <li>{job.especificacao.split(",")[3]}</li>
                 </ul>
-              )}
-            </>
-          ) : (
-            <h2>Carregando...</h2>
-          )}
 
-          <div className="doublebutton">
+                <h3>Adicionais</h3>
+                {job.especificacao.split(",").length > 4 && (
+                  <ul>
+                    {job.especificacao.split(",").map((additional, index) => {
+                      if (index > 3) {
+                        return <li>{additional}</li>
+                      }
+                    })}
+                  </ul>
+                )}
+              </>
+            )}
+
+          <div className={params.tipo === "convite" ? "doublebutton" : "" }>
             <button onClick={handleClick}>{params.tipo === "convite" ? "Candidatar-se" : "Voltar"}</button>
             {params.tipo === "convite" && (
               <button onClick={Decline}>Recusar</button>

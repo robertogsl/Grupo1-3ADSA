@@ -4,7 +4,7 @@ import { Container, Content } from './styles';
 
 export function About() {
     return (
-        <Container>
+        <Container id="macaco">
             <Content>
                 <img src={aboutPNG} alt="Sobre Foto" />
                 <div>

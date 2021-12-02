@@ -9,6 +9,8 @@ import InviteThree from "../../assets/inviteThree.svg";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Loading } from "../Loading";
 
 interface ISserviceInteres {
   src: string;
@@ -49,11 +51,13 @@ interface ICandidata {
 }
 
 interface IJob {
+  id: number;
   candidatas: ICandidata[];
 }
 
 export function InterestedProfessional({ idTrabalho }: IInterestedProfessional) {
   const [job, setJob] = useState<IJob>()
+  const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
 
@@ -76,9 +80,19 @@ export function InterestedProfessional({ idTrabalho }: IInterestedProfessional) 
   }
 
   async function getTrabalho() {
+    setIsLoading(true);
+
     await api.get(`/trabalhos/${idTrabalho}`).then(res => {
       setJob(res.data)
+      setIsLoading(false);
     })
+  }
+
+  async function finalizarTrabalho() {
+    await api.delete(`/trabalhos/${job?.id}`);
+    toast.success("Trabalho excluído com sucesso.")
+
+    history.push("/services");
   }
 
   useEffect(() => {
@@ -89,7 +103,7 @@ export function InterestedProfessional({ idTrabalho }: IInterestedProfessional) 
     <CardGeneric>
       <Title> Profissionais interessados: </Title>
       <Content>
-        {job && job.candidatas.map((interest) => (
+        {isLoading ? <Loading /> : job && job.candidatas.map((interest) => (
           <CardInvite onClick={() => history.push(`/escolher/${interest.id}/${idTrabalho}`)}>
             <img src={generateSrc()} alt="icon" />
 
@@ -100,7 +114,7 @@ export function InterestedProfessional({ idTrabalho }: IInterestedProfessional) 
           </CardInvite>
         ))}
         <Button>
-          <button>Serviço finalizado</button>
+          <button onClick={finalizarTrabalho}>Serviço finalizado</button>
         </Button>
       </Content>
     </CardGeneric>
