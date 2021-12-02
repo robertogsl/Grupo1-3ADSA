@@ -1,15 +1,15 @@
-00TRABALHO02-12-2021 14:31:3401
+00TRABALHO02-12-2021 14:47:4401
 0208031210casa         100-23,520870-46,425702150,50Limpeza padrão, Studio, 1 quartos, 1 banheiros, Cozinharcarlinhos@iclean.com.br
 010000000001
-00TRABALHO02-12-2021 14:31:3401
+00TRABALHO02-12-2021 14:47:4501
 0208031210casa         100-23,520870-46,425702150,50Limpeza padrão, Studio, 1 quartos, 1 banheiros, Cozinharcarlinhos@iclean.com.br
 010000000001
-00TRABALHO02-12-2021 14:31:3401
+00TRABALHO02-12-2021 14:47:4501
 02         carlota@iclean.com.br                        -23,520870-46,425702150,50Limpeza padrão, Studio, 1 quartos, 1 banheiros, Armários (limpeza interna)carlinhos@iclean.com.br
 010000000001
-00TRABALHO02-12-2021 14:31:3501
+00TRABALHO02-12-2021 14:47:4501
 020394512023423     234234-23,601902-46,487399250,50Limpeza pesada, Apartamento, 2 quartos, 1 banheiros, Lavagem de roupas, Cozinharcarlinhos@iclean.com.br
 010000000001
-00TRABALHO02-12-2021 14:31:3501
+00TRABALHO02-12-2021 14:47:4501
 02                        -23,520870-46,4257020,00 Limpeza padrão, Studio, 0 quartos, 0 banheiroscarlinhos@iclean.com.br
 010000000001
