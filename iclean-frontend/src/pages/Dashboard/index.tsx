@@ -150,13 +150,14 @@ export function Dashboard() {
 
   const isOwner = getUserType() === 0;
 
-  // function Carlos(){
-  //   useEffect(() => {
-  //     api.get(`/avaliacoes/${Number(params.idTrabalho)}/contratada`).then(res => {
-  //       setJob(res.data);
-  //     })
-  //   }, [])
-  // }
+  function Carlos(){
+    useEffect(() => {
+      api.get(`/trabalhos/import/proprietaria/${Number(job.proprietaria.id)}`).then(res => {
+        console.log(res.data);
+        setJob(res.data);
+      })
+    }, [])
+  }
 
   return (
     <Container>
@@ -169,9 +170,10 @@ export function Dashboard() {
           </Logo>
           <Options>
             <li >
-              <div><FaStar size={20} color="#fff" /></div>
+              <div onClick={Carlos}><FaStar size={20} color="#fff" /></div>
+              <a target="_blank" className="a-download" href={`C:/Users/guilh/Desktop/se fode carlota/Grupo1-3ADSA/iclean-backend/carlinhos.txt`} download>Importar feedbacks</a>
               <span>Importar feedbacks</span>
-              {/* onClick={Carlos} */}
+              
             </li>
             <li>
               <div><FaStar size={20} color="#fff" /></div>

@@ -141,7 +141,7 @@ export const PrimaryCard = styled.button<PrimaryCardProps>`
 `;
 
 export const ChildrenCards = styled.div`
-  width: 80%;
+  width: 90%;
   display: inline-flex;
   justify-content: space-between;
 `
@@ -153,12 +153,12 @@ export const SecondCard = styled.button<SecondCardProps>`
   color: white;
   display: flex;
   flex-direction: row;
-  width: 49%;
+  width: 49.5%;
   height: 12.5rem;
   justify-content: space-between;
   background-color: var(--primary);
   text-align: justify;
-  margin-bottom: 1rem;
+  margin-top: 0.55rem;
   box-shadow: -20px 20px 35px rgba(0, 0, 0, 0.15);
   border-radius: 12px;
   border: none;
