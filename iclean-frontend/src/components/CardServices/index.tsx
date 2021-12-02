@@ -23,6 +23,7 @@ import { api } from "../../services/api";
 import { OpenServices } from "../OpenServices";
 import { BackButton } from "../BackButton";
 import { PersonService } from "../PersonService";
+import { Loading } from "../Loading";
 
 interface IJobs {
   id: number;
@@ -44,15 +45,18 @@ export function CardServices() {
   const [jobs, setJobs] = useState<IJobs[]>([]);
   const [modal, setModal] = useState(Boolean);
   const [selectedJob, setSelectedJob] = useState<IJobs>({} as IJobs);
+  const [isLoading, setIsLoading] = useState(false);
 
-  function openModal(job : IJobs){
+  function openModal(job: IJobs) {
     setModal(true);
     setSelectedJob(job);
   }
 
   useEffect(() => {
+    setIsLoading(true);
     api.get(`/trabalhos`).then((response) => {
       setJobs(response.data);
+      setIsLoading(false);
     });
   }, []);
 
@@ -62,11 +66,10 @@ export function CardServices() {
       <Title>
         <BackButton />
       </Title>
-
-      {modal ? (
+      {isLoading ? <Loading /> : modal ? (
         <PersonService job={selectedJob} />
-        ) : (
-          <Content>
+      ) : (
+        <Content>
           {jobs.map((services) => {
             const arr = services.especificacao.split(",");
 

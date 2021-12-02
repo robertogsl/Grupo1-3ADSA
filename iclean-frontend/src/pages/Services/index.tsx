@@ -1,4 +1,4 @@
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { Header } from "../../components/Header";
 
@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../../hooks/auth';
 import { FaArrowRight } from 'react-icons/fa';
 import CardGeneric from '../../components/CardGeneric';
+import { Loading } from '../../components/Loading';
 
 interface IJobs {
   id: number;
@@ -30,6 +31,7 @@ interface IJobs {
 
 export function Services() {
   const [jobs, setJobs] = useState<IJobs[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { user } = useAuth();
   const history = useHistory();
@@ -47,11 +49,14 @@ export function Services() {
   }
 
   useEffect(() => {
+    setIsLoading(true);
+
     api.get<IJobs[]>("/trabalhos").then((res) => {
 
       const filteredJobs = res.data.filter(job => job.proprietaria.id === user.id)
 
       setJobs(filteredJobs);
+      setIsLoading(false);
     })
   }, [user.id]);
 
@@ -61,7 +66,7 @@ export function Services() {
       <Content>
       <CardGeneric>
       <Title> Serviços em aberto: </Title>
-      {jobs.map((services) => (
+      {isLoading ? <Loading /> : jobs.map((services) => (
           <CardInvite onClick={() => history.push(`/interessados/${services.id}`)}>
             <div>
               <img src={generateSrc(services.id)} alt="Icone" />
@@ -72,7 +77,8 @@ export function Services() {
               <FaArrowRight size={30} color="#000" />
             </span>
           </CardInvite>
-        ))}
+        )
+      )}
         </CardGeneric>
       </Content>
     </Container>

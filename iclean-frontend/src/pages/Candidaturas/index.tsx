@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../../hooks/auth';
 import { FaArrowRight } from 'react-icons/fa';
 import CardGeneric from '../../components/CardGeneric';
+import { Loading } from '../../components/Loading';
 
 interface IJobs {
   id: number;
@@ -34,6 +35,7 @@ interface ICandProps {
 
 export function Candidaturas() {
   const [jobs, setJobs] = useState<IJobs[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { user } = useAuth();
   const history = useHistory();
@@ -51,6 +53,7 @@ export function Candidaturas() {
   }
 
   useEffect(() => {
+    setIsLoading(true);
     api.get<IJobs[]>("/trabalhos").then((res) => {
 
       const filteredJobs = res.data.filter(({ candidatas }: IJobs) => {
@@ -58,6 +61,7 @@ export function Candidaturas() {
       })
 
       setJobs(filteredJobs);
+      setIsLoading(false);
     })
   }, [user.id]);
 
@@ -65,20 +69,21 @@ export function Candidaturas() {
     <Container>
       <Header />
       <Content>
-      <CardGeneric>
-      <Title> Candidaturas: </Title>
-      {jobs.map((services) => (
-          <CardInvite onClick={() => history.push(`/detalhes/${services.id}/candidatura`)}>
-            <div>
-              <img src={generateSrc(services.id)} alt="Icone" />
-            </div>
+        <CardGeneric>
+          <Title> Candidaturas: </Title>
+          {isLoading ? <Loading /> :
+            jobs.map((services) => (
+              <CardInvite onClick={() => history.push(`/detalhes/${services.id}/candidatura`)}>
+                <div>
+                  <img src={generateSrc(services.id)} alt="Icone" />
+                </div>
 
-            <span>
-              {services.especificacao.split(",")[0]}
-              <FaArrowRight size={30} color="#000" />
-            </span>
-          </CardInvite>
-        ))}
+                <span>
+                  {services.especificacao.split(",")[0]}
+                  <FaArrowRight size={30} color="#000" />
+                </span>
+              </CardInvite>
+            ))}
         </CardGeneric>
       </Content>
     </Container>

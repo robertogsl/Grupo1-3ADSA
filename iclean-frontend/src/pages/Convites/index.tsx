@@ -15,6 +15,7 @@ import { FaArrowRight } from 'react-icons/fa';
 import { useAuth } from '../../hooks/auth';
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
+import { Loading } from '../../components/Loading';
 
 interface IParams {
   idTrabalho: string;
@@ -42,6 +43,7 @@ interface ICandProps {
 
 export function Convites() {
   const [jobs, setJobs] = useState<IJobs[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
 
@@ -66,12 +68,14 @@ export function Convites() {
   const { user } = useAuth();
 
   useEffect(() => {
+    setIsLoading(true);
     api.get("/trabalhos").then(res => {
       const filteredJobs = res.data.filter(({ candidatas }: IJobs) => {
         return candidatas.find(({ id }: ICandProps) => id === user.id)
       })
 
       setJobs(filteredJobs);
+      setIsLoading(false);
     })
   }, []);
 
@@ -82,7 +86,8 @@ export function Convites() {
       <CardGeneric>
       <Title> Convites feitos: </Title>
       <Content>
-        {jobs.map((interest) => (
+        {isLoading ? <Loading /> :
+        jobs.map((interest) => (
           <CardInvite onClick={() => history.push(`/detalhes/${interest.id}/convite`)}>
             <img src={generateSrc()} alt="icon" />
 

@@ -14,7 +14,6 @@ export function Two() {
       <div>
         <InputRegister value={registerData.email} onChange={(e: React.FormEvent<HTMLInputElement>) => handleChangeRegisterData({ ...registerData, email: e.currentTarget.value})} label="E-mail" type="email" />
         <InputRegister value={registerData.senha} onChange={(e: React.FormEvent<HTMLInputElement>) => handleChangeRegisterData({ ...registerData, senha: e.currentTarget.value})} label="Senha" type="password" />
-        <InputRegister value={registerData.senha} onChange={(e: React.FormEvent<HTMLInputElement>) => handleChangeRegisterData({ ...registerData, senha: e.currentTarget.value})} label="Confirme a senha" type="password" />
 
         <DoubleButton onSubmitForm={submitProprietaria} isFinalStep={getUserType() === 1} />
       </div>

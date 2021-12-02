@@ -15,6 +15,7 @@ import { Header } from '../../components/Header';
 
 import { Container, Content, Main, Description, Praise } from './styles';
 import { BackButton } from '../../components/BackButton';
+import { Loading } from '../../components/Loading';
 
 interface IUserProps {
   nome: string;
@@ -44,12 +45,15 @@ interface IParams {
 
 export function Profile() {
   const [user, setUser] = useState<IUserProps>({} as IUserProps);
+  const [isLoading, setIsLoading] = useState(false);
 
   const params: IParams = useParams();
 
   useEffect(() => {
+    setIsLoading(true);
     api.get(`/proprietarias/${params.idProprietaria}`).then(res => {
       setUser(res.data);
+      setIsLoading(false);
     })
   }, []);
 
@@ -57,37 +61,41 @@ export function Profile() {
     <Container>
       <Header />
       <Content>
-        <BackButton />
-        <img src={bgUser} alt="" />
-        <Main>
-          <img src={user1} alt="" />
-          <div>
-            <h1>{user.nome}</h1>
-            <ul>
-              {Array.from({ length: 4 }).map(() => (
-                <li><img src={starSVG} alt="Estrela" /></li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            {Array.from({ length: 3 }).map(() => (
-              <img src={medalSVG} alt="Medalha" />
-            ))}
-          </div>
-
-        </Main>
-        <Praise>
-          {avaliations.map(avaliation => (
-            <>
-              <div key={avaliation.id}>
-                <img src={avaliation.img} alt="" />
+        {isLoading ? <Loading /> : (
+          <>
+          <BackButton />
+            <img src={bgUser} alt="" />
+            <Main>
+              <img src={user1} alt="" />
+              <div>
+                <h1>{user.nome}</h1>
+                <ul>
+                  {Array.from({ length: 4 }).map(() => (
+                    <li><img src={starSVG} alt="Estrela" /></li>
+                  ))}
+                </ul>
               </div>
-              <h3>
-                {avaliation.nome}
-              </h3>
-            </>
-          ))}
-        </Praise>
+              <div>
+                {Array.from({ length: 3 }).map(() => (
+                  <img src={medalSVG} alt="Medalha" />
+                ))}
+              </div>
+
+            </Main>
+            <Praise>
+              {avaliations.map(avaliation => (
+                <>
+                  <div key={avaliation.id}>
+                    <img src={avaliation.img} alt="" />
+                  </div>
+                  <h3>
+                    {avaliation.nome}
+                  </h3>
+                </>
+              ))}
+            </Praise>
+          </>
+        )}
       </Content>
     </Container>
   )

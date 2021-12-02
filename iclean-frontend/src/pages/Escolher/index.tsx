@@ -11,6 +11,7 @@ import { Container, Content, Line } from "./styles";
 import CardGeneric from '../../components/CardGeneric';
 import { toast } from 'react-toastify';
 import { ChooseProfile } from '../../components/ChooseProfile';
+import { Loading } from '../../components/Loading';
 
 interface IJobs {
   id: number;
@@ -39,12 +40,15 @@ interface IParams {
 
 export function Escolher() {
   const [candidata, setCandidata] = useState<ICandidata>()
+  const [isLoading, setIsLoading] = useState(false);
 
   const params: IParams = useParams();
 
   useEffect(() => {
+    setIsLoading(true)
     api.get(`/contratadas/${params.idCandidata}`).then(res => {
       setCandidata(res.data)
+      setIsLoading(false);
     })
   }, [])
 
@@ -53,7 +57,8 @@ export function Escolher() {
       <Header />
       <Content>
         <CardGeneric>
-          {candidata &&
+          {isLoading ? <Loading /> :
+            candidata &&
             <ChooseProfile name={candidata.nome} id={candidata.id} hasChoosed={true} />
           }
         </CardGeneric>

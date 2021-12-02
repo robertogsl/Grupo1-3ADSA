@@ -20,9 +20,6 @@ export function Header() {
         </Link>
         {!user && (
           <nav>
-            <Link to="/">Home</Link>
-            <Link to="/">Sobre</Link>
-            <Link to="/">Contato</Link>
             <Link to="/login">Login</Link>
           </nav>
           )}

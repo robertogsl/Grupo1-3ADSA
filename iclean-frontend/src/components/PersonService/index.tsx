@@ -43,6 +43,8 @@ export function PersonService({ job }: macs) {
   function handleCandidatar() {
     api.put(`/trabalhos/${job.id}/candidata/${user.id}`);
     toast.success("Candidatura feita com sucesso")
+
+    history.push("/dashboard")
   }
 
   return (

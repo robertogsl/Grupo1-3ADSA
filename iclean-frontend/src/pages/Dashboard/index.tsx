@@ -200,7 +200,7 @@ export function Dashboard() {
 
               return (
                 <SecondCard onClick={fns} left={dash.id === 1}>
-                  <span>services
+                  <span>
                     <h1>{dash.title}</h1>
                     <p>
                       {dash.desc} {dash.iconDash()}
