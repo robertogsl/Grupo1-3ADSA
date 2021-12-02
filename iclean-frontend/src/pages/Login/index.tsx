@@ -36,16 +36,16 @@ export function Login() {
     setData({ ...data, [name]: value })
   }, [data]);
 
-  const handleSubmit = useCallback((e: FormEvent) => {
+  const handleSubmit = useCallback(async (e: FormEvent) => {
     setIsLoading(true);
     e.preventDefault();
 
     fnSetUserType(userChecked);
 
     try {
-      signIn({ email: data.email, senha: data.senha, userType: userChecked });
-    } catch (error) {
+      await signIn({ email: data.email, senha: data.senha, userType: userChecked });
       setIsLoading(false);
+    } catch (error) {
     }
   }, [data, signIn, userChecked, fnSetUserType]);
 

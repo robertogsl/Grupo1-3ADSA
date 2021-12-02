@@ -72,7 +72,7 @@ export function ChooseProfile({ name, id, hasChoosed = false }: IChooseProfilePr
         </Format>
         <Button>
           {hasChoosed ? (
-            <button onClick={() => history.push("/dashboard")}>Escolher para o serviço</button>
+            <button onClick={() => history.push("/dashboard")}>Voltar</button>
           ) : (
               <button onClick={() => history.push(`/servicosAbertosConvite/${id}`)}>Convidar para serviço</button>
             )
