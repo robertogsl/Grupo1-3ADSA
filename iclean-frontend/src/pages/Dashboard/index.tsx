@@ -150,13 +150,20 @@ export function Dashboard() {
 
   const isOwner = getUserType() === 0;
 
-  function Carlos(){
-    useEffect(() => {
-      api.get(`/trabalhos/import/proprietaria/${Number(job.proprietaria.id)}`).then(res => {
-        console.log(res.data);
-        setJob(res.data);
-      })
-    }, [])
+  function download(filename: string, textInput: string) {
+
+    var element = document.createElement('a');
+    element.setAttribute('href','data:text/plain;charset=utf-8, ' + encodeURIComponent(textInput));
+    element.setAttribute('download', filename);
+    document.body.appendChild(element);
+    element.click();
+    //document.body.removeChild(element);
+}
+
+  function handleDownload(){
+    api.get(`/trabalhos/import/proprietaria/${user.id}`).then(res => {
+      download("trabalhos.txt", res.data)
+    })
   }
 
   return (
@@ -170,10 +177,10 @@ export function Dashboard() {
           </Logo>
           <Options>
             <li >
-              <div onClick={Carlos}><FaStar size={20} color="#fff" /></div>
-              <a target="_blank" className="a-download" href={`C:/Users/guilh/Desktop/se fode carlota/Grupo1-3ADSA/iclean-backend/carlinhos.txt`} download>Importar feedbacks</a>
-              <span>Importar feedbacks</span>
-              
+              <div><FaStar size={20} color="#fff" /></div>
+              {/* <a target="_blank" className="a-download" href={`C:/Users/guilh/Desktop/se fode carlota/Grupo1-3ADSA/iclean-backend/carlinhos.txt`} download rel="noreferrer">Importar feedbacks</a> */}
+              <span onClick={handleDownload}>Importar feedbacks</span>
+
             </li>
             <li>
               <div><FaStar size={20} color="#fff" /></div>
