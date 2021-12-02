@@ -26,7 +26,8 @@ import foguete from "../../assets/foguete.png";
 import mapa from "../../assets/mapa.png";
 import tasks from "../../assets/tasks.png";
 import cards from "../../assets/card.png";
-import { useEffect, useState } from "react";
+import { InputHTMLAttributes, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 interface IScardsDash {
   id: number;
@@ -144,6 +145,7 @@ interface IParams {
 export function Dashboard() {
   const { getUserType, signOut, user } = useAuth();
   const [job, setJob] = useState<IJobs>({} as IJobs)
+  const [file, setFile] = useState<FileList>();
 
   const params: IParams = useParams();
   const history = useHistory();
@@ -166,6 +168,27 @@ export function Dashboard() {
     })
   }
 
+  function setValueTxt(e: React.ChangeEvent<HTMLInputElement>) {
+    var formData = new FormData();
+
+    const arq = e.target.files ? e.target.files[0] : ""
+
+    formData.append("txt", arq);
+    if (!!arq) {
+      api
+        .post("/avaliacoes/contratada/txt", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          toast.success("Avaliação enviada com sucesso.");
+        }).catch(err => {
+          toast.error("Erro ao subir arquivo de avaliação.")
+        })
+    }
+}
+
   return (
     <Container>
       <SideBar>
@@ -185,7 +208,7 @@ export function Dashboard() {
             <li>
               <div><FaStar size={20} color="#fff" /></div>
               <span>Importar feedbacks
-                <input type="file" />
+                <input type="file" onChange={setValueTxt} />
               </span>
             </li>
           </Options>
