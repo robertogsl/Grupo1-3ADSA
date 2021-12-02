@@ -179,12 +179,14 @@ export function Dashboard() {
             <li >
               <div><FaStar size={20} color="#fff" /></div>
               {/* <a target="_blank" className="a-download" href={`C:/Users/guilh/Desktop/se fode carlota/Grupo1-3ADSA/iclean-backend/carlinhos.txt`} download rel="noreferrer">Importar feedbacks</a> */}
-              <span onClick={handleDownload}>Importar feedbacks</span>
+              <span onClick={handleDownload}>Exportar trabalhos</span>
 
             </li>
             <li>
               <div><FaStar size={20} color="#fff" /></div>
-              <span>Exportar trabalhos</span>
+              <span>Importar feedbacks
+                <input type="file" />
+              </span>
             </li>
           </Options>
 
