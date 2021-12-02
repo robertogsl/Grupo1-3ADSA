@@ -10,14 +10,14 @@ import com.example.projeto.projeto.repositorio.TrabalhoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,8 +79,8 @@ public class TrabalhoController {
     }
 
     @CrossOrigin
-    @GetMapping("/import/proprietaria/{id}")
-    public ResponseEntity getJobContratada(@PathVariable Integer id) throws IOException {
+    @GetMapping(value = "/import/proprietaria/{id}", produces = "text/plain")
+    public ResponseEntity<?> getJobContratada(@PathVariable Integer id) throws IOException {
         List<Trabalho> trabalhos = repository.findByProprietariaId(id);
 
         if (trabalhos.isEmpty()) {
@@ -96,7 +96,21 @@ public class TrabalhoController {
             GravaTxt.gravaArquivoTxtTrabalhoContratada(t, t.getProprietaria().getNome(), true);
         }
 
-        return ResponseEntity.status(200).build();
+        var filename = String.format(trabalhos.get(1).getProprietaria().getNome()+".txt");
+
+        try {
+            var file = new File(filename);
+            var path = Paths.get(file.getAbsolutePath());
+            var resource = new ByteArrayResource(Files.readAllBytes(path));
+            return ResponseEntity
+                    .ok()
+                    .contentType(MediaType.parseMediaType("text/plain"))
+                    .contentLength(file.length())
+                    .body(resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @CrossOrigin

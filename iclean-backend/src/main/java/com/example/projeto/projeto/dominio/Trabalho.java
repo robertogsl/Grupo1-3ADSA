@@ -1,6 +1,7 @@
 package com.example.projeto.projeto.dominio;
 
 import com.example.projeto.projeto.FilaObj;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
