@@ -56,6 +56,11 @@ export const RegisterProvider: React.FC = ({ children }) => {
 
   const getUserType = useCallback((): number => userType, [userType]);
 
+  const limparRegistro = useCallback(() => {
+    setRegisterData({} as IRegisterData);
+    setCurrentStep(0);
+  }, []);
+
   const submitContratada = async () => {
     const data = {
       ...registerData,
@@ -68,6 +73,7 @@ export const RegisterProvider: React.FC = ({ children }) => {
       toast.success("Cadastro realizado com sucesso");
 
       history.push("/login")
+      limparRegistro();
     } catch (error) {
       // toast("Não foi possível realizar o cadastro, tente novamente.", { type: "error" })
 
@@ -88,10 +94,10 @@ export const RegisterProvider: React.FC = ({ children }) => {
     try {
       await api.post("/proprietarias", data);
 
-      // toast("Cadastro realizado com sucesso", { type: "success" });
       toast.success("Cadastro realizado com sucesso");
 
       history.push("/login")
+      limparRegistro();
     } catch (error) {
       // toast("Não foi possível realizar o cadastro, tente novamente.", { type: "error" })
 
