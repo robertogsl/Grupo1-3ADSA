@@ -93,7 +93,9 @@ public class TrabalhoController {
                 GravaTxt.gravaArquivoTxtTrabalhoContratada(t, t.getProprietaria().getNome(), false);
                 contador++;
             }
-            GravaTxt.gravaArquivoTxtTrabalhoContratada(t, t.getProprietaria().getNome(), true);
+            else {
+                GravaTxt.gravaArquivoTxtTrabalhoContratada(t, t.getProprietaria().getNome(), true);
+            }
         }
 
         var filename = String.format(trabalhos.get(0).getProprietaria().getNome()+".txt");
