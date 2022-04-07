@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Login</string>
+    <string name="label_email">Email</string>
+    <string name="email_address">Email@exemplo.com.br</string>
+    <string name="label_senha">Senha</string>
+    <string name="senha">Senha</string>
+</resources>
