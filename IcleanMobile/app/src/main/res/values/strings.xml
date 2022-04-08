@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Login</string>
+    <string name="app_name">Entrar</string>
+    <string name="senha_esquecida">Esqueci a senha</string>
     <string name="label_email">Email</string>
     <string name="email_address">Email@exemplo.com.br</string>
     <string name="label_senha">Senha</string>
