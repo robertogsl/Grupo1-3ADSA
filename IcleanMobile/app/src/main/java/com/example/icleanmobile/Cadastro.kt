@@ -5,14 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 
-class MainActivity : AppCompatActivity() {
+class Cadastro : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_cadastro)
     }
 
-    fun RedirectCadastro(v:View){
-        val telaCadastro = Intent(this, Cadastro::class.java)
-        startActivity(telaCadastro);
+    fun validaCadastro (v:View){
+        val telaCadastroPassoDois = Intent(this, CadastroEmail::class.java)
+        startActivity(telaCadastroPassoDois);
     }
 }

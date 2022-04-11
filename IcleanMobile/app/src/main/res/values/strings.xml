@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">Entrar</string>
-    <string name="senha_esquecida">Esqueci a senha</string>
+    <string name="app_name">iClean</string>
+    <string name="btn_entrar">Entrar</string>
+    <string name="btn_prox">Próximo</string>
     <string name="label_email">Email</string>
     <string name="email_address">Email@exemplo.com.br</string>
     <string name="label_senha">Senha</string>
-    <string name="senha">Senha</string>
+    <string name="et_senha">Senha</string>
 </resources>

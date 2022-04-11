@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IcleanMobile">
         <activity
+            android:name=".PrimeirosPassos"
+            android:exported="false" />
+        <activity
+            android:name=".CadastroMapa"
+            android:exported="false" />
+        <activity
+            android:name=".CadastroEmail"
+            android:exported="false" />
+        <activity
+            android:name=".Cadastro"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
