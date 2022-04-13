@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/guilh/AppData/Local/Android/Sdk/platforms/android-32/data/res/drawable/gallery_thumb.xml" value="0.2203125" />
         <entry key="..\:/Users/guilh/Desktop/Grupo 1/Grupo1-3ADSA/IcleanMobile/app/src/main/res/drawable/alternative_button_bg.xml" value="0.2203125" />
         <entry key="..\:/Users/guilh/Desktop/Grupo 1/Grupo1-3ADSA/IcleanMobile/app/src/main/res/drawable/alternative_login_button_bg.xml" value="0.1125" />
         <entry key="..\:/Users/guilh/Desktop/Grupo 1/Grupo1-3ADSA/IcleanMobile/app/src/main/res/drawable/empty_tall_divider.xml" value="0.1125" />
@@ -10,8 +11,11 @@
         <entry key="..\:/Users/guilh/Desktop/Grupo 1/Grupo1-3ADSA/IcleanMobile/app/src/main/res/layout/activity_cadastro.xml" value="0.22" />
         <entry key="..\:/Users/guilh/Desktop/Grupo 1/Grupo1-3ADSA/IcleanMobile/app/src/main/res/layout/activity_cadastro_email.xml" value="0.22" />
         <entry key="..\:/Users/guilh/Desktop/Grupo 1/Grupo1-3ADSA/IcleanMobile/app/src/main/res/layout/activity_cadastro_mapa.xml" value="0.22" />
+        <entry key="..\:/Users/guilh/Desktop/Grupo 1/Grupo1-3ADSA/IcleanMobile/app/src/main/res/layout/activity_fullscreen.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/guilh/Desktop/Grupo 1/Grupo1-3ADSA/IcleanMobile/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/guilh/Desktop/Grupo 1/Grupo1-3ADSA/IcleanMobile/app/src/main/res/layout/activity_primeiros_passos.xml" value="0.20018115942028986" />
+        <entry key="..\:/Users/guilh/Desktop/Grupo 1/Grupo1-3ADSA/IcleanMobile/app/src/main/res/layout/activity_pp_contratada.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/guilh/Desktop/Grupo 1/Grupo1-3ADSA/IcleanMobile/app/src/main/res/layout/activity_pp_contratante.xml" value="0.22" />
+        <entry key="..\:/Users/guilh/Desktop/Grupo 1/Grupo1-3ADSA/IcleanMobile/app/src/main/res/layout/activity_primeiros_passos.xml" value="0.22" />
         <entry key="app/src/main/res/drawable/login_button_bg.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/login_edittext_bg.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.27014218009478674" />

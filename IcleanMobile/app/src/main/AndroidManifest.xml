@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IcleanMobile">
         <activity
+            android:name=".PpContratada"
+            android:exported="false" />
+        <activity
+            android:name=".PpContratante"
+            android:exported="false" />
+        <activity
+            android:name=".FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_fullscreen"
+            android:theme="@style/Theme.IcleanMobile.Fullscreen" />
+        <activity
             android:name=".PrimeirosPassos"
             android:exported="false" />
         <activity

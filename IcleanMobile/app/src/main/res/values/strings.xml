@@ -6,4 +6,7 @@
     <string name="email_address">Email@exemplo.com.br</string>
     <string name="label_senha">Senha</string>
     <string name="et_senha">Senha</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
