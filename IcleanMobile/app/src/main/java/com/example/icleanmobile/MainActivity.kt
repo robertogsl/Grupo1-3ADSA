@@ -6,11 +6,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.content.DialogInterface
-
-
+import android.widget.Button
+import android.widget.EditText
+import retrofit2.Callback
+import retrofit2.Response
+import android.widget.Toast
+import retrofit2.Call
 
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var etEmail:EditText
+    lateinit var etSenha:EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,6 +30,8 @@ class MainActivity : AppCompatActivity() {
             execPrimeirosPassos();
         }
 
+        etEmail = findViewById<EditText>(R.id.et_email)
+        etSenha = findViewById<EditText>(R.id.et_senha)
     }
 
     private fun execPrimeirosPassos() {
@@ -38,5 +48,31 @@ class MainActivity : AppCompatActivity() {
     fun RedirectCadastro(v:View){
         val telaCadastro = Intent(this, Cadastro::class.java)
         startActivity(telaCadastro);
+    }
+
+    fun LoginAutenticar(v:View) {
+        val email = etEmail.text.toString()
+        val senha = etSenha.text.toString()
+        val login = Login(
+            email,
+            senha
+        )
+
+        val postAutenticar = ApiIclean.criar().autenticar(login)
+
+        postAutenticar.enqueue(object : Callback<Contratada> {
+            override fun onResponse(call: Call<Contratada>, response: Response<Contratada>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(baseContext, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(baseContext, "Erro: ${response.errorBody()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Contratada>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

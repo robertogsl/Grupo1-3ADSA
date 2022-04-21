@@ -50,6 +50,7 @@
              />
 
         <EditText
+            android:id="@+id/et_senha"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="50dp"
@@ -63,6 +64,7 @@
 
         <Button
             android:id="@+id/btn_login_account"
+            android:onClick="LoginAutenticar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="40dp"

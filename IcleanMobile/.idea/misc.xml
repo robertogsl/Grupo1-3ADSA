@@ -19,6 +19,8 @@
         <entry key="app/src/main/res/drawable/login_button_bg.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/login_edittext_bg.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.27014218009478674" />
+        <entry key="app/src/main/res/layout/activity_primeiros_passos.xml" value="0.16" />
+        <entry key="app/src/main/res/xml/network_security_config.xml" value="0.1" />
       </map>
     </option>
   </component>
