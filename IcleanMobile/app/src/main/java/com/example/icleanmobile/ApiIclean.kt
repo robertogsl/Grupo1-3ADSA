@@ -9,11 +9,12 @@ interface ApiIclean {
     @GET("contratadas")
     fun get() : Call<List<Contratada>>
 
-    @POST("/contratadas/autenticar")
-    fun autenticar(@Body login:Login) : Call<Contratada>
+    @POST("contratadas/autenticar")
+    fun post(@Body login:Login) : Call<Void>
 
     companion object {
-        var BASE_URL = "http://18.210.127.86:8080"
+        // var BASE_URL = "http://18.210.127.86:8080/"
+        var BASE_URL = "http://10.0.2.2:8080/"
         // Para testar via cabo USB numa API local: "http://10.0.2.2:8080/"
 
         fun criar() : ApiIclean {

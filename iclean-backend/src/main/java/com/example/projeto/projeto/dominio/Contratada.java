@@ -41,7 +41,7 @@ public class Contratada {
 
     private String complemento;
 
-    @NotNull/
+    @NotNull
     private String numero;
 
     @NotNull

@@ -53,15 +53,12 @@ class MainActivity : AppCompatActivity() {
     fun LoginAutenticar(v:View) {
         val email = etEmail.text.toString()
         val senha = etSenha.text.toString()
-        val login = Login(
-            email,
-            senha
-        )
+        val login = Login(email, senha)
 
-        val postAutenticar = ApiIclean.criar().autenticar(login)
+        val postAutenticar = ApiIclean.criar().post(login)
 
-        postAutenticar.enqueue(object : Callback<Contratada> {
-            override fun onResponse(call: Call<Contratada>, response: Response<Contratada>) {
+        postAutenticar.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
                     Toast.makeText(baseContext, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
                 } else {
@@ -69,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<Contratada>, t: Throwable) {
+            override fun onFailure(call: Call<Void>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
             }
