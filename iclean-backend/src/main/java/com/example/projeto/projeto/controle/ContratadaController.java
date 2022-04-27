@@ -138,7 +138,7 @@ public class ContratadaController {
             return ResponseEntity.status(404).build();
         }
 
-        return ResponseEntity.status(200).build();
+        return ResponseEntity.status(200).body(c);
     }
 
     @CrossOrigin

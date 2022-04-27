@@ -12,7 +12,11 @@ class PpContratada : AppCompatActivity() {
     }
 
     fun RedirectCadastro(v: View){
+        val selecionado = "Contratada"
+
         val telaCadastro = Intent(this, Cadastro::class.java)
+        telaCadastro.putExtra("tipoSelecionado", "${selecionado}")
+
         startActivity(telaCadastro);
     }
 }

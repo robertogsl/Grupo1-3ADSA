@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         val senha = etSenha.text.toString()
         val login = Login(email, senha)
 
-        val postAutenticar = ApiIclean.criar().post(login)
+        val postAutenticar = ApiIclean.criar().autenticar(login)
 
         postAutenticar.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {

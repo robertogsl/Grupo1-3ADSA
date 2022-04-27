@@ -10,7 +10,10 @@ interface ApiIclean {
     fun get() : Call<List<Contratada>>
 
     @POST("contratadas/autenticar")
-    fun post(@Body login:Login) : Call<Void>
+    fun autenticar(@Body login:Login) : Call<Void>
+
+    @POST("contratadas")
+    fun post(@Body novaContratada: Contratada) : Call<Void>
 
     companion object {
         // var BASE_URL = "http://18.210.127.86:8080/"
