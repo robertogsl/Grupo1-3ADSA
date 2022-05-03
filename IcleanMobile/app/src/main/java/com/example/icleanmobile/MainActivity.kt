@@ -57,16 +57,17 @@ class MainActivity : AppCompatActivity() {
 
         val postAutenticar = ApiIclean.criar().autenticar(login)
 
-        postAutenticar.enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+        postAutenticar.enqueue(object : Callback<List<Contratada>> {
+            override fun onResponse(call: Call<List<Contratada>>, response: Response<List<Contratada>>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(baseContext, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                    val contratada = response.body()
+                    Toast.makeText(baseContext, "Login realizado com sucesso! ${contratada}", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(baseContext, "Erro: ${response.errorBody()}", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onFailure(call: Call<Void>, t: Throwable) {
+            override fun onFailure(call: Call<List<Contratada>>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
             }
