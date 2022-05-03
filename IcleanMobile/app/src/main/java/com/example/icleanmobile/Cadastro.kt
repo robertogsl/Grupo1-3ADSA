@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 
 class Cadastro : AppCompatActivity() {
 
@@ -32,7 +33,7 @@ class Cadastro : AppCompatActivity() {
         val nome = etIdNome.text.toString()
         val cpf = etIdNome.text.toString()
         val celular = etIdNome.text.toString()
-        val nascimento = etIdNome.text.toString()
+        val nascimento = etIdNascimento.text.toString()
 
 
         telaCadastroPassoDois.putExtra("selecionado", "${selecionado}")
@@ -40,6 +41,9 @@ class Cadastro : AppCompatActivity() {
         telaCadastroPassoDois.putExtra("cpf", "${cpf}")
         telaCadastroPassoDois.putExtra("celular", "${celular}")
         telaCadastroPassoDois.putExtra("nascimento", "${nascimento}")
+
+        Toast.makeText(baseContext, nascimento, Toast.LENGTH_SHORT).show()
+
 
         startActivity(telaCadastroPassoDois);
     }

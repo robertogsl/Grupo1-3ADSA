@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 
 class CadastroEmail : AppCompatActivity() {
     lateinit var etIdCadEmail: EditText
@@ -39,6 +40,9 @@ class CadastroEmail : AppCompatActivity() {
         telaCadastroMapa.putExtra("nascimento", "${nascimento}")
         telaCadastroMapa.putExtra("cadastroEmail", "${cadEmail}")
         telaCadastroMapa.putExtra("cadastroSenha", "${cadSenha}")
+
+        Toast.makeText(baseContext, nascimento, Toast.LENGTH_SHORT).show()
+
 
         startActivity(telaCadastroMapa);
     }

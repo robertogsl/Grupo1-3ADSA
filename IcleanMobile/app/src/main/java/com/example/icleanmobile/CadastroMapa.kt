@@ -12,6 +12,7 @@ import retrofit2.Call
 import java.time.LocalDate
 
 class CadastroMapa : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastro_mapa)
@@ -19,15 +20,24 @@ class CadastroMapa : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun criarContratada(v: View) {
+
+        val selecionado = intent.getStringExtra("tipoSelecionado")
+        val nome = intent.getStringExtra("nome")
+        val cpf = intent.getStringExtra("cpf")
+        val celular = intent.getStringExtra("celular")
+        val nascimento = intent.getStringExtra("nascimento")
+        val cadastroEmail = intent.getStringExtra("cadastroEmail")
+        val cadastroSenha = intent.getStringExtra("cadastroSenha")
+
         // var date = LocalDate.parse("2002-06-06")
         val novaContratada = Contratada(
             null,
-            "Roberto",
-            "45008802836",
-            "11 943603087",
-            "2002-06-06",
-            "roberto.teste@gmail.com",
-            "1234",
+            "${nome}",
+            "${cpf}",
+            "${celular}",
+            "${nascimento}",
+            "${cadastroEmail}",
+            "${cadastroSenha}",
             null,
             "09810-760",
             "",
