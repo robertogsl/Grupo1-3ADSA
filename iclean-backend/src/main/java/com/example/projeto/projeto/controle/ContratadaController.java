@@ -132,9 +132,9 @@ public class ContratadaController {
         logger.info("\n" +
                 "successfully created a new assessment");
 
-        List<Contratada> c = repository.findByEmailAndSenha(contratada.getEmail(), contratada.getSenha());
+        Contratada c = repository.findByEmailAndSenha(contratada.getEmail(), contratada.getSenha());
 
-        if (c.isEmpty()) {
+        if (c.getId() == null) {
             return ResponseEntity.status(404).build();
         }
 

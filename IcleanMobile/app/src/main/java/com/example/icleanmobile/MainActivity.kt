@@ -46,8 +46,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun RedirectCadastro(v:View){
-        val telaCadastro = Intent(this, Cadastro::class.java)
-        startActivity(telaCadastro);
+        //val telaCadastro = Intent(this, Cadastro::class.java)
+        val telaTrabalhos = Intent(this, TrabalhosContratada::class.java)
+        startActivity(telaTrabalhos);
+
     }
 
     fun LoginAutenticar(v:View) {

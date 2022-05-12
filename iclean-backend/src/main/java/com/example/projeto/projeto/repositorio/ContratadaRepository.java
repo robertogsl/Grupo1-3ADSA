@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ContratadaRepository extends JpaRepository<Contratada, Integer> {
 
-    List<Contratada> findByEmailAndSenha(String email, String senha);
+    Contratada findByEmailAndSenha(String email, String senha);
 
     List<Contratada> findByEmail(String email);
 

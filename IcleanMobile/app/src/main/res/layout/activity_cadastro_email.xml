@@ -85,7 +85,7 @@
             android:layout_height="80dp"
             android:layout_gravity="center"
             android:layout_marginTop="185dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/ic_icon_logo" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
