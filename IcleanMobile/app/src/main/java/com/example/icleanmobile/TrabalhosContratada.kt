@@ -22,19 +22,18 @@ class TrabalhosContratada : AppCompatActivity() {
 
 
     fun fragConvites(view: View){
-        val fragmento = FragmentContainerView(this)
-        fragmento.id = View.generateViewId()
-
         findViewById<LinearLayout>(R.id.ll_fragmentos).removeAllViews()
-        findViewById<LinearLayout>(R.id.ll_fragmentos).addView(fragmento)
-
-
         val transaction = supportFragmentManager.beginTransaction()
 
         var x = 0
         while (x < 10) {
+            val fragmento = FragmentContainerView(this)
+
+            fragmento.id = View.generateViewId()
+
+            findViewById<LinearLayout>(R.id.ll_fragmentos).addView(fragmento)
+
             transaction.add(fragmento.id, ConviteCtd::class.java, null)
-            Toast.makeText(this, "fock", Toast.LENGTH_SHORT).show()
             x++
         }
         transaction.commit()
