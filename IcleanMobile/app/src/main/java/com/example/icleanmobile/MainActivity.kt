@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         //val telaCadastro = Intent(this, Cadastro::class.java)
         val telaTrabalhos = Intent(this, TrabalhosContratada::class.java)
         startActivity(telaTrabalhos);
-
     }
 
     fun LoginAutenticar(v:View) {

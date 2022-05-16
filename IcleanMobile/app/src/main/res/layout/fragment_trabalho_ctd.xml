@@ -6,6 +6,7 @@
     android:background="@color/colorPrimary"
     tools:context=".TrabalhoCtd">
     <LinearLayout
+        android:onClick="detalheTrabalho"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -20,9 +21,12 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
             android:text="Diarista - Limpeza pesada"
-            android:textSize="25sp"
-            android:layout_marginBottom="10dp"/>
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="25sp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,7 +43,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="16sp"
-                    android:text="Diarista - Limpeza pesada"/>
+                    android:textColor="@color/colorPrimary"
+                    android:text="Dulce Sousa"/>
             </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,13 +62,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textSize="16sp"
-                android:text="Diarista - Limpeza pesada"/>
+                android:textColor="@color/colorPrimary"
+                android:text="A 5km"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="15dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="70dp"
@@ -87,5 +94,4 @@
                 android:background="@drawable/ic_icon_disabled"/>
         </LinearLayout>
     </LinearLayout>
-
 </FrameLayout>

@@ -37,23 +37,27 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/tv_iconServices"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="fragServicos"
+                android:backgroundTint="@color/colorPrimary"
                 android:background="@drawable/ic_icon_services_b"
                 android:layout_marginRight="80dp"/>
             <TextView
+                android:id="@+id/tv_iconInvites"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="fragConvites"
                 android:background="@drawable/ic_icon_menu"
                 android:layout_marginRight="80dp"/>
             <TextView
-                android:background="@drawable/ic_icon_invite"
+                android:id="@+id/tv_iconReceived"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:onClick="fragReceived"
+                android:background="@drawable/ic_icon_invite"/>
         </LinearLayout>
-
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
