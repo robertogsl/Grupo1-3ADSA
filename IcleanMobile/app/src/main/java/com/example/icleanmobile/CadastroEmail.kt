@@ -18,7 +18,7 @@ class CadastroEmail : AppCompatActivity() {
     }
 
     fun validaCadastro(v: View){
-        val telaCadastroMapa = Intent(this, CadastroMapa::class.java)
+        val telaCadastroMapa = Intent(this, MapaCadastro::class.java)
 
         etIdCadEmail = findViewById(R.id.et_cad_email)
         etIdCadSenha = findViewById(R.id.et_cad_senha)

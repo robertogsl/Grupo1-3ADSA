@@ -46,9 +46,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun RedirectCadastro(v:View){
-        //val telaCadastro = Intent(this, Cadastro::class.java)
-        val telaTrabalhos = Intent(this, TrabalhosContratada::class.java)
-        startActivity(telaTrabalhos);
+        val telaCadastro = Intent(this, Cadastro::class.java)
+//        val telaTrabalhos = Intent(this, TrabalhosContratada::class.java)
+        startActivity(telaCadastro);
     }
 
     fun LoginAutenticar(v:View) {
@@ -63,6 +63,8 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val contratada = response.body()
                     Toast.makeText(baseContext, "Login realizado com sucesso! ${contratada}", Toast.LENGTH_SHORT).show()
+//                    val telaTrabalhos = Intent(this, TrabalhosContratada::class.java)
+//                    startActivity(telaTrabalhos);
                 } else {
                     Toast.makeText(baseContext, "Erro: ${response.errorBody()}", Toast.LENGTH_SHORT).show()
                 }
