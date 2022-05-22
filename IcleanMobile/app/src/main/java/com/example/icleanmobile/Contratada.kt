@@ -11,9 +11,9 @@ data class Contratada(
     val email: String,
     val senha: String,
     val autentiacado: Boolean?,
-    val cep: String,
-    val complemento: String,
-    val numero: String,
+    val cep: String?,
+    val complemento: String?,
+    val numero: String?,
     val longitude: Double,
     val latitude: Double
 )

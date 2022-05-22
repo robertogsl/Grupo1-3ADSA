@@ -1,8 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragmentMap"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapaCadastro" />
+    tools:context=".MapaCadastro">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fundo"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:text="CADASTRO"
+                android:textColor="@color/white"
+                android:textSize="40dp" />
+        </LinearLayout>
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/fragmentMap"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_marginTop="40dp"
+            tools:context=".MapaCadastro" />
+
+        <Button
+            android:id="@+id/btn_register_account"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/login_button_bg"
+            android:text="Próximo passo"
+            android:onClick="proximoPasso"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

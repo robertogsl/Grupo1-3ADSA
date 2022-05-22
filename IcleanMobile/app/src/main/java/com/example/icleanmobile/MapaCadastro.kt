@@ -1,10 +1,14 @@
 package com.example.icleanmobile
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -14,9 +18,19 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import kotlin.properties.Delegates
 
 class MapaCadastro : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationClickListener {
     private lateinit var map: GoogleMap
+    private var latitude by Delegates.notNull<Double>()
+    private var longitude by Delegates.notNull<Double>()
 
     companion object {
         const val REQUEST_CODE_LOCATION = 0
@@ -131,5 +145,29 @@ class MapaCadastro : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
 
     override fun onMyLocationClick(p0: Location) {
         Toast.makeText(this, "Sua localização é latitude: ${p0.latitude}, longitude: ${p0.longitude}", Toast.LENGTH_SHORT).show()
+        this.latitude = p0.latitude
+        this.longitude = p0.longitude
+    }
+
+    fun proximoPasso(v : View) {
+        val telaTipoCadastro = Intent(this, TipoCadastro::class.java)
+
+        val nome = intent.getStringExtra("nome")
+        val cpf = intent.getStringExtra("cpf")
+        val celular = intent.getStringExtra("celular")
+        val nascimento = intent.getStringExtra("nascimento")
+        val cadEmail = intent.getStringExtra("cadastroEmail")
+        val cadSenha = intent.getStringExtra("cadastroSenha")
+
+        telaTipoCadastro.putExtra("nome", "${nome}")
+        telaTipoCadastro.putExtra("cpf", "${cpf}")
+        telaTipoCadastro.putExtra("celular", "${celular}")
+        telaTipoCadastro.putExtra("nascimento", "${nascimento}")
+        telaTipoCadastro.putExtra("cadastroEmail", "${cadEmail}")
+        telaTipoCadastro.putExtra("cadastroSenha", "${cadSenha}")
+        telaTipoCadastro.putExtra("longitude", longitude)
+        telaTipoCadastro.putExtra("latitude", latitude)
+
+        startActivity(telaTipoCadastro)
     }
 }

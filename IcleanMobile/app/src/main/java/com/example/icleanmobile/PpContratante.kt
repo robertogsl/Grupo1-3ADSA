@@ -14,9 +14,6 @@ class PpContratante : AppCompatActivity() {
     fun RedirectCadastro(v:View){
         val telaCadastro = Intent(this, Cadastro::class.java)
 
-        val selecionado = "Contratante"
-        telaCadastro.putExtra("tipoSelecionado", "${selecionado}")
-
         startActivity(telaCadastro)
     }
 }

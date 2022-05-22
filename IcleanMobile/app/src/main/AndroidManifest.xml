@@ -35,13 +35,13 @@
             android:name=".PrimeirosPassos"
             android:exported="false" />
         <activity
-            android:name=".CadastroMapa"
-            android:exported="false" />
-        <activity
             android:name=".CadastroEmail"
             android:exported="false" />
         <activity
             android:name=".Cadastro"
+            android:exported="false" />
+        <activity
+            android:name=".TipoCadastro"
             android:exported="false" />
         <activity
             android:name=".MapaCadastro"

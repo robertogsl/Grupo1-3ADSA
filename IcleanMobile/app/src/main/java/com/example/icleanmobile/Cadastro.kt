@@ -29,14 +29,11 @@ class Cadastro : AppCompatActivity() {
         etIdCelular = findViewById(R.id.et_celular)
         etIdNascimento = findViewById(R.id.et_nascimento)
 
-        val selecionado = intent.getStringExtra("tipoSelecionado")
         val nome = etIdNome.text.toString()
         val cpf = etIdNome.text.toString()
         val celular = etIdNome.text.toString()
         val nascimento = etIdNascimento.text.toString()
 
-
-        telaCadastroPassoDois.putExtra("selecionado", "${selecionado}")
         telaCadastroPassoDois.putExtra("nome", "${nome}")
         telaCadastroPassoDois.putExtra("cpf", "${cpf}")
         telaCadastroPassoDois.putExtra("celular", "${celular}")

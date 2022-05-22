@@ -24,7 +24,6 @@ class CadastroEmail : AppCompatActivity() {
         etIdCadSenha = findViewById(R.id.et_cad_senha)
         etIdConfirmSenha = findViewById(R.id.et_confirm_senha)
 
-        val selecionado = intent.getStringExtra("tipoSelecionado")
         val nome = intent.getStringExtra("nome")
         val cpf = intent.getStringExtra("cpf")
         val celular = intent.getStringExtra("celular")
@@ -33,16 +32,12 @@ class CadastroEmail : AppCompatActivity() {
         val cadEmail = etIdCadEmail.text.toString()
         val cadSenha = etIdCadSenha.text.toString()
 
-        telaCadastroMapa.putExtra("selecionado", "${selecionado}")
         telaCadastroMapa.putExtra("nome", "${nome}")
         telaCadastroMapa.putExtra("cpf", "${cpf}")
         telaCadastroMapa.putExtra("celular", "${celular}")
         telaCadastroMapa.putExtra("nascimento", "${nascimento}")
         telaCadastroMapa.putExtra("cadastroEmail", "${cadEmail}")
         telaCadastroMapa.putExtra("cadastroSenha", "${cadSenha}")
-
-        Toast.makeText(baseContext, nascimento, Toast.LENGTH_SHORT).show()
-
 
         startActivity(telaCadastroMapa);
     }

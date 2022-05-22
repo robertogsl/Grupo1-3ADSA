@@ -2,6 +2,8 @@
     <string name="app_name">iClean</string>
     <string name="btn_entrar">Entrar</string>
     <string name="btn_prox">Próximo</string>
+    <string name="btn_ctd">Desejo encontrar um serviço</string>
+    <string name="btn_contratante">Desejo encontrar uma doméstica</string>
     <string name="label_email">Email</string>
     <string name="email_address">Email@exemplo.com.br</string>
     <string name="label_senha">Senha</string>
