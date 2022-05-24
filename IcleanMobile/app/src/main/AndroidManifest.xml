@@ -3,7 +3,6 @@
     package="com.example.icleanmobile">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -14,6 +13,51 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IcleanMobile"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ContratanteList5"
+            android:exported="false" />
+        <activity
+            android:name=".ContratanteList4"
+            android:exported="false" />
+        <activity
+            android:name=".ContratanteList3"
+            android:exported="false" />
+        <activity
+            android:name=".ContratanteList2"
+            android:exported="false" />
+        <activity
+            android:name=".ContratanteList"
+            android:exported="false" />
+        <activity
+            android:name=".ContratanteSearch4"
+            android:exported="false" />
+        <activity
+            android:name=".ContratanteSearch3"
+            android:exported="false" />
+        <activity
+            android:name=".ContratanteSearch2"
+            android:exported="false" />
+        <activity
+            android:name=".ContratanteSearch"
+            android:exported="false" />
+        <activity
+            android:name=".ContratanteNewService5"
+            android:exported="false" />
+        <activity
+            android:name=".ContratanteNewService4"
+            android:exported="false" />
+        <activity
+            android:name=".ContratanteNewService3"
+            android:exported="false" />
+        <activity
+            android:name=".ContratanteNewService2"
+            android:exported="false" />
+        <activity
+            android:name=".ContratanteNewService"
+            android:exported="false" />
+        <activity
+            android:name=".ContratanteProfile"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
