@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.content.DialogInterface
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,6 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var etEmail:EditText
     lateinit var etSenha:EditText
+    lateinit var checkBoxContratada: CheckBox
+    lateinit var checkBoxContratante: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,26 +57,77 @@ class MainActivity : AppCompatActivity() {
     fun LoginAutenticar(v:View) {
         val email = etEmail.text.toString()
         val senha = etSenha.text.toString()
+        checkBoxContratada = findViewById<CheckBox>(R.id.cb_contratada)
+        checkBoxContratante = findViewById<CheckBox>(R.id.cb_contratante)
+
+        if (email.isEmpty() || senha .isEmpty()) {
+            Toast.makeText(baseContext, "Insira o email ou senha para realizar o Login!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val login = Login(email, senha)
 
-        val postAutenticar = ApiIclean.criar().autenticar(login)
+        if (!checkBoxContratada.isChecked && !checkBoxContratante.isChecked) {
+            Toast.makeText(baseContext, "Selecione um perfil para fazer Login!", Toast.LENGTH_SHORT).show()
+            return
+        }
+        else if (checkBoxContratada.isChecked) {
+            val postAutenticar = ApiIclean.criar().autenticarContratada(login)
 
-        postAutenticar.enqueue(object : Callback<Contratada> {
-            override fun onResponse(call: Call<Contratada>, response: Response<Contratada>) {
-                if (response.isSuccessful) {
-                    val contratada = response.body()
-                    Toast.makeText(baseContext, "Login realizado com sucesso! ${contratada}", Toast.LENGTH_SHORT).show()
-//                    val telaTrabalhos = Intent(this, TrabalhosContratada::class.java)
-//                    startActivity(telaTrabalhos);
-                } else {
-                    Toast.makeText(baseContext, "Erro: ${response.errorBody()}", Toast.LENGTH_SHORT).show()
+            postAutenticar.enqueue(object : Callback<Contratada> {
+                override fun onResponse(call: Call<Contratada>, response: Response<Contratada>) {
+                    if (response.isSuccessful) {
+                        val contratada = response.body()
+                        Toast.makeText(baseContext, "Login realizado com sucesso! ${contratada}", Toast.LENGTH_SHORT).show()
+                        mudarTelaTrabalhos()
+                    } else {
+                        Toast.makeText(baseContext, "Erro: ${response.errorBody()}", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<Contratada>, t: Throwable) {
-                t.printStackTrace()
-                Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
-            }
-        })
+                override fun onFailure(call: Call<Contratada>, t: Throwable) {
+                    t.printStackTrace()
+                    Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+        else if (checkBoxContratante.isChecked) {
+            val postAutenticar = ApiIclean.criar().autenticarContratante(login)
+
+            postAutenticar.enqueue(object : Callback<Contratante> {
+                override fun onResponse(call: Call<Contratante>, response: Response<Contratante>) {
+                    if (response.isSuccessful) {
+                        val contratante = response.body()
+                        Toast.makeText(baseContext, "Login realizado como Contratante com sucesso! ${contratante}", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(baseContext, "Erro: ${response.errorBody()}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<Contratante>, t: Throwable) {
+                    t.printStackTrace()
+                    Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+    }
+
+    fun mudarTelaTrabalhos() {
+        val telaTrabalhos = Intent(this, TrabalhosContratada::class.java)
+        startActivity(telaTrabalhos);
+    }
+
+    fun verificarCheckBoxContratada(v:View) {
+        checkBoxContratada = findViewById<CheckBox>(R.id.cb_contratada)
+        checkBoxContratante = findViewById<CheckBox>(R.id.cb_contratante)
+
+        checkBoxContratante.isChecked = false
+    }
+
+    fun verificarCheckBoxContratante(v:View) {
+        checkBoxContratada = findViewById<CheckBox>(R.id.cb_contratada)
+        checkBoxContratante = findViewById<CheckBox>(R.id.cb_contratante)
+
+        checkBoxContratada.isChecked = false
     }
 }
