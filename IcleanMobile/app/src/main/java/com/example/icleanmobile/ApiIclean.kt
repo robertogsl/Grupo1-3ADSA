@@ -9,6 +9,9 @@ interface ApiIclean {
     @GET("contratadas")
     fun get() : Call<List<Contratada>>
 
+    @GET("contratadas/{id}")
+    fun getContratada(@Path("id") id: Int)
+
     @POST("contratadas/autenticar")
     fun autenticarContratada(@Body login:Login) : Call<Contratada>
 
@@ -23,6 +26,12 @@ interface ApiIclean {
 
     @GET("/trabalhos")
     fun getAllJobs() : Call<List<Trabalho>>
+
+    @GET("/trabalhos/{id}")
+    fun getJob(@Path("id") id:Int) : Call<Trabalho>
+
+    @PUT("/trabalhos/{idTrabalho}/candidata/{id}")
+    fun putCandidatar(@Path("idTrabalho") idTrabalho: Int, @Path("id") id: Int) : Call<Void>
 
     companion object {
         //var BASE_URL = "http://18.210.127.86:8080/"

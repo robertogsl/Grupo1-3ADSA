@@ -8,11 +8,15 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentContainerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class TrabalhosContratada : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_principal_ctd)
+        retornarTrabalhos()
     }
 
     lateinit var tvIconServices: TextView
@@ -103,5 +107,24 @@ class TrabalhosContratada : AppCompatActivity() {
     fun voltarPrincipal(v:View){
         val telaPrincipal = Intent(this, TrabalhosContratada::class.java)
         startActivity(telaPrincipal);
+    }
+
+    fun retornarTrabalhos() {
+        val getTrabalhos = ApiIclean.criar().getAllJobs()
+
+        getTrabalhos.enqueue(object : Callback<List<Trabalho>> {
+            override fun onResponse(
+                call: Call<List<Trabalho>>,
+                response: Response<List<Trabalho>>
+            ) {
+                for (t : Trabalho in response.body()!!){
+                    Toast.makeText(baseContext, "Trabalho ${t.id} retornado com sucesso", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<Trabalho>>, t: Throwable) {
+                Toast.makeText(baseContext, "ERRO NA API", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }
