@@ -9,8 +9,8 @@ interface ApiIclean {
     @GET("contratadas")
     fun get() : Call<List<Contratada>>
 
-    @GET("contratadas/{id}")
-    fun getContratada(@Path("id") id: Int)
+    @GET("proprietarias/{id}")
+    fun getProprietaria(@Path("id") id: Int) : Call<Proprietaria>
 
     @POST("contratadas/autenticar")
     fun autenticarContratada(@Body login:Login) : Call<Contratada>

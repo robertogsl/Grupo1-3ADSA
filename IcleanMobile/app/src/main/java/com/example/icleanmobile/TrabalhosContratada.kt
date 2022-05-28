@@ -127,4 +127,47 @@ class TrabalhosContratada : AppCompatActivity() {
             }
         })
     }
+
+    fun retornarUmTrabalho(id: Int) {
+        val getTrabalho = ApiIclean.criar().getJob(id)
+
+        getTrabalho.enqueue(object : Callback<Trabalho> {
+            override fun onResponse(
+                call: Call<Trabalho>,
+                response: Response<Trabalho>
+            ) {
+                Toast.makeText(baseContext, "Resposta: ${response}", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onFailure(call: Call<Trabalho>, t: Throwable) {
+                Toast.makeText(baseContext, "ERRO NA API", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    fun candidatarDomestica(idTrabalho: Int, idDomestica: Int) {
+        val putCandidatar = ApiIclean.criar().putCandidatar(idTrabalho, idDomestica)
+
+        putCandidatar.enqueue(object : Callback<Void>{
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                Toast.makeText(baseContext, "Você se candidatou a vaga com sucesso!", Toast.LENGTH_SHORT).show()
+            }
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Toast.makeText(baseContext, "ERRO NA API", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    fun retornarProprietaria(id: Int) {
+        val getProprietaria = ApiIclean.criar().getProprietaria(id)
+
+        getProprietaria.enqueue(object : Callback<Proprietaria>{
+            override fun onResponse(call: Call<Proprietaria>, response: Response<Proprietaria>) {
+                Toast.makeText(baseContext, "Passou!", Toast.LENGTH_SHORT).show()
+            }
+            override fun onFailure(call: Call<Proprietaria>, t: Throwable) {
+                Toast.makeText(baseContext, "ERRO NA API", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
 }
