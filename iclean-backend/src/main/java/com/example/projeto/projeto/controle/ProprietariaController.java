@@ -146,9 +146,9 @@ public class ProprietariaController {
         logger.info("\n" +
                 "successfully created a new assessment");
 
-        List<Proprietaria> login = repository.findByEmailAndSenha(proprietaria.getEmail(), proprietaria.senha());
+        Proprietaria login = repository.findByEmailAndSenha(proprietaria.getEmail(), proprietaria.senha());
 
-        if (login.isEmpty()) {
+        if (login.getId() == null) {
             return ResponseEntity.status(404).build();
         }
         return ResponseEntity.status(200).body(login);
