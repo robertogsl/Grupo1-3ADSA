@@ -1,4 +1,5 @@
 package com.example.icleanmobile
+import java.io.Serializable
 
 data class Trabalho (
     val id: Int,
@@ -11,4 +12,4 @@ data class Trabalho (
     val numero: String,
     val longitude: Double,
     val latitude: Double
-)
+) : Serializable

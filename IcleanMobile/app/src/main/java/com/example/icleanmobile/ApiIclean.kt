@@ -25,7 +25,7 @@ interface ApiIclean {
     fun postContratante(@Body novaContratante: Contratante) : Call<Void>
 
     @GET("/trabalhos")
-    fun getAllJobs() : Call<List<Trabalho>>
+    fun getAllJobs() : Call<Array<Trabalho>>
 
     @GET("/trabalhos/{id}")
     fun getJob(@Path("id") id:Int) : Call<Trabalho>

@@ -6,7 +6,7 @@
     android:background="@color/colorPrimary"
     tools:context=".TrabalhoCtd">
     <LinearLayout
-        android:onClick="detalheTrabalho"
+        android:id="@+id/ll_servico"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -17,13 +17,13 @@
         android:background="@drawable/alternative_button_bg"
         android:orientation="vertical">
             <TextView
+            android:id="@+id/tv_titulo_trabalho"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"
-            android:text="Diarista - Limpeza pesada"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             android:textSize="25sp"/>
@@ -40,11 +40,12 @@
                     android:layout_marginRight="10dp"
                     android:background="@drawable/ic_icon_profile"/>
                 <TextView
+                    android:id="@+id/tv_nome_propietaria"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="16sp"
                     android:textColor="@color/colorPrimary"
-                    android:text="Dulce Sousa"/>
+                    />
             </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,39 +60,208 @@
                 android:layout_marginRight="10dp"
                 android:background="@drawable/ic_icon_location"/>
             <TextView
+                android:id="@+id/tv_cep_trabalho"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textSize="16sp"
                 android:textColor="@color/colorPrimary"
-                android:text="A 5km"/>
+                />
         </LinearLayout>
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="15dp">
+            <TextView
+                android:id="@+id/tv_mensagem_candidatar"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimary"
+                android:text="Seja o primeiro a se candidatar!"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_candidatas"
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="15dp"
             android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_cddt_1"
+                    android:visibility="gone"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/ic_icon_active"/>
+                <TextView
+                    android:id="@+id/tv_cddt_2"
+                    android:visibility="gone"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/ic_icon_active"/>
+                <TextView
+                    android:id="@+id/tv_cddt_3"
+                    android:visibility="gone"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/ic_icon_active"/>
+                <TextView
+                    android:id="@+id/tv_cddt_4"
+                    android:visibility="gone"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/ic_icon_active"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_detalhe_servico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="25dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
             <TextView
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/ic_icon_active"/>
+                android:onClick="voltarPrincipal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/ic_icon_back"/>
             <TextView
-                android:layout_width="70dp"
+                android:id="@+id/tv_titulo_detalhe"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/ic_icon_active"/>
+                android:text="Limpeza Pesada"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_height="3dp"
+            android:background="@drawable/alternative_button_bg"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:orientation="horizontal">
             <TextView
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:backgroundTint="@color/white"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/ic_icon_disabled"/>
+                android:background="@drawable/ic_icon_location"/>
             <TextView
-                android:layout_width="70dp"
+                android:id="@+id/tv_enderco_detalhe"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/ic_icon_disabled"/>
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:text="5km - Jardins"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_height="3dp"
+            android:background="@drawable/alternative_button_bg"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="25dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="3dp"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/alternative_button_bg"/>
+                <TextView
+                    android:id="@+id/tv_detalhe_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:text="Apartamento"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="3dp"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/alternative_button_bg"/>
+                <TextView
+                    android:id="@+id/tv_detalhe_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:text="2 quartos"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="3dp"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/alternative_button_bg"/>
+                <TextView
+                    android:id="@+id/tv_detalhe_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:text="1 banheiro"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

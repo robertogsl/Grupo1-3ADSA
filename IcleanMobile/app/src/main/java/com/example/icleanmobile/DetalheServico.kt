@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 
 class DetalheServico : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +17,11 @@ class DetalheServico : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detalhe_servico, container, false)
+        val view = inflater.inflate(R.layout.fragment_detalhe_servico, container, false)
+        val trabalho = arguments?.getSerializable("detalheTrabalho") as Trabalho
+        view.findViewById<TextView>(R.id.tv_titulo_detalhe).text = trabalho.especificacao
+        view.findViewById<TextView>(R.id.tv_cep_detalhe).text = trabalho.cep
+        view.findViewById<TextView>(R.id.tv_descricao_detalhe).text = trabalho.proprietaria.nome
+        return view
     }
 }

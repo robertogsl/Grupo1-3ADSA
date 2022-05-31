@@ -4,24 +4,42 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.FragmentContainerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class TrabalhosContratada : AppCompatActivity() {
+class TrabalhosContratada : AppCompatActivity(), PaginaInicialTrabalhos.TrabalhoSelecionado {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_principal_ctd)
-        retornarTrabalhos()
     }
 
     lateinit var tvIconServices: TextView
     lateinit var tvIconInvites: TextView
     lateinit var tvIconReceived: TextView
+
+
+    fun addWorksFragment(v:View) {
+        val trasaction = supportFragmentManager.beginTransaction()
+        trasaction.replace(R.id.ll_tela_principal, PaginaInicialTrabalhos::class.java, null)
+        trasaction.commit()
+        val btnTrabalhos = findViewById<Button>(R.id.btn_buscar_trabalho)
+        btnTrabalhos.setVisibility(View.GONE)
+    }
+
+    override fun selecionarTrabalho(trabalho : Trabalho){
+        val args = Bundle()
+        args.putSerializable("detalheTrabalho", trabalho)
+        val trasaction = supportFragmentManager.beginTransaction()
+        trasaction.replace(R.id.ll_tela_principal, DetalheServico::class.java, args)
+        trasaction.commit()
+    }
 
     fun fragServicos(view: View) {
         findViewById<LinearLayout>(R.id.ll_fragmentos).removeAllViews()
@@ -109,26 +127,41 @@ class TrabalhosContratada : AppCompatActivity() {
         startActivity(telaPrincipal);
     }
 
-    fun retornarTrabalhos() {
+    fun retornarTrabalhos(v: View?) {
         val getTrabalhos = ApiIclean.criar().getAllJobs()
+        findViewById<LinearLayout>(R.id.ll_fragmentos).removeAllViews()
 
-        getTrabalhos.enqueue(object : Callback<List<Trabalho>> {
+        getTrabalhos.enqueue(object : Callback<Array<Trabalho>> {
             override fun onResponse(
-                call: Call<List<Trabalho>>,
-                response: Response<List<Trabalho>>
+                call: Call<Array<Trabalho>>,
+                response: Response<Array<Trabalho>>
             ) {
+                val transaction = supportFragmentManager.beginTransaction()
                 for (t : Trabalho in response.body()!!){
-                    Toast.makeText(baseContext, "Trabalho ${t.id} retornado com sucesso", Toast.LENGTH_SHORT).show()
+                    val argumentos = Bundle()
+                    val fragmento = FragmentContainerView(baseContext)
+
+                    fragmento.id = View.generateViewId()
+                    findViewById<LinearLayout>(R.id.ll_fragmentos).addView(fragmento)
+
+                    val detalheServico = t.especificacao.split(",").toTypedArray()
+                    argumentos.putInt("id", t.id)
+                    argumentos.putString("titulo", "${detalheServico[0]}")
+                    argumentos.putString("propietaria", "${t.proprietaria.nome}")
+                    argumentos.putString("cep", "${t.cep}")
+                    argumentos.putInt("candidatas", t.candidatas.size)
+                    transaction.add(fragmento.id, TrabalhoCtd::class.java, argumentos)
                 }
+                transaction.commit()
             }
 
-            override fun onFailure(call: Call<List<Trabalho>>, t: Throwable) {
+            override fun onFailure(call: Call<Array<Trabalho>>, t: Throwable) {
                 Toast.makeText(baseContext, "ERRO NA API", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
-    fun retornarUmTrabalho(id: Int) {
+    fun retornarUmTrabalho(v: View, id: Int) {
         val getTrabalho = ApiIclean.criar().getJob(id)
 
         getTrabalho.enqueue(object : Callback<Trabalho> {

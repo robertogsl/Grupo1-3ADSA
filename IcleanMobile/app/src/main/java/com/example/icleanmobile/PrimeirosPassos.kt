@@ -9,7 +9,6 @@ import android.widget.Toast
 class PrimeirosPassos : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_primeiros_passos)
     }
 
     override fun onBackPressed() {

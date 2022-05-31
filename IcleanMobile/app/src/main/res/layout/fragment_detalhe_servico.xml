@@ -25,6 +25,7 @@
                 android:layout_marginRight="25dp"
                 android:background="@drawable/ic_icon_back"/>
             <TextView
+                android:id="@+id/tv_titulo_detalhe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Limpeza Pesada"
@@ -57,6 +58,7 @@
                 android:layout_marginRight="10dp"
                 android:background="@drawable/ic_icon_location"/>
             <TextView
+                android:id="@+id/tv_cep_detalhe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
@@ -90,6 +92,7 @@
                     android:layout_marginRight="10dp"
                     android:background="@drawable/alternative_button_bg"/>
                 <TextView
+                    android:id="@+id/tv_descricao_detalhe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
