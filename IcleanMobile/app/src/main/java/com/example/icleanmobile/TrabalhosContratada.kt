@@ -145,11 +145,11 @@ class TrabalhosContratada : AppCompatActivity(), PaginaInicialTrabalhos.Trabalho
                     findViewById<LinearLayout>(R.id.ll_fragmentos).addView(fragmento)
 
                     val detalheServico = t.especificacao.split(",").toTypedArray()
-                    argumentos.putInt("id", t.id)
+                    argumentos.putInt("id", t.id!!)
                     argumentos.putString("titulo", "${detalheServico[0]}")
-                    argumentos.putString("propietaria", "${t.proprietaria.nome}")
+                    argumentos.putString("propietaria", "${t.proprietaria!!.nome}")
                     argumentos.putString("cep", "${t.cep}")
-                    argumentos.putInt("candidatas", t.candidatas.size)
+                    argumentos.putInt("candidatas", t.candidatas!!.size)
                     transaction.add(fragmento.id, TrabalhoCtd::class.java, argumentos)
                 }
                 transaction.commit()

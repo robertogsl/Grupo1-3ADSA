@@ -1,12 +1,9 @@
 package com.example.icleanmobile
 
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.content.DialogInterface
-import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import retrofit2.Callback
@@ -98,7 +95,8 @@ class MainActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<Contratante>, response: Response<Contratante>) {
                     if (response.isSuccessful) {
                         val contratante = response.body()
-                        Toast.makeText(baseContext, "Login realizado como Contratante com sucesso! ${contratante}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(baseContext, "Login realizado como Contratante com sucesso! ${contratante!!.id}", Toast.LENGTH_SHORT).show()
+                        mudarTelaContratante(contratante!!.id)
                     } else {
                         Toast.makeText(baseContext, "Erro: ${response.errorBody()}", Toast.LENGTH_SHORT).show()
                     }
@@ -129,5 +127,11 @@ class MainActivity : AppCompatActivity() {
         checkBoxContratante = findViewById<CheckBox>(R.id.cb_contratante)
 
         checkBoxContratada.isChecked = false
+    }
+
+    fun mudarTelaContratante(id: Int?) {
+        val telaContratante = Intent(this, ContratanteNewService::class.java)
+        telaContratante.putExtra("idProprietaria", id)
+        startActivity(telaContratante)
     }
 }

@@ -33,6 +33,9 @@ interface ApiIclean {
     @PUT("/trabalhos/{idTrabalho}/candidata/{id}")
     fun putCandidatar(@Path("idTrabalho") idTrabalho: Int, @Path("id") id: Int) : Call<Void>
 
+    @POST("/trabalhos")
+    fun criarJob(@Body novoTrabalho: Trabalho) : Call<Void>
+
     companion object {
         //var BASE_URL = "http://18.210.127.86:8080/"
         var BASE_URL = "http://10.0.2.2:8080/"

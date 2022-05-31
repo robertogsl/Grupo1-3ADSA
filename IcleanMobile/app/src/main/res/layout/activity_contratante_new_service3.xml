@@ -59,7 +59,8 @@
                         >
                         <CheckBox
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cb_1"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -77,7 +78,8 @@
                         >
                         <CheckBox
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cb_2" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -95,7 +97,8 @@
                         >
                         <CheckBox
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cb_3"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -113,7 +116,8 @@
                         >
                         <CheckBox
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cb_4"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -131,7 +135,8 @@
                         >
                         <CheckBox
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cb_5"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -149,7 +154,8 @@
                         >
                         <CheckBox
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cb_6"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -168,6 +174,7 @@
                 android:padding="16dp"
                 android:text="Próximo"
                 android:width="300dp"
+                android:onClick="proximoPasso"
                 android:drawableRight="@drawable/ic_baseline_navigate_next_24"
                 android:drawableTint="@color/white"
                 android:layout_marginBottom="20sp"

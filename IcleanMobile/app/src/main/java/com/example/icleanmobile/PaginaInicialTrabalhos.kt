@@ -112,7 +112,7 @@ class PaginaInicialTrabalhos : Fragment() {
         RecyclerView.ViewHolder(itemView) {
         fun bind(trabalho: Trabalho) {
             itemView.findViewById<AppCompatTextView>(R.id.tv_titulo_trabalho).text = trabalho.especificacao
-            itemView.findViewById<AppCompatTextView>(R.id.tv_nome_propietaria).text = trabalho.proprietaria.nome
+            itemView.findViewById<AppCompatTextView>(R.id.tv_nome_propietaria).text = trabalho.proprietaria!!.nome
             itemView.findViewById<AppCompatTextView>(R.id.tv_cep_trabalho).text = trabalho.cep
         }
     }

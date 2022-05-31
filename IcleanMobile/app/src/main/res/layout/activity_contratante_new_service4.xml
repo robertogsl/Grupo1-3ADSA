@@ -34,20 +34,13 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Qual a localização?"
-                    android:textSize="32sp"
-                    android:layout_marginBottom="20dp"
-                    android:textColor="@color/colorPrimary"
-                    />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/mapa"
-                    />
+                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/fragmentMap"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="350dp"
+                    android:layout_height="450dp"
+                    tools:context=".ContratanteNewService4" />
 
             </LinearLayout>
 
@@ -60,6 +53,7 @@
                 android:drawableRight="@drawable/ic_baseline_navigate_next_24"
                 android:drawableTint="@color/white"
                 android:layout_marginBottom="20sp"
+                android:onClick="proximoPasso"
                 android:textSize="24sp"/>
         </LinearLayout>
 

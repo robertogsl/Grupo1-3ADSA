@@ -39,15 +39,19 @@
                     android:width="300dp"
                     android:height="70dp"
                     android:text="Limpeza padrão"
+                    android:onClick="limpezaPadrao"
                     android:textSize="20sp"
                     android:layout_marginBottom="10sp"
                     android:drawableLeft="@drawable/limpezapadrao"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/colorPrimary"
                     android:layout_height="wrap_content"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:width="300dp"
                     android:layout_marginBottom="10sp"
                     android:text="Limpeza pesada"
+                    android:onClick="limpezaPesada"
                     android:textSize="20sp"
                     android:backgroundTint="@color/white"
                     android:textColor="@color/colorPrimary"
@@ -58,6 +62,7 @@
                     android:layout_width="wrap_content"
                     android:width="300dp"
                     android:text="Passar roupa"
+                    android:onClick="passarRoupa"
                     android:textSize="20sp"
                     android:height="70dp"
                     android:backgroundTint="@color/white"
@@ -68,16 +73,6 @@
 
             </LinearLayout>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Próximo"
-                android:width="300dp"
-                android:drawableRight="@drawable/ic_baseline_navigate_next_24"
-                android:drawableTint="@color/white"
-                android:layout_marginBottom="20sp"
-                android:textSize="24sp"/>
         </LinearLayout>
 
         <LinearLayout

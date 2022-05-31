@@ -21,7 +21,7 @@ class DetalheServico : Fragment() {
         val trabalho = arguments?.getSerializable("detalheTrabalho") as Trabalho
         view.findViewById<TextView>(R.id.tv_titulo_detalhe).text = trabalho.especificacao
         view.findViewById<TextView>(R.id.tv_cep_detalhe).text = trabalho.cep
-        view.findViewById<TextView>(R.id.tv_descricao_detalhe).text = trabalho.proprietaria.nome
+        view.findViewById<TextView>(R.id.tv_descricao_detalhe).text = trabalho.proprietaria!!.nome
         return view
     }
 }
