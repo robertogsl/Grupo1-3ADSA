@@ -89,12 +89,12 @@ const AuthProvider: React.FC = ({ children }) => {
           email, senha
         }
 
-        const response = await api.post<Contratada[] | Proprietaria[]>(url, data);
+        const response = await api.post<Contratada | Proprietaria>(url, data);
 
         const user = response.data;
 
-        localStorage.setItem("@iclean:user", JSON.stringify(user[0]));
-        setUser(user[0]);
+        localStorage.setItem("@iclean:user", JSON.stringify(user));
+        setUser(user);
 
         history.push("/dashboard")
       } catch (err) {

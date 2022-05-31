@@ -30,18 +30,59 @@
         <entry key="..\:/Users/guilh/Desktop/Grupo 1/Grupo1-3ADSA/IcleanMobile/app/src/main/res/layout/activity_pp_contratada.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/guilh/Desktop/Grupo 1/Grupo1-3ADSA/IcleanMobile/app/src/main/res/layout/activity_pp_contratante.xml" value="0.22" />
         <entry key="..\:/Users/guilh/Desktop/Grupo 1/Grupo1-3ADSA/IcleanMobile/app/src/main/res/layout/activity_primeiros_passos.xml" value="0.22" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/alternative_button_bg.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/border_navigator.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_baseline_navigate_next_24.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_group_45.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_group_45__1_.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_icon_active.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_icon_back.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_icon_disabled.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_icon_invite.xml" value="0.177" />
+        <entry key="app/src/main/res/drawable/ic_icon_iron.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_icon_location.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_icon_logo.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_icon_menu.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_icon_profile.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_icon_rectangle.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_icon_services_b.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_img_profile_invite.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_img_search.xml" value="0.3385" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3385" />
         <entry key="app/src/main/res/drawable/login_button_bg.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/login_edittext_bg.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/activity_cadastro.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_cadastro_email.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_cadastro_mapa.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_contratante_list.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/activity_contratante_list2.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/activity_contratante_list3.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/activity_contratante_list4.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/activity_contratante_list5.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/activity_contratante_new_service.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/activity_contratante_new_service2.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/activity_contratante_new_service3.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/activity_contratante_new_service4.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/activity_contratante_new_service5.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/activity_contratante_profile.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_contratante_search.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/activity_contratante_search2.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/activity_contratante_search3.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/activity_contratante_search4.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/activity_convites_contratada.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.27014218009478674" />
+        <entry key="app/src/main/res/layout/activity_main_contratada.xml" value="0.3703125" />
         <entry key="app/src/main/res/layout/activity_pp_contratada.xml" value="0.1381340579710145" />
         <entry key="app/src/main/res/layout/activity_pp_contratante.xml" value="0.1381340579710145" />
         <entry key="app/src/main/res/layout/activity_primeiros_passos.xml" value="0.16" />
-        <entry key="app/src/main/res/layout/activity_tela_principal_ctd.xml" value="0.3663949275362319" />
+        <entry key="app/src/main/res/layout/activity_tela_principal_ctd.xml" value="0.3703125" />
         <entry key="app/src/main/res/layout/activity_tipo_cadastro.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_candidatura_ctd.xml" value="0.13903985507246377" />
+        <entry key="app/src/main/res/layout/fragment_convite_ctd.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/fragment_detalhe_servico.xml" value="0.13903985507246377" />
         <entry key="app/src/main/res/layout/fragment_mapa_cadastro.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_trabalho_ctd.xml" value="0.3703125" />
         <entry key="app/src/main/res/layout/tela1.xml" value="0.10869565217391304" />
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.1" />
       </map>
