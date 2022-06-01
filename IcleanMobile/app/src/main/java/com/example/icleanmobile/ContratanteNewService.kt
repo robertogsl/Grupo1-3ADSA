@@ -34,4 +34,22 @@ class ContratanteNewService : AppCompatActivity() {
         proximoPasso.putExtra("idProprietaria", idProprietaria)
         startActivity(proximoPasso)
     }
+
+    fun telaPerfil(v : View) {
+        val telaPerfil = Intent(this, ContratanteProfile::class.java)
+        telaPerfil.putExtra("idProprietaria", idProprietaria)
+        startActivity(telaPerfil)
+    }
+
+    fun telaServicos(v: View) {
+        val telaServicos = Intent(this, ContratanteList::class.java)
+        telaServicos.putExtra("idProprietaria", idProprietaria)
+        startActivity(telaServicos)
+    }
+
+    fun telaAddJob(v : View) {
+        val telaServicos = Intent(this, ContratanteNewService::class.java)
+        telaServicos.putExtra("idProprietaria", idProprietaria)
+        startActivity(telaServicos)
+    }
 }

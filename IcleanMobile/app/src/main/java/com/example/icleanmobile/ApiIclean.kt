@@ -27,6 +27,9 @@ interface ApiIclean {
     @GET("/trabalhos")
     fun getAllJobs() : Call<Array<Trabalho>>
 
+    @GET("/trabalhos/propeitaria/{id}")
+    fun getAllJobsProprietaria(@Path("id") id : Int) : Call<Array<Trabalho>>
+
     @GET("/trabalhos/{id}")
     fun getJob(@Path("id") id:Int) : Call<Trabalho>
 
@@ -37,7 +40,7 @@ interface ApiIclean {
     fun criarJob(@Body novoTrabalho: Trabalho) : Call<Void>
 
     companion object {
-        //var BASE_URL = "http://18.210.127.86:8080/"
+        //var BASE_URL = "http://backend-iclean.hopto.org/"
         var BASE_URL = "http://10.0.2.2:8080/"
         // Para testar via cabo USB numa API local: "http://10.0.2.2:8080/"
 

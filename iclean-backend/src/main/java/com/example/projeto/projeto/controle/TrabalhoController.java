@@ -116,6 +116,18 @@ public class TrabalhoController {
     }
 
     @CrossOrigin
+    @GetMapping(value = "/proprietaria/{id}")
+    public ResponseEntity<?> getJobsProprietarias(@PathVariable Integer id) {
+        List<Trabalho> trabalhos = repository.findByProprietariaId(id);
+
+        if (trabalhos.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        }
+
+        return ResponseEntity.status(200).body(trabalhos);
+    }
+
+    @CrossOrigin
     @PutMapping("/{idTrabalho}/candidata/{id}")
     public ResponseEntity candidatarEmpregado(@PathVariable Integer idTrabalho, @PathVariable Integer id) {
 

@@ -54,6 +54,7 @@
                     android:drawableLeft="@drawable/limpezapesada"
                     android:drawableRight="@drawable/ic_baseline_navigate_next_24"
                     android:backgroundTint="@color/white"
+                    android:id="@+id/btn_1"
                     />
 
                 <Button
@@ -66,6 +67,7 @@
                     android:drawableLeft="@drawable/ic_icon_iron"
                     android:drawableRight="@drawable/ic_baseline_navigate_next_24"
                     android:backgroundTint="@color/white"
+                    android:id="@+id/btn_2"
                     />
 
                 <Button
@@ -78,6 +80,7 @@
                     android:drawableLeft="@drawable/limpezapesada"
                     android:drawableRight="@drawable/ic_baseline_navigate_next_24"
                     android:backgroundTint="@color/white"
+                    android:id="@+id/btn_3"
                     />
             </LinearLayout>
 
@@ -95,13 +98,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/plus"
-                android:layout_marginRight="50dp"/>
+                android:layout_marginRight="50dp"
+                android:onClick="telaAddJob"/>
             <TextView
                 android:id="@+id/tv_iconAlign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/align"
-                android:layout_marginRight="50dp"/>
+                android:layout_marginRight="50dp"
+                android:onClick="telaServicos"/>
             <TextView
                 android:id="@+id/tv_iconSearch"
                 android:layout_width="wrap_content"
@@ -113,7 +118,8 @@
                 android:id="@+id/tv_iconUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/user"/>
+                android:background="@drawable/user"
+                android:onClick="telaPerfil"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

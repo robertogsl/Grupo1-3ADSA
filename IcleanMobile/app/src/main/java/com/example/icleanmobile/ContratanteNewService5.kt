@@ -1,5 +1,6 @@
 package com.example.icleanmobile
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -79,11 +80,18 @@ class ContratanteNewService5 : AppCompatActivity() {
         postJob.enqueue(object : Callback<Void>{
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 Toast.makeText(baseContext, "Trabalho criado com sucesso!", Toast.LENGTH_SHORT).show()
+                mudarTelaInicial()
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 TODO("Not yet implemented")
             }
         })
+    }
+
+    fun mudarTelaInicial() {
+        val telaPerfil = Intent(this, ContratanteNewService::class.java)
+        telaPerfil.putExtra("idProprietaria", idProprietaria)
+        startActivity(telaPerfil)
     }
 }

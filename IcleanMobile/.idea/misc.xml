@@ -50,10 +50,13 @@
         <entry key="app/src/main/res/layout/activity_pp_contratada.xml" value="0.1381340579710145" />
         <entry key="app/src/main/res/layout/activity_pp_contratante.xml" value="0.1381340579710145" />
         <entry key="app/src/main/res/layout/activity_primeiros_passos.xml" value="0.16" />
-        <entry key="app/src/main/res/layout/activity_tela_principal_ctd.xml" value="0.3663949275362319" />
+        <entry key="app/src/main/res/layout/activity_tela_principal_ctd.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_tipo_cadastro.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_candidatura_ctd.xml" value="0.15172101449275363" />
         <entry key="app/src/main/res/layout/fragment_convite_ctd.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_detalhe_servico.xml" value="0.15172101449275363" />
         <entry key="app/src/main/res/layout/fragment_mapa_cadastro.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_pagina_inicial_trabalhos.xml" value="0.15172101449275363" />
         <entry key="app/src/main/res/layout/fragment_trabalho_ctd.xml" value="0.25" />
         <entry key="app/src/main/res/layout/tela1.xml" value="0.10869565217391304" />
         <entry key="app/src/main/res/layout/trabalho_item.xml" value="0.13949275362318841" />
