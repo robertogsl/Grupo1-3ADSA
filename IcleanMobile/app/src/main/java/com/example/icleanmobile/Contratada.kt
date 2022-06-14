@@ -10,7 +10,7 @@ data class Contratada(
     val dataNascimento: String,
     val email: String,
     val senha: String,
-    val autentiacado: Boolean?,
+    val autenticado: Boolean?,
     val cep: String?,
     val complemento: String?,
     val numero: String?,

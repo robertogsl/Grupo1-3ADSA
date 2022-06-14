@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,7 +20,7 @@ class ContratanteList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contratante_list)
-        idProprietaria = intent.getIntExtra("idProprietaria", 0)
+        idProprietaria = intent.getIntExtra("idProprietaria", 4)
         getTrabalhosProprietaria(idProprietaria)
 
         btn1 = findViewById(R.id.btn_1)
@@ -46,18 +47,20 @@ class ContratanteList : AppCompatActivity() {
     }
 
     fun getTrabalhosProprietaria(id : Int){
-        val getJobProprietaria = ApiIclean.criar().getAllJobsProprietaria(id)
+        val getJobProprietaria = ApiIclean.criar().getAllJobsProprietaria(4)
 
         getJobProprietaria.enqueue(object : Callback<Array<Trabalho>>{
             override fun onResponse(
                 call: Call<Array<Trabalho>>,
                 response: Response<Array<Trabalho>>
             ) {
-                btn1.setText("${response.body()}")
+//                var resposta = response.body()?.get(0)?.especificacao?.split(",")?.toTypedArray()
+                var resposta = response.body()?.get(0)?.especificacao.toString().split(",").toTypedArray()
+                btn1.setText("${resposta?.get(0)}")
             }
 
             override fun onFailure(call: Call<Array<Trabalho>>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(baseContext, "Falhou", Toast.LENGTH_SHORT).show()
             }
         })
     }

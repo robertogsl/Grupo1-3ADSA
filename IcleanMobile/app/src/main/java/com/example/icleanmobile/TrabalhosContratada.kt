@@ -147,7 +147,7 @@ class TrabalhosContratada : AppCompatActivity(), PaginaInicialTrabalhos.Trabalho
                     val detalheServico = t.especificacao.split(",").toTypedArray()
                     argumentos.putInt("id", t.id!!)
                     argumentos.putString("titulo", "${detalheServico[0]}")
-                    argumentos.putString("propietaria", "${t.proprietaria!!.nome}")
+                    // argumentos.putString("propietaria", "${t.proprietaria!!.nome}")
                     argumentos.putString("cep", "${t.cep}")
                     argumentos.putInt("candidatas", t.candidatas!!.size)
                     transaction.add(fragmento.id, TrabalhoCtd::class.java, argumentos)

@@ -45,21 +45,12 @@
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/white"
                 android:textSize="30sp"
+                android:id="@+id/tv_nome"
                 />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/stars"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:padding="10dp"
-                android:textColor="@color/white"
-                android:text="A procura de novos desafios, sempre em busca de realizar o melhor trabalho por onde eu passo,
-levando alegria e leveza por onde trabalho."
                 />
 
             <LinearLayout
@@ -130,7 +121,8 @@ levando alegria e leveza por onde trabalho."
                 android:drawableRight="@drawable/ic_baseline_navigate_next_24"
                 android:drawableTint="@color/colorPrimary"
                 android:layout_marginTop="20sp"
-                android:textSize="24sp"/>
+                android:textSize="24sp"
+                android:onClick="proximaTela"/>
         </LinearLayout>
 
         <LinearLayout

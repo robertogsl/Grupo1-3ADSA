@@ -64,7 +64,7 @@ class ContratanteNewService5 : AppCompatActivity() {
     fun fazerRequest(descricao: String, proprietaria: Proprietaria?) {
         var novoTrabalho = Trabalho(
             null,
-            proprietaria,
+            proprietaria?.id,
             null,
             null,
             descricao,

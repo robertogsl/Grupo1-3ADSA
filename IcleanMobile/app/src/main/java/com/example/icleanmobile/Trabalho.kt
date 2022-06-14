@@ -1,9 +1,9 @@
 package com.example.icleanmobile
 import java.io.Serializable
 
-data class Trabalho (
+data class Trabalho(
     val id: Int?,
-    val proprietaria: Proprietaria?,
+    val proprietaria: Int?,
     val candidatas: List<Contratada>?,
     val preco: Double?,
     val especificacao: String,

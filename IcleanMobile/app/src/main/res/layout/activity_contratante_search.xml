@@ -29,19 +29,14 @@
                 android:padding="20sp"
                 />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/mapacompleto"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/usuario1"
-                    android:maxWidth="80dp"
-                    android:maxHeight="80dp"
-                    />
-            </LinearLayout>
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/fragmentMap"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="410dp"
+                android:layout_height="500dp"
+                tools:context=".ContratanteSearch" />
+
         </LinearLayout>
 
         <LinearLayout

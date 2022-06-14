@@ -66,7 +66,7 @@ public class GravaTxt {
             corpo += String.format("%3.6f", lista.getLongitude());
             corpo += String.format("%-5.2f", lista.getPreco());
             corpo += String.format("%30s", lista.getEspecificacao());
-            corpo += String.format("%6s", lista.getProprietaria().getEmail());
+            // corpo += String.format("%6s", lista.getProprietaria().getEmail());
             gravaRegistro(nomeArq,corpo, true);
             contaRegistro++;
 

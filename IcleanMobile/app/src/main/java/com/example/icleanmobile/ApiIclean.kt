@@ -9,6 +9,9 @@ interface ApiIclean {
     @GET("contratadas")
     fun get() : Call<List<Contratada>>
 
+    @GET("contratadas/{id}")
+    fun getContratada(@Path("id") id: Int) : Call<Contratada>
+
     @GET("proprietarias/{id}")
     fun getProprietaria(@Path("id") id: Int) : Call<Proprietaria>
 
@@ -21,22 +24,22 @@ interface ApiIclean {
     @POST("contratadas")
     fun post(@Body novaContratada: Contratada) : Call<Void>
 
-    @POST("proprieatarias")
+    @POST("proprietarias")
     fun postContratante(@Body novaContratante: Contratante) : Call<Void>
 
-    @GET("/trabalhos")
+    @GET("trabalhos")
     fun getAllJobs() : Call<Array<Trabalho>>
 
-    @GET("/trabalhos/propeitaria/{id}")
+    @GET("trabalhos/proprietaria/{id}")
     fun getAllJobsProprietaria(@Path("id") id : Int) : Call<Array<Trabalho>>
 
-    @GET("/trabalhos/{id}")
+    @GET("trabalhos/{id}")
     fun getJob(@Path("id") id:Int) : Call<Trabalho>
 
-    @PUT("/trabalhos/{idTrabalho}/candidata/{id}")
+    @PUT("trabalhos/{idTrabalho}/candidata/{id}")
     fun putCandidatar(@Path("idTrabalho") idTrabalho: Int, @Path("id") id: Int) : Call<Void>
 
-    @POST("/trabalhos")
+    @POST("trabalhos")
     fun criarJob(@Body novoTrabalho: Trabalho) : Call<Void>
 
     companion object {

@@ -78,42 +78,42 @@ public class TrabalhoController {
 
     }
 
-    @CrossOrigin
-    @GetMapping(value = "/import/proprietaria/{id}", produces = "text/plain")
-    public ResponseEntity<?> getJobContratada(@PathVariable Integer id) throws IOException {
-        List<Trabalho> trabalhos = repository.findByProprietariaId(id);
-
-        if (trabalhos.isEmpty()) {
-            return ResponseEntity.status(204).build();
-        }
-
-        Integer contador = 0;
-        for (Trabalho t : trabalhos) {
-            if (contador == 0) {
-                GravaTxt.gravaArquivoTxtTrabalhoContratada(t, t.getProprietaria().getNome(), false);
-                contador++;
-            }
-            else {
-                GravaTxt.gravaArquivoTxtTrabalhoContratada(t, t.getProprietaria().getNome(), true);
-            }
-        }
-
-        var filename = String.format(trabalhos.get(0).getProprietaria().getNome()+".txt");
-
-        try {
-            var file = new File(filename);
-            var path = Paths.get(file.getAbsolutePath());
-            var resource = new ByteArrayResource(Files.readAllBytes(path));
-            return ResponseEntity
-                    .ok()
-                    .contentType(MediaType.parseMediaType("text/plain"))
-                    .contentLength(file.length())
-                    .body(resource);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    @CrossOrigin
+//    @GetMapping(value = "/import/proprietaria/{id}", produces = "text/plain")
+//    public ResponseEntity<?> getJobContratada(@PathVariable Integer id) throws IOException {
+//        List<Trabalho> trabalhos = repository.findByProprietariaId(id);
+//
+//        if (trabalhos.isEmpty()) {
+//            return ResponseEntity.status(204).build();
+//        }
+//
+//        Integer contador = 0;
+//        for (Trabalho t : trabalhos) {
+//            if (contador == 0) {
+//                GravaTxt.gravaArquivoTxtTrabalhoContratada(t, t.getProprietaria().getNome(), false);
+//                contador++;
+//            }
+//            else {
+//                GravaTxt.gravaArquivoTxtTrabalhoContratada(t, t.getProprietaria().getNome(), true);
+//            }
+//        }
+//
+//        var filename = String.format(trabalhos.get(0).getProprietaria().getNome()+".txt");
+//
+//        try {
+//            var file = new File(filename);
+//            var path = Paths.get(file.getAbsolutePath());
+//            var resource = new ByteArrayResource(Files.readAllBytes(path));
+//            return ResponseEntity
+//                    .ok()
+//                    .contentType(MediaType.parseMediaType("text/plain"))
+//                    .contentLength(file.length())
+//                    .body(resource);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
     @CrossOrigin
     @GetMapping(value = "/proprietaria/{id}")

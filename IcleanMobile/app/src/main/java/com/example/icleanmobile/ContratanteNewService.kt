@@ -52,4 +52,10 @@ class ContratanteNewService : AppCompatActivity() {
         telaServicos.putExtra("idProprietaria", idProprietaria)
         startActivity(telaServicos)
     }
+
+    fun telaMapa(v : View) {
+        val telaMapa = Intent(this, ContratanteSearch::class.java)
+        telaMapa.putExtra("idProprietaria", idProprietaria)
+        startActivity(telaMapa)
+    }
 }

@@ -9,16 +9,12 @@ import android.content.Context
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.ClassCastException
-import com.example.icleanmobile.ApiIclean
-import com.example.icleanmobile.Trabalho
-import com.example.icleanmobile.R
 
 class PaginaInicialTrabalhos : Fragment() {
     private lateinit var listener : TrabalhoSelecionado
@@ -112,7 +108,7 @@ class PaginaInicialTrabalhos : Fragment() {
         RecyclerView.ViewHolder(itemView) {
         fun bind(trabalho: Trabalho) {
             itemView.findViewById<AppCompatTextView>(R.id.tv_titulo_trabalho).text = trabalho.especificacao
-            itemView.findViewById<AppCompatTextView>(R.id.tv_nome_propietaria).text = trabalho.proprietaria!!.nome
+            // itemView.findViewById<AppCompatTextView>(R.id.tv_nome_propietaria).text = trabalho.proprietaria!!.nome
             itemView.findViewById<AppCompatTextView>(R.id.tv_cep_trabalho).text = trabalho.cep
         }
     }
