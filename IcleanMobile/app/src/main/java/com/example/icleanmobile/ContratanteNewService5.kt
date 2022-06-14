@@ -27,14 +27,14 @@ class ContratanteNewService5 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contratante_new_service5)
 
-        idProprietaria = intent.getIntExtra("idProprieta", 0)
+        idProprietaria = intent.getIntExtra("idProprietaria", 0)
         tipoLimpeza = intent.getStringExtra("tipoLimpeza").toString()
         tipoLar = intent.getStringExtra("tipoLar").toString()
         comodos = intent.getStringExtra("comodos").toString()
         opcionais = intent.getStringExtra("opcionais").toString()
         longitude = intent.getDoubleExtra("longitude", 0.0)
         latitude = intent.getDoubleExtra("latitude", 0.0)
-
+        Toast.makeText(baseContext, "$idProprietaria", Toast.LENGTH_SHORT).show()
         cep = findViewById(R.id.et_cep)
         numero = findViewById(R.id.et_numero)
         complemento = findViewById(R.id.et_complemento)
@@ -53,6 +53,7 @@ class ContratanteNewService5 : AppCompatActivity() {
             override fun onResponse(call: Call<Proprietaria>, response: Response<Proprietaria>) {
                 var proprietaria = response.body()
                 fazerRequest(descricao, proprietaria)
+                // Toast.makeText(baseContext, "${proprietaria}", Toast.LENGTH_SHORT).show()
             }
 
             override fun onFailure(call: Call<Proprietaria>, t: Throwable) {
@@ -64,7 +65,7 @@ class ContratanteNewService5 : AppCompatActivity() {
     fun fazerRequest(descricao: String, proprietaria: Proprietaria?) {
         var novoTrabalho = Trabalho(
             null,
-            proprietaria?.id,
+            proprietaria!!,
             null,
             null,
             descricao,

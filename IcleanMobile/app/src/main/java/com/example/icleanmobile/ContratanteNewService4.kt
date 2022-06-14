@@ -30,7 +30,7 @@ class ContratanteNewService4 : AppCompatActivity(), OnMapReadyCallback, GoogleMa
         setContentView(R.layout.activity_contratante_new_service4)
         createMapFragment()
 
-        idProprietaria = intent.getIntExtra("idProprieta", 0)
+        idProprietaria = intent.getIntExtra("idProprietaria", 0)
         tipoLimpeza = intent.getStringExtra("tipoLimpeza").toString()
         tipoLar = intent.getStringExtra("tipoLar").toString()
         comodos = intent.getStringExtra("comodos").toString()

@@ -14,6 +14,7 @@ class ContratanteSearch3 : AppCompatActivity() {
 
     fun selectJob(v : View) {
         val proximaTela = Intent(this, ContratanteSearch4::class.java)
-        proximaTela.putExtra("idTrabalho", 1)
+        proximaTela.putExtra("idTrabalho", 30)
+        startActivity(proximaTela)
     }
 }
