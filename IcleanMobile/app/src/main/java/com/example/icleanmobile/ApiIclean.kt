@@ -39,6 +39,9 @@ interface ApiIclean {
     @PUT("trabalhos/{idTrabalho}/candidata/{id}")
     fun putCandidatar(@Path("idTrabalho") idTrabalho: Int, @Path("id") id: Int) : Call<Void>
 
+    @PUT("/{idTrabalho}/candidata/{id}/empregar")
+    fun putEmpregar(@Path("idTrabalho") idTrabalho: Int, @Path("id") id: Int) : Call<Void>
+
     @POST("trabalhos")
     fun criarJob(@Body novoTrabalho: Trabalho) : Call<Void>
 

@@ -34,6 +34,9 @@ public class Trabalho {
     
     private Double latitude;
 
+    @OneToOne
+    private Contratada empregada;
+
     public Integer getId() {
         return id;
     }
@@ -116,5 +119,17 @@ public class Trabalho {
 
     public void removerCandidatas() {
         this.candidatas.clear();
+    }
+
+    public Contratada getEmpregada() {
+        return empregada;
+    }
+
+    public void setEmpregada(Contratada empregada) {
+        this.empregada.equals(empregada);
+    }
+
+    public void setCandidatasNull() {
+        this.candidatas = null;
     }
 }

@@ -190,4 +190,29 @@ public class TrabalhoController {
 
     }
 
+    @CrossOrigin
+    @PutMapping("/{idTrabalho}/candidata/{id}/empregar")
+    public ResponseEntity empregarCandidata(@PathVariable Integer idTrabalho, @PathVariable Integer id) {
+
+        logger.info("\n" +
+                "successfully created a new assessment");
+
+        Optional<Trabalho> trabalhoOptional = repository.findById(idTrabalho);
+
+        Contratada contratada = repositoryContratada.getById(id);
+
+        if (trabalhoOptional.isEmpty()){
+
+            return ResponseEntity.status(404).build();
+
+        }
+
+        Trabalho trabalho = trabalhoOptional.get();
+
+        trabalho.setCandidatasNull();
+        trabalho.setEmpregada(contratada);
+
+        return ResponseEntity.status(200).build();
+    }
+
 }

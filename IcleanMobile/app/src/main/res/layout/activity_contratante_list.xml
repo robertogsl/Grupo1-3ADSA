@@ -54,6 +54,7 @@
                     android:drawableRight="@drawable/ic_baseline_navigate_next_24"
                     android:backgroundTint="@color/white"
                     android:id="@+id/btn_1"
+                    android:onClick="mudarTela"
                     />
 
                 <Button

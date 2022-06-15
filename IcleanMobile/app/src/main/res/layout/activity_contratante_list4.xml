@@ -41,25 +41,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dulce dos Santos"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/white"
                 android:textSize="30sp"
+                android:id="@+id/tv_nome"
                 />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/stars"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:padding="10dp"
-                android:textColor="@color/white"
-                android:text="A procura de novos desafios, sempre em busca de realizar o melhor trabalho por onde eu passo,
-levando alegria e leveza por onde trabalho."
                 />
 
             <LinearLayout
@@ -128,7 +118,8 @@ levando alegria e leveza por onde trabalho."
                 android:textColor="@color/colorPrimary"
                 android:backgroundTint="@color/white"
                 android:layout_marginTop="20sp"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:onClick="empregarCandidata"/>
         </LinearLayout>
 
         <LinearLayout

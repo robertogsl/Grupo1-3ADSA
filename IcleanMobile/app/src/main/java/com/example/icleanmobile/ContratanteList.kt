@@ -16,6 +16,7 @@ class ContratanteList : AppCompatActivity() {
     lateinit var btn1 :Button
     lateinit var btn2 :Button
     lateinit var btn3 :Button
+    var idJob by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,11 +64,19 @@ class ContratanteList : AppCompatActivity() {
 //                var resposta = response.body()?.get(0)?.especificacao?.split(",")?.toTypedArray()
                 var resposta = response.body()?.get(0)?.especificacao.toString().split(",").toTypedArray()
                 btn1.setText("${resposta?.get(0)}")
+                idJob = response.body()?.get(0)?.id!!
             }
 
             override fun onFailure(call: Call<Array<Trabalho>>, t: Throwable) {
                 Toast.makeText(baseContext, "Falhou", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    fun mudarTela(v : View) {
+        val next = Intent(this, ContratanteList2::class.java)
+        next.putExtra("idProprietaria", idProprietaria)
+        next.putExtra("idJob", idJob)
+        startActivity(next)
     }
 }

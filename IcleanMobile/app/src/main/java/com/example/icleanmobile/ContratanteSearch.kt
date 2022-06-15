@@ -164,7 +164,6 @@ class ContratanteSearch : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
             ) {
                 for (c: Contratada in response.body()!!){
                     createMarkerTwo(c.latitude, c.longitude, c.nome, c.id)
-                    Toast.makeText(baseContext, "$c", Toast.LENGTH_SHORT).show()
                 }
             }
 
