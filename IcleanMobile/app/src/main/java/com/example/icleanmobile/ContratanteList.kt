@@ -46,6 +46,12 @@ class ContratanteList : AppCompatActivity() {
         startActivity(telaServicos)
     }
 
+    fun telaMapa(v : View) {
+        val telaMapa = Intent(this, ContratanteSearch::class.java)
+        telaMapa.putExtra("idProprietaria", idProprietaria)
+        startActivity(telaMapa)
+    }
+
     fun getTrabalhosProprietaria(id : Int){
         val getJobProprietaria = ApiIclean.criar().getAllJobsProprietaria(4)
 

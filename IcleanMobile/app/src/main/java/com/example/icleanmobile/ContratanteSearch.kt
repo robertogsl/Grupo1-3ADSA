@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -21,11 +22,13 @@ import retrofit2.Response
 import kotlin.properties.Delegates
 
 class ContratanteSearch : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationClickListener {
+    var idProprietaria by Delegates.notNull<Int>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contratante_search)
         createMapFragment()
         getContratadas()
+        idProprietaria = intent.getIntExtra("idProprietaria", 0)
     }
 
     private lateinit var map: GoogleMap
@@ -169,5 +172,29 @@ class ContratanteSearch : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
                 Toast.makeText(baseContext, "Falhou", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    fun telaPerfil(v : View) {
+        val telaPerfil = Intent(this, ContratanteProfile::class.java)
+        telaPerfil.putExtra("idProprietaria", idProprietaria)
+        startActivity(telaPerfil)
+    }
+
+    fun telaServicos(v: View) {
+        val telaServicos = Intent(this, ContratanteList::class.java)
+        telaServicos.putExtra("idProprietaria", idProprietaria)
+        startActivity(telaServicos)
+    }
+
+    fun telaAddJob(v : View) {
+        val telaServicos = Intent(this, ContratanteNewService::class.java)
+        telaServicos.putExtra("idProprietaria", idProprietaria)
+        startActivity(telaServicos)
+    }
+
+    fun telaMapa(v : View) {
+        val telaMapa = Intent(this, ContratanteSearch::class.java)
+        telaMapa.putExtra("idProprietaria", idProprietaria)
+        startActivity(telaMapa)
     }
 }

@@ -49,7 +49,6 @@
                     android:layout_height="wrap_content"
                     android:width="320dp"
                     android:height="70dp"
-                    android:text="Limpeza pesada"
                     android:textColor="@color/black"
                     android:drawableLeft="@drawable/limpezapesada"
                     android:drawableRight="@drawable/ic_baseline_navigate_next_24"
@@ -112,7 +111,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="50dp"
-                android:background="@drawable/search"/>
+                android:background="@drawable/search"
+                android:onClick="telaMapa"/>
 
             <TextView
                 android:id="@+id/tv_iconUser"

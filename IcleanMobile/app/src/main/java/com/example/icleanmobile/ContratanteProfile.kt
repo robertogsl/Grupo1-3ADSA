@@ -13,7 +13,6 @@ import kotlin.properties.Delegates
 class ContratanteProfile : AppCompatActivity() {
     var idProprietaria by Delegates.notNull<Int>()
     lateinit var nomeProprietaria: TextView
-    lateinit var descricaoProprietaria: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +20,6 @@ class ContratanteProfile : AppCompatActivity() {
         idProprietaria = intent.getIntExtra("idProprietaria", 0)
         retornarProprietaria(idProprietaria)
         nomeProprietaria = findViewById(R.id.tv_nome_proprietaria)
-        descricaoProprietaria = findViewById(R.id.tv_descricao)
     }
 
     fun retornarProprietaria(id : Int) {
@@ -54,5 +52,11 @@ class ContratanteProfile : AppCompatActivity() {
         val telaServicos = Intent(this, ContratanteNewService::class.java)
         telaServicos.putExtra("idProprietaria", idProprietaria)
         startActivity(telaServicos)
+    }
+
+    fun telaMapa(v : View) {
+        val telaMapa = Intent(this, ContratanteSearch::class.java)
+        telaMapa.putExtra("idProprietaria", idProprietaria)
+        startActivity(telaMapa)
     }
 }

@@ -42,16 +42,6 @@
                 android:src="@drawable/stars"
                 />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:padding="20dp"
-                android:textColor="@color/white"
-                android:text="A procura de novos desafios, sempre em busca de realizar o melhor trabalho por onde eu passo,
-levando alegria e leveza por onde vou."
-                android:id="@+id/tv_descricao"
-                />
         </LinearLayout>
 
         <LinearLayout
@@ -80,7 +70,8 @@ levando alegria e leveza por onde vou."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="50dp"
-            android:background="@drawable/search"/>
+                android:background="@drawable/search"
+                android:onClick="telaMapa"/>
 
             <TextView
                 android:id="@+id/tv_iconUser"

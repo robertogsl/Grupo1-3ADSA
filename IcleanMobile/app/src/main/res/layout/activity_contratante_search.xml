@@ -51,25 +51,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/plus"
-                android:layout_marginRight="50dp"/>
+                android:layout_marginRight="50dp"
+                android:onClick="telaAddJob"/>
             <TextView
                 android:id="@+id/tv_iconAlign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/align"
-                android:layout_marginRight="50dp"/>
+                android:layout_marginRight="50dp"
+                android:onClick="telaServicos"/>
             <TextView
                 android:id="@+id/tv_iconSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="50dp"
-                android:background="@drawable/search"/>
+                android:background="@drawable/search"
+                android:onClick="telaMapa"/>
 
             <TextView
                 android:id="@+id/tv_iconUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/user"/>
+                android:background="@drawable/user"
+                android:onClick="telaPerfil"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
