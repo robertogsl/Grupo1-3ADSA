@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentContainerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.ArrayList
 
 class TrabalhosContratada : AppCompatActivity(), PaginaInicialTrabalhos.TrabalhoSelecionado {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -128,13 +129,13 @@ class TrabalhosContratada : AppCompatActivity(), PaginaInicialTrabalhos.Trabalho
     }
 
     fun retornarTrabalhos(v: View?) {
-        val getTrabalhos = ApiIclean.criar().getAllJobs()
+        val getTrabalhos = ApiIclean.criar().getAllJobs2()
         findViewById<LinearLayout>(R.id.ll_fragmentos).removeAllViews()
 
-        getTrabalhos.enqueue(object : Callback<Array<Trabalho>> {
+        getTrabalhos.enqueue(object : Callback<ArrayList<Trabalho>> {
             override fun onResponse(
-                call: Call<Array<Trabalho>>,
-                response: Response<Array<Trabalho>>
+                call: Call<ArrayList<Trabalho>>,
+                response: Response<ArrayList<Trabalho>>
             ) {
                 val transaction = supportFragmentManager.beginTransaction()
                 for (t : Trabalho in response.body()!!){
@@ -155,7 +156,7 @@ class TrabalhosContratada : AppCompatActivity(), PaginaInicialTrabalhos.Trabalho
                 transaction.commit()
             }
 
-            override fun onFailure(call: Call<Array<Trabalho>>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<Trabalho>>, t: Throwable) {
                 Toast.makeText(baseContext, "ERRO NA API", Toast.LENGTH_SHORT).show()
             }
         })

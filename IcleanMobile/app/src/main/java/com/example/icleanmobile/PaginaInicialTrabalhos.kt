@@ -11,87 +11,77 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.icleanmobile.databinding.FragmentPaginaInicialTrabalhosBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.ClassCastException
+import java.util.ArrayList
 
 class PaginaInicialTrabalhos : Fragment() {
+    private lateinit var binding : FragmentPaginaInicialTrabalhosBinding
     private lateinit var listener : TrabalhoSelecionado
-    var listaTrabalhos : ArrayList<Trabalho> = arrayListOf()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var recyclerView: RecyclerView;
+    private lateinit var adapter : TrabalhosAdapter;
+    private lateinit var layoutManager: LinearLayoutManager;
+//    var listaTrabalhos : ArrayList<Trabalho> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_pagina_inicial_trabalhos, container, false)
+        binding = FragmentPaginaInicialTrabalhosBinding.inflate(layoutInflater)
+        val view = binding.root;
+
         retornarTrabalhos(view)
+
+        recyclerView = binding.fragContratada;
+        setRecyclerView();
+
+
+
         return view
     }
 
+    fun setRecyclerView(){
+        //SETA A RECYCLERVIEW
+        layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = layoutManager;
+        adapter = TrabalhosAdapter()
+        recyclerView.adapter = adapter;
+    }
+
     fun retornarTrabalhos(v: View) {
-        val getTrabalhos = ApiIclean.criar().getAllJobs()
-        getTrabalhos.enqueue(object : Callback<Array<Trabalho>> {
+        val getTrabalhos = ApiIclean.criar().getAllJobs2()
+        getTrabalhos.enqueue(object : Callback<ArrayList<Trabalho>> {
             override fun onResponse(
-                call: Call<Array<Trabalho>>,
-                response: Response<Array<Trabalho>>
+                call: Call<ArrayList<Trabalho>>,
+                response: Response<ArrayList<Trabalho>>
             ) {
                 if(response.isSuccessful){
-                    val body = response.body()
-                    if(listaTrabalhos.isNotEmpty())listaTrabalhos.clear()
 
-                    body?.forEach{ trabalho ->
-                        listaTrabalhos.add(trabalho)
-                    }
+                    val listaTrabalho = response.body()!!
+                    adapter.addList(listaTrabalho)
 
-                    val activity = activity as Context
-                    val recyclerView = v.findViewById<RecyclerView>(R.id.frag_contratada)
-                    recyclerView.layoutManager = LinearLayoutManager(activity)
-                    recyclerView.adapter = ListaTrabalhoAdapter()
+//                    val body = response.body()
+//                    if(listaTrabalhos.isNotEmpty())listaTrabalhos.clear()
+//
+//                    body?.forEach{ trabalho ->
+//                        listaTrabalhos.add(trabalho)
+//                    }
+
+//                    val activity = activity as Context
+//                    val recyclerView = v.findViewById<RecyclerView>(R.id.frag_contratada)
+//                    recyclerView.layoutManager = LinearLayoutManager(activity)
+//                    recyclerView.adapter = TrabalhosAdapter(listaTrabalhos)
                 }
             }
 
-            override fun onFailure(call: Call<Array<Trabalho>>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<Trabalho>>, t: Throwable) {
                 Toast.makeText(context, "ERRO NA API", Toast.LENGTH_SHORT).show()
             }
         })
-    }
-
-    internal inner class ListaTrabalhoAdapter : RecyclerView.Adapter<ViewHolder>() {
-
-        override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int) =
-            ViewHolder(
-                LayoutInflater.from(context).inflate(
-                    R.layout.trabalho_item, viewGroup, false
-                )
-            )
-
-        override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-            val trabalho = Trabalho(
-                listaTrabalhos[position].id,
-                listaTrabalhos[position].proprietaria,
-                listaTrabalhos[position].candidatas,
-                listaTrabalhos[position].preco,
-                listaTrabalhos[position].especificacao,
-                listaTrabalhos[position].cep,
-                listaTrabalhos[position].complemento,
-                listaTrabalhos[position].numero,
-                listaTrabalhos[position].longitude,
-                listaTrabalhos[position].latitude,
-            )
-            viewHolder.bind(trabalho)
-            viewHolder.itemView.findViewById<LinearLayout>(R.id.ll_servico)
-                .setOnClickListener {
-                    listener.selecionarTrabalho(trabalho)
-                }
-        }
-
-        override fun getItemCount() = listaTrabalhos.size
     }
 
     override fun onAttach(context: Context) {
@@ -101,15 +91,6 @@ class PaginaInicialTrabalhos : Fragment() {
             listener = context
         } else {
             throw ClassCastException("$context must implemented")
-        }
-    }
-
-    internal inner class ViewHolder constructor(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
-        fun bind(trabalho: Trabalho) {
-            itemView.findViewById<AppCompatTextView>(R.id.tv_titulo_trabalho).text = trabalho.especificacao
-            // itemView.findViewById<AppCompatTextView>(R.id.tv_nome_propietaria).text = trabalho.proprietaria!!.nome
-            itemView.findViewById<AppCompatTextView>(R.id.tv_cep_trabalho).text = trabalho.cep
         }
     }
 

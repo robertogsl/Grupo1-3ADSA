@@ -30,6 +30,9 @@ interface ApiIclean {
     @GET("trabalhos")
     fun getAllJobs() : Call<Array<Trabalho>>
 
+    @GET("trabalhos")
+    fun getAllJobs2() : Call<ArrayList<Trabalho>>
+
     @GET("trabalhos/proprietaria/{id}")
     fun getAllJobsProprietaria(@Path("id") id : Int) : Call<Array<Trabalho>>
 
